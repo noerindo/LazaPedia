@@ -14,7 +14,7 @@ class ViewController: UIViewController {
             bottomView.layer.cornerRadius = 20
         }
     }
-    
+   ////
     @IBOutlet weak var TitleLabel: UILabel!{
         didSet {
             TitleLabel.font = UIFont.boldSystemFont(ofSize: 25)
