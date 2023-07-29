@@ -31,10 +31,6 @@ class APICall {
             }
     }
     
-        
-
-     
-
    
     func postUser(){
         let param: [String: String] = [:]
