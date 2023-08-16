@@ -6,6 +6,8 @@ PODS:
   - AppAuth/Core (1.6.2)
   - AppAuth/ExternalUserAgent (1.6.2):
     - AppAuth/Core
+  - CreditCardForm (0.2.0)
+  - DPOTPView (1.5.12)
   - FBAEMKit (16.1.3):
     - FBSDKCoreKit_Basics (= 16.1.3)
   - FBSDKCoreKit (16.1.3):
@@ -22,19 +24,54 @@ PODS:
     - AppAuth/Core (~> 1.6)
     - GTMSessionFetcher/Core (< 4.0, >= 1.5)
   - GTMSessionFetcher/Core (3.1.1)
+  - SDWebImage (5.17.0):
+    - SDWebImage/Core (= 5.17.0)
+  - SDWebImage/Core (5.17.0)
+  - SideMenu (6.5.0)
+  - SnackBar.swift (0.1.0):
+    - SnapKit
+  - SnapKit (5.6.0)
+  - Stripe (23.13.0):
+    - StripeApplePay (= 23.13.0)
+    - StripeCore (= 23.13.0)
+    - StripePayments (= 23.13.0)
+    - StripePaymentsUI (= 23.13.0)
+    - StripeUICore (= 23.13.0)
+  - StripeApplePay (23.13.0):
+    - StripeCore (= 23.13.0)
+  - StripeCore (23.13.0)
+  - StripePayments (23.13.0):
+    - StripeCore (= 23.13.0)
+    - StripePayments/Stripe3DS2 (= 23.13.0)
+  - StripePayments/Stripe3DS2 (23.13.0):
+    - StripeCore (= 23.13.0)
+  - StripePaymentsUI (23.13.0):
+    - StripeCore (= 23.13.0)
+    - StripePayments (= 23.13.0)
+    - StripeUICore (= 23.13.0)
+  - StripeUICore (23.13.0):
+    - StripeCore (= 23.13.0)
   - Swifter (2.5.0)
 
 DEPENDENCIES:
   - Alamofire
+  - CreditCardForm
+  - DPOTPView
   - FBSDKCoreKit
   - FBSDKLoginKit
   - GoogleSignIn
+  - SDWebImage
+  - SideMenu
+  - SnackBar.swift
+  - Stripe
   - Swifter (from `https://github.com/mattdonnelly/Swifter.git`)
 
 SPEC REPOS:
   trunk:
     - Alamofire
     - AppAuth
+    - CreditCardForm
+    - DPOTPView
     - FBAEMKit
     - FBSDKCoreKit
     - FBSDKCoreKit_Basics
@@ -42,6 +79,16 @@ SPEC REPOS:
     - GoogleSignIn
     - GTMAppAuth
     - GTMSessionFetcher
+    - SDWebImage
+    - SideMenu
+    - SnackBar.swift
+    - SnapKit
+    - Stripe
+    - StripeApplePay
+    - StripeCore
+    - StripePayments
+    - StripePaymentsUI
+    - StripeUICore
 
 EXTERNAL SOURCES:
   Swifter:
@@ -55,6 +102,8 @@ CHECKOUT OPTIONS:
 SPEC CHECKSUMS:
   Alamofire: 0123a34370cb170936ae79a8df46cc62b2edeb88
   AppAuth: 3bb1d1cd9340bd09f5ed189fb00b1cc28e1e8570
+  CreditCardForm: bba4aad545236f97f2dc45ea3bed0cb57d5e0e99
+  DPOTPView: 28d8a0a84a2ff4b1e4a7712065aba1cbb14e2704
   FBAEMKit: af2972f39bb0f3f7c45998f435b007833c32ffb2
   FBSDKCoreKit: 19e2e18b3be578d7a51fed8fdd8c152bef0b9511
   FBSDKCoreKit_Basics: dd9826ce3c9fd9f8cdf8dbbd0ef0a53e6c0c9e7e
@@ -62,8 +111,18 @@ SPEC CHECKSUMS:
   GoogleSignIn: b232380cf495a429b8095d3178a8d5855b42e842
   GTMAppAuth: 99fb010047ba3973b7026e45393f51f27ab965ae
   GTMSessionFetcher: e8647203b65cee28c5f73d0f473d096653945e72
+  SDWebImage: 750adf017a315a280c60fde706ab1e552a3ae4e9
+  SideMenu: f583187d21c5b1dd04c72002be544b555a2627a2
+  SnackBar.swift: 79ea4df13ea9e6633137dd6acbd490534d26440d
+  SnapKit: e01d52ebb8ddbc333eefe2132acf85c8227d9c25
+  Stripe: ee21be55cfcd4b4797486b1afaeb0d822d7ae8fd
+  StripeApplePay: 70a263e288bcf4e2011cf4027a2fc0813a6f8c09
+  StripeCore: 0f01d8c435d94b9e6bf937006a6144544e580c90
+  StripePayments: 47e26bb98818fbdc331cec8cb11a03c08f47305b
+  StripePaymentsUI: 58029c55b661c176c8d2e406393fff9eb46bb8ce
+  StripeUICore: 171fcf535c658ee1ebd7aaf08fa6a0eceb3fb3db
   Swifter: 4c2f8cf320c2f751c10128f841d8e9bd8609d988
 
-PODFILE CHECKSUM: 21271319175c7208a5b9dc5aded3c70b30c858fd
+PODFILE CHECKSUM: 2344a6bf4584b5b6fec76db6f3e51eaef56ed71d
 
 COCOAPODS: 1.12.1

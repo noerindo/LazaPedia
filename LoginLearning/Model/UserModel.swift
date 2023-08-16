@@ -7,26 +7,48 @@
 
 import Foundation
 
-struct UserModel: Codable {
-//    let id: Int
+struct ResponRegisSucces: Codable {
+    let status: String
+    let data: RegisterUser
+}
+
+struct RegisterUser: Codable {
+    let id: Int
     let email: String
-    let password: String
-    let phone: String
     let username: String
-    let name: FullName
-//    let address: Address
 }
 
-typealias UserIndex = [UserModel]
 
-struct FullName: Codable {
-    let firstname: String
-    let lastname: String
+struct ResponFailed : Codable {
+    let status: String
+    let description: String
 }
 
-struct Address: Codable {
-    let city: String
-    let street: String
-    let number: Int
-    let zipcode: String
+
+struct LoginUser: Codable {
+    let access_token: String
+    let refresh_token: String
+}
+
+struct DataProfile: Codable {
+    let id: Int
+    let username: String
+    let password: String
+    let email: String
+    let full_name: String
+    let image_url: String
+}
+
+struct Profile: Codable {
+    let data: DataProfile
+}
+ 
+struct ResponSucces: Codable
+{
+    let status: String
+    let data: MessageForgot
+}
+
+struct MessageForgot : Codable {
+    let message: String
 }

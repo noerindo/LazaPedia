@@ -46,6 +46,9 @@
 		E09396732A706975003445B3 /* LoginSosmedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E09396722A706975003445B3 /* LoginSosmedViewController.swift */; };
 		E09396782A7071BF003445B3 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E09396772A7071BF003445B3 /* SignUpViewController.swift */; };
 		E093967C2A7079CD003445B3 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E093967B2A7079CD003445B3 /* LoginViewController.swift */; };
+		E0A1BE612A8B30E00010F91C /* CollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E0A1BE602A8B30E00010F91C /* CollectionViewCell.xib */; };
+		E0A1BE632A8B312B0010F91C /* CollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0A1BE622A8B312B0010F91C /* CollectionViewCell.swift */; };
+		E0DE4F0D2A8CB62E000C53FA /* KodePassViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0DE4F0C2A8CB62E000C53FA /* KodePassViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -92,6 +95,9 @@
 		E09396722A706975003445B3 /* LoginSosmedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginSosmedViewController.swift; sourceTree = "<group>"; };
 		E09396772A7071BF003445B3 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		E093967B2A7079CD003445B3 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		E0A1BE602A8B30E00010F91C /* CollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CollectionViewCell.xib; sourceTree = "<group>"; };
+		E0A1BE622A8B312B0010F91C /* CollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewCell.swift; sourceTree = "<group>"; };
+		E0DE4F0C2A8CB62E000C53FA /* KodePassViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KodePassViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -251,6 +257,8 @@
 			isa = PBXGroup;
 			children = (
 				E09396622A705F6B003445B3 /* Main.storyboard */,
+				E0A1BE602A8B30E00010F91C /* CollectionViewCell.xib */,
+				E0A1BE622A8B312B0010F91C /* CollectionViewCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -295,6 +303,7 @@
 			children = (
 				E057A4312A70A80B00A8EC00 /* ForgotEmailViewController.swift */,
 				E057A45B2A70B23D00A8EC00 /* ResetPasswordViewController.swift */,
+				E0DE4F0C2A8CB62E000C53FA /* KodePassViewController.swift */,
 			);
 			path = ForgotPassword;
 			sourceTree = "<group>";
@@ -381,6 +390,7 @@
 				E057A44D2A70ACC300A8EC00 /* Inter-ExtraLightItalic-BETA.ttf in Resources */,
 				E057A4482A70ACC300A8EC00 /* Inter-ExtraBoldItalic.ttf in Resources */,
 				E057A4522A70ACC300A8EC00 /* Inter-Black.ttf in Resources */,
+				E0A1BE612A8B30E00010F91C /* CollectionViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -435,6 +445,7 @@
 			files = (
 				E02DC1822A75896800CA0192 /* TabBarViewController.swift in Sources */,
 				E05C0FCF2A72162200962579 /* TwitterConstants.swift in Sources */,
+				E0A1BE632A8B312B0010F91C /* CollectionViewCell.swift in Sources */,
 				E057A5EC2A711AE400A8EC00 /* APIcall.swift in Sources */,
 				E05C0FD72A73B30500962579 /* HomeProducViewController.swift in Sources */,
 				E093967C2A7079CD003445B3 /* LoginViewController.swift in Sources */,
@@ -442,6 +453,7 @@
 				E05C0FD32A724EFA00962579 /* Extension View.swift in Sources */,
 				E09396612A705F6B003445B3 /* ViewController.swift in Sources */,
 				E09396732A706975003445B3 /* LoginSosmedViewController.swift in Sources */,
+				E0DE4F0D2A8CB62E000C53FA /* KodePassViewController.swift in Sources */,
 				E057A45C2A70B23D00A8EC00 /* ResetPasswordViewController.swift in Sources */,
 				E093965D2A705F6B003445B3 /* AppDelegate.swift in Sources */,
 				E093965F2A705F6B003445B3 /* SceneDelegate.swift in Sources */,

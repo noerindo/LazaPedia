@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SnackBar_swift
 
 class LoginViewController: UIViewController {
     private let userViewModel = UserViewModel()
@@ -24,7 +25,6 @@ class LoginViewController: UIViewController {
             passwordText.font = UIFont(name: "Inter-Medium", size: 15)
         }
     }
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -46,27 +46,40 @@ class LoginViewController: UIViewController {
         guard let userName = userNameText.text else { return }
         guard let pass = passwordText.text else { return }
         if userNameText != nil && passwordText != nil {
-            APICall().fetchAPIUser { UserIndex in
-                let matchingUser = UserIndex.first { user in
-                    user.username == userName && user.password == pass
+            APICall().postLogin(userName: userName, password: pass) { response in
+                DispatchQueue.main.async {
+                    let homeVC = self.storyboard?.instantiateViewController(withIdentifier: "TabBarViewController") as! TabBarViewController
+                    self.navigationController?.pushViewController(homeVC, animated: true)
+                    //
                 }
-                if let isUser = matchingUser {
-                    DispatchQueue.main.async {
-                        self.userViewModel.loginDefault(isLogin: true, userName: userName, pass: pass)
-                        let homeVC = self.storyboard?.instantiateViewController(withIdentifier: "TabBarViewController") as! TabBarViewController
-                        self.navigationController?.pushViewController(homeVC, animated: true)
-                        
-                    }
-                } else {
-                    self.present(Alert.createAlertController(title: "Warning", message: "periksa kembali username and password"),animated: true)
-                    
+            } onError: { error in
+                DispatchQueue.main.async {
+                    SnackBarWarning.make(in: self.view, message: error, duration: .lengthShort).show()
                 }
-                
             }
-        } else {
-            self.present(Alert.createAlertController(title: "Warning", message: "data belum lengkap"),animated: true)
+
         }
-        
+//            APICall().fetchAPIUser { UserIndex in
+//                let matchingUser = UserIndex.first { user in
+//                    user.username == userName && user.password == pass
+//                }
+//                if let isUser = matchingUser {
+//                    DispatchQueue.main.async {
+//                        self.userViewModel.loginDefault(isLogin: true, userName: userName, pass: pass)
+//                        let homeVC = self.storyboard?.instantiateViewController(withIdentifier: "TabBarViewController") as! TabBarViewController
+//                        self.navigationController?.pushViewController(homeVC, animated: true)
+//                        
+//                    }
+//                } else {
+////                    self.present(Alert.createAlertController(title: "Warning", message: "periksa kembali username and password"),animated: true)
+//                    
+//                }
+//                
+//            }
+//        } else {
+////            self.present(Alert.createAlertController(title: "Warning", message: "data belum lengkap"),animated: true)
+//        }
+//        
       
     }
     

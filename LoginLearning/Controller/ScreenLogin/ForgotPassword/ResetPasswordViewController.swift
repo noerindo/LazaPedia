@@ -39,9 +39,9 @@ class ResetPasswordViewController: UIViewController {
         
         if passwordText == nil && confirmPassText == nil {
             if  pass1 != pass2 {
-                self.present(Alert.createAlertController(title: "Warning", message: "Password tidak sama dengan confirm Password"),animated: true)
+//                self.present(Alert.createAlertController(title: "Warning", message: "Password tidak sama dengan confirm Password"),animated: true)
             }
-            self.present(Alert.createAlertController(title: "Warning", message: "Password tidak sama dengan confirm Password"),animated: true)
+//            self.present(Alert.createAlertController(title: "Warning", message: "Password tidak sama dengan confirm Password"),animated: true)
         } else {
             let loginVC = self.storyboard?.instantiateViewController(withIdentifier: "LoginViewController") as! LoginViewController
             self.navigationController?.pushViewController(loginVC, animated: true)

@@ -5,8 +5,9 @@
 //  Created by Indah Nurindo on 27/07/2566 BE.
 //
 
-import Foundation
 import UIKit
+import SnackBar_swift
+
 
 extension UIView {
     
@@ -18,19 +19,33 @@ extension UIView {
         }
 }
 
-class Alert {
-    static func createAlertController(title: String, message: String) -> UIAlertController {
-         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
-         
-         let okAction = UIAlertAction(title: "Ok", style: .default) { (action) in
-             alert.dismiss(animated: true, completion: nil)
-         }
-         
-         alert.addAction(okAction)
-         
-         return alert
-     }
+class SnackBarWarning: SnackBar {
+    
+    override var style: SnackBarStyle {
+        var style = SnackBarStyle()
+        style.background = .red
+        style.textColor = .white
+        return style
+    }
 }
+class SnackBarSuccess: SnackBar {
+    
+    override var style: SnackBarStyle {
+        var style = SnackBarStyle()
+        style.background = .green
+        style.textColor = .white
+        return style
+    }
+}
+
+// membuat string dengan huruf pertama kapital
+extension String {
+    func capitalizeFirstLetter() -> String {
+        return self.prefix(1).uppercased() + self.lowercased().dropFirst()
+    }
+    
+}
+
 
 
 

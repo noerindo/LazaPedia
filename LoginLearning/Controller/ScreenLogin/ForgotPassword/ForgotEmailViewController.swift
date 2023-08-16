@@ -23,22 +23,29 @@ class ForgotEmailViewController: UIViewController {
     }
     
     @IBAction func confirmActionBtn(_ sender: UIButton) {
-        guard let emailTxt = emailText.text else { return }
-            APICall().fetchAPIUser { UserIndex in
-                let matchingEmail = UserIndex.first { user in
-                    user.email == emailTxt &&  self.emailText != nil
-                }
-                if let isEmail = matchingEmail {
-                    DispatchQueue.main.async {
-                        let resetVC = self.storyboard?.instantiateViewController(withIdentifier: "ResetPasswordViewController") as! ResetPasswordViewController
-                        self.navigationController?.pushViewController(resetVC, animated: true)
+        guard let email = emailText.text else { return }
+        if AcountRegis.invalidEmail(email: email) {
+            APICall().postForgetPass(email: email) { response in
+                DispatchQueue.main.async {
+                    if response == "successfully send mail forgot password" {
+                        let alert = UIAlertController(title: "Registration Success", message: response, preferredStyle: .alert)
+                        let okAction = UIAlertAction(title: "OK", style: .default) { [weak self] _ in
+                          DispatchQueue.main.async {
+                              let kodeVC = self?.storyboard?.instantiateViewController(withIdentifier: "KodePassViewController") as! KodePassViewController
+                              kodeVC.emailForgot = email
+                              self?.navigationController?.pushViewController(kodeVC, animated: true)
+                          }
+                        }
+                        alert.addAction(okAction)
+                        self.present(alert, animated: true, completion: nil)
+                    } else {
+                        SnackBarWarning.make(in: self.view, message: response, duration: .lengthShort).show()
                     }
-                } else {
-                    self.present(Alert.createAlertController(title: "Warning", message: "Email tidak terdetec"),animated: true)
                 }
             }
-        
-        
+        } else {
+            SnackBarWarning.make(in: self.view, message: "Email is not valid.", duration: .lengthShort).show()
+        }
     }
     
     @IBAction func backactionBtn(_ sender: UIButton) {
