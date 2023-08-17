@@ -1,0 +1,140 @@
+//
+//  SideMenuViewController.swift
+//  LoginLearning
+//
+//  Created by Indah Nurindo on 17/08/2566 BE.
+//
+
+import UIKit
+
+protocol SideMenuViewControllerDelegate {
+    func selectedCell(_ row: Int)
+}
+
+class SideMenuViewController: UIViewController {
+    
+    @IBOutlet weak var orderText: UILabel! {
+        didSet {
+            orderText.layer.cornerRadius = 20
+        }
+    }
+    var defaultHighlightedCell: Int = 0
+    var delegate: SideMenuViewControllerDelegate?
+    
+    @IBOutlet weak var photoAcount: UIImageView! {
+        didSet {
+            photoAcount.layer.cornerRadius = photoAcount.frame.size.width / 2
+            photoAcount.clipsToBounds = true
+        }
+    }
+    @IBOutlet weak var orderView: UILabel! {
+        didSet {
+            orderView.layer.cornerRadius = 20
+        }
+    }
+    @IBOutlet weak var tableSide: UITableView!
+    @IBOutlet weak var ketControlMode: UILabel!
+    @IBOutlet weak var controlMode: UISwitch!
+    @IBOutlet weak var nameAcount: UILabel!
+    @IBOutlet weak var logoutBtn: UIButton!
+    
+    @IBOutlet weak var sideOnBtn: UIButton!
+    {
+        didSet {
+                let size = CGSize(width: 20, height: 20)
+                let rect = CGRect(origin: .zero, size: size)
+                var image = UIImage(named: "sideOn")
+                UIGraphicsBeginImageContextWithOptions(size, false, 1)
+                image?.draw(in: rect)
+                image = UIGraphicsGetImageFromCurrentImageContext()
+                sideOnBtn.setImage(image, for: .normal)
+        }
+    }
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        tableSide.dataSource = self
+        tableSide.delegate = self
+        tableSide.register(UINib(nibName: "SideTableViewCell", bundle: nil), forCellReuseIdentifier: "SideTableViewCell")
+        
+        // Set Highlighted Cell
+        DispatchQueue.main.async {
+            _ = IndexPath(row: self.defaultHighlightedCell, section: 0)
+//            self.sideMenuTableView.selectRow(at: defaultRow, animated: false, scrollPosition: .none)
+        }
+    }
+    
+    @IBAction func logOutActionBtn(_ sender: UIButton) {
+        UserDefaults.standard.set(false, forKey: "UseriIsLogin")
+            let tabVC = self.storyboard?.instantiateViewController(withIdentifier: "LoginSosmedViewController") as! LoginSosmedViewController
+            self.navigationController?.pushViewController(tabVC, animated: true)
+
+    }
+    
+    @IBAction func switchMode(_ sender: UISwitch) {
+        let appDelegate = UIApplication.shared.windows.first
+        if controlMode.isOn == true {
+            appDelegate?.overrideUserInterfaceStyle = .dark
+        }
+        else {
+            appDelegate?.overrideUserInterfaceStyle = .light
+        }
+    }
+    @IBAction func backBtn(_ sender: UIButton) {
+//        print("printy")
+//        self.navigationController?.popViewController(animated: true)
+//        let mainStoryboard = UIStoryboard(name: "Main", bundle: Bundle.main)
+//        let vc: UITabBarController = mainStoryboard.instantiateViewController(withIdentifier: "TabBarViewController") as! UITabBarController
+//        vc.selectedIndex = 0
+//        _ = vc.selectedViewController
+//        self.navigationController?.view.window?.windowScene?.keyWindow?.rootViewController = vc
+//        navigationController?.setNavigationBarHidden(true, animated: true)
+        navigationController?.setNavigationBarHidden(true, animated: true)
+        let homeVC = self.storyboard?.instantiateViewController(withIdentifier: "TabBarViewController") as! TabBarViewController
+        self.navigationController?.pushViewController(homeVC, animated: true)
+    }
+}
+
+
+extension SideMenuViewController:  UITableViewDataSource, UITableViewDelegate {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return cellSide.count
+    }
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 45
+    }
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        if let cell = tableView.dequeueReusableCell(withIdentifier: "SideTableViewCell", for: indexPath) as? SideTableViewCell {
+            let cellSideA = cellSide[indexPath.item]
+            cell.configure(data: cellSideA)
+            return cell
+            
+        } else {
+            return UITableViewCell()
+        }
+    }
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        switch indexPath.row {
+        case 2:
+            moveCellSide(index: 2)
+        case 3:
+            moveCellSide(index: 3)
+        case 4:
+            moveCellSide(index: 1)
+        default:
+            moveCellSide(index: 0)
+        }
+        
+    }
+    
+}
+
+extension SideMenuViewController {
+    func moveCellSide(index: Int) {
+        let mainStoryboard = UIStoryboard(name: "Main", bundle: Bundle.main)
+        let vc: UITabBarController = mainStoryboard.instantiateViewController(withIdentifier: "TabBarViewController") as! UITabBarController
+        vc.selectedIndex = index
+        _ = vc.selectedViewController
+        
+self.navigationController?.view.window?.windowScene?.keyWindow?.rootViewController = vc
+    }
+}

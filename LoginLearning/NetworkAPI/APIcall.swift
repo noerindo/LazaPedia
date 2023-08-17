@@ -122,7 +122,7 @@ class APICall {
 //        }
     }
     
-    func postForgetPass(email: String, completion: @escaping(String) -> Void) {
+    func postForgetPass(email: String, completion: @escaping(String) -> Void, onError: @escaping(String) -> Void) {
         guard let url = URL(string: "\(baseUrl)auth/forgotpassword") else { return }
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
@@ -142,19 +142,26 @@ class APICall {
             guard let data = data else { return }
             
             print(httpRespon.statusCode)
-            if httpRespon.statusCode == 200 {
-                guard let regisFailed = try? JSONDecoder().decode(ResponForgotPass.self, from: data) else {
-                    completion("email failed")
+            if httpRespon.statusCode != 200 {
+                guard let regisFailed = try? JSONDecoder().decode(ResponFailed.self, from: data) else {
+                    onError("Login failed")
                     return
                 }
-                completion(regisFailed.data.message)
-                print(regisFailed.data.message)
+                onError(regisFailed.description)
+                print(regisFailed.description)
                 return
-            }        }
+            }
+            do {
+                let result = try JSONDecoder().decode(ResponSucces.self, from: data)
+                completion(result.data.message)
+            } catch {
+                print(error)
+            }
+        }
         task.resume()
     }
     
-    func postCodeForgot(email: String, code: String,completion: @escaping(String) -> Void, onError: @escaping(String) -> Void) {
+    func postCodeForgot(email: String, code: String, completion: @escaping(String) -> Void, onError: @escaping(String) -> Void) {
         let param = [
             "email":email,
             "code": code
@@ -178,22 +185,69 @@ class APICall {
             guard let data = data else { return }
             
             print("hasil code: \(httpRespon.statusCode)")
-            if httpRespon.statusCode == 202 {
-                guard let regisSucces = try? JSONDecoder().decode(ResponSucces.self, from: data) else {
+            if httpRespon.statusCode != 202 {
+                guard let result = try? JSONDecoder().decode(ResponFailed.self, from: data) else {
+                    onError("code gagal")
+                    return
+                }
+                completion(result.description)
+                return
+            }
+            do {
+                let result = try JSONDecoder().decode(ResponSucces.self, from: data)
+                completion(result.data.message)
+            } catch {
+                print(error)
+            }
+        }
+            task.resume()
+            
+            
+    }
+    func postNewPassword(newPass: String, confirPass: String, email: String, code: String, completion: @escaping(String) -> Void, onError: @escaping(String) -> Void) {
+        let param = [
+            "new_password": newPass,
+            "re_password": confirPass
+        ]
+        guard let url = URL(string:"\(baseUrl)auth/recover/password?email=\(email)&code=\(code)" ) else { return }
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type") // the request is json
+        
+        do {
+            request.httpBody = try JSONSerialization.data(withJSONObject: param)
+        } catch {
+            print("Error created data JSON")
+            return
+        }
+        
+        let task = URLSession.shared.dataTask(with: request) { data, response, error in
+            if error != nil {
+                return
+            }
+            guard let httpRespon = response as? HTTPURLResponse else { return}
+            guard let data = data else { return }
+            
+            print("hasil code: \(httpRespon.statusCode)")
+            if httpRespon.statusCode != 200 {
+                guard let result = try? JSONDecoder().decode(ResponFailed.self, from: data) else {
                     completion("code gagal")
                     return
                 }
-                completion(regisSucces.data.message)
+                completion(result.description)
                 return
-            } else {
-                guard let regisFailed = try? JSONDecoder().decode(ResponFailed.self, from: data) else {
-            }        }
+            }
+            do {
+                let result = try JSONDecoder().decode(ResponSucces.self, from: data)
+                completion(result.data.message)
+            } catch {
+                print(error)
+            }
+
+        }
         task.resume()
         
-        
     }
-    
-//    func postNewPassword(newPass: String, confirPass: String, completion: @escaping)
     
     func postRegister(email: String, userName: String, password: String, completion: @escaping((ResponRegisSucces?) -> Void), onError: @escaping(String) -> Void) {
         let param = [

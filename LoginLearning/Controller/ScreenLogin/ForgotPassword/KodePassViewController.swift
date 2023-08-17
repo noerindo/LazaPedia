@@ -27,17 +27,23 @@ class KodePassViewController: UIViewController {
     
 
     @IBAction func confirmCode(_ sender: UIButton) {
-        guard let code = inputCode.text, !code.isEmpty else { return }
-        if code != "" {
-            APICall().postCodeForgot(email: emailForgot, code: code) { result in
+        guard let codeInput = inputCode.text else { return }
+        if codeInput != "" {
+            APICall().postCodeForgot(email: emailForgot, code: codeInput) { result in
                 DispatchQueue.main.async {
                     if result == "code is valid" {
                         let moveVC = self.storyboard?.instantiateViewController(withIdentifier: "ResetPasswordViewController") as! ResetPasswordViewController
+                        moveVC.email = self.emailForgot
+                        moveVC.codeEmail = codeInput
                         self.navigationController?.pushViewController(moveVC, animated: true)
                         
                     } else {
                         SnackBarWarning.make(in: self.view, message: result, duration: .lengthShort).show()
                     }
+                }
+            } onError: { error in
+                DispatchQueue.main.async {
+                    SnackBarWarning.make(in: self.view, message: error, duration: .lengthShort).show()
                 }
             }
         } else {

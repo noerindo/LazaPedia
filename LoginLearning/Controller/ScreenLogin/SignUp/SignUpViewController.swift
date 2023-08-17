@@ -11,8 +11,6 @@ import SnackBar_swift
 class SignUpViewController: UIViewController {
     var isCheck: Bool = false
     private let userViewModel = UserViewModel()
-    var regisDesc = [RegisterUser]()
-    var regisFaild = [ResponRegisterFailed]()
     
     @IBOutlet weak var checkUserName: UIImageView!
     

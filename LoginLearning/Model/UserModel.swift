@@ -52,3 +52,13 @@ struct ResponSucces: Codable
 struct MessageForgot : Codable {
     let message: String
 }
+
+
+struct Address: Codable {
+    let city: String
+    let street: String
+    let number: Int
+    let zipcode: String
+}
+
+typealias AdressUser = [Address]

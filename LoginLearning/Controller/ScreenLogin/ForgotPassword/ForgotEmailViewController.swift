@@ -42,6 +42,10 @@ class ForgotEmailViewController: UIViewController {
                         SnackBarWarning.make(in: self.view, message: response, duration: .lengthShort).show()
                     }
                 }
+            } onError: { error in
+                DispatchQueue.main.async {
+                    SnackBarWarning.make(in: self.view, message: error, duration: .lengthShort).show()
+                }
             }
         } else {
             SnackBarWarning.make(in: self.view, message: "Email is not valid.", duration: .lengthShort).show()
