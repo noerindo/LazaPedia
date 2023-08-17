@@ -25,5 +25,5 @@ class AcountRegis {
         let predicate = NSPredicate(format: "SELF MATCHES %@", userName)
         return predicate.evaluate(with: userName)
     }
-    
+    //tes
 }
