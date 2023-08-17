@@ -14,12 +14,13 @@ class ResetPasswordViewController: UIViewController {
     @IBOutlet weak var eyeConfirm: UIButton! {
         didSet {
             eyeConfirm.setImage(UIImage(systemName: "eye"), for: .normal)
-            eyeConfirm.addTarget(self, action: #selector(securePass), for: .touchUpInside)
+            eyeConfirm.addTarget(self, action: #selector(secureConfirmPass), for: .touchUpInside)
             
         }
     }
     @IBOutlet weak var eyePass: UIButton! {
         didSet {
+            
             eyePass.setImage(UIImage(systemName: "eye"), for: .normal)
             eyePass.addTarget(self, action: #selector(securePass), for: .touchUpInside)
             
@@ -27,6 +28,7 @@ class ResetPasswordViewController: UIViewController {
     }
     @IBOutlet weak var passwordText: UITextField! {
         didSet {
+            passwordText.isSecureTextEntry = true
             passwordText.addShadow(color: .gray, width: 0.5, text: passwordText)
             passwordText.font = UIFont(name: "Inter-Medium", size: 15)
         }
@@ -34,6 +36,7 @@ class ResetPasswordViewController: UIViewController {
     
     @IBOutlet weak var confirmPassText: UITextField! {
         didSet {
+            confirmPassText.isSecureTextEntry = true
             confirmPassText.addShadow(color: .gray, width: 0.5, text: confirmPassText)
             confirmPassText.font = UIFont(name: "Inter-Medium", size: 15)
         }
@@ -41,8 +44,8 @@ class ResetPasswordViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        passwordText.isSecureTextEntry = true
-        confirmPassText.isSecureTextEntry = true
+       
+      
         
     }
     

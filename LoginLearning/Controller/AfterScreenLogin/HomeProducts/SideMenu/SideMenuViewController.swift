@@ -64,10 +64,27 @@ class SideMenuViewController: UIViewController {
     }
     
     @IBAction func logOutActionBtn(_ sender: UIButton) {
-        UserDefaults.standard.set(false, forKey: "UseriIsLogin")
-            let tabVC = self.storyboard?.instantiateViewController(withIdentifier: "LoginSosmedViewController") as! LoginSosmedViewController
-            self.navigationController?.pushViewController(tabVC, animated: true)
+        let refreshAlert = UIAlertController(title: "Warning", message: "you will exit the application", preferredStyle: UIAlertController.Style.alert)
 
+        refreshAlert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { (action: UIAlertAction!) in
+//            UserDefaults.standard.set(false, forKey: "UseriIsLogin")
+//            UserDefaults.standard.removeObject(forKey: "Email")
+            print("before",Array(UserDefaults.standard.dictionaryRepresentation().keys).count)
+            let domain = Bundle.main.bundleIdentifier!
+            print("domain=",domain)
+            UserDefaults.standard.removePersistentDomain(forName: domain)
+            UserDefaults.standard.synchronize()
+            print(Array(UserDefaults.standard.dictionaryRepresentation().keys))
+//            UserDefaults.standard.set(false, forKey: "UseriIsLogin")
+                let tabVC = self.storyboard?.instantiateViewController(withIdentifier: "LoginSosmedViewController") as! LoginSosmedViewController
+                self.navigationController?.pushViewController(tabVC, animated: true)
+        }))
+
+        refreshAlert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { (action: UIAlertAction!) in
+            refreshAlert .dismiss(animated: true, completion: nil)
+        }))
+
+        present(refreshAlert, animated: true, completion: nil)
     }
     
     @IBAction func switchMode(_ sender: UISwitch) {

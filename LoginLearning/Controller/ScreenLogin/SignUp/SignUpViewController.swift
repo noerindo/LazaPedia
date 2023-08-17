@@ -18,6 +18,7 @@ class SignUpViewController: UIViewController {
     @IBOutlet weak var checkEmail: UIImageView!
     @IBOutlet weak var eyePass: UIButton! {
         didSet {
+            eyePass.setImage(UIImage(systemName: "eye"), for: .normal)
             eyePass.addTarget(self, action: #selector(securityConfir), for: .touchUpInside)
         }
     }

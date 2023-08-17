@@ -9,21 +9,36 @@ import UIKit
 import DPOTPView
 
 class KodePassViewController: UIViewController {
-
-    @IBOutlet weak var timerView: UILabel! {
-        didSet {
-            
-        }
-    }
+    @IBOutlet weak var timerView: UILabel!
     @IBOutlet weak var inputCode: DPOTPView!
     var emailForgot: String = ""
-    
+    var totalTime = 300
+    var countdownTimer: Timer!
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-
-        // Do any additional setup after loading the view.
+        starCountDown()
     }
+    
+    private func starCountDown() {
+       countdownTimer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(updateTime), userInfo: nil, repeats: true)
+    }
+    
+    @objc func updateTime() {
+       timerView.text = "\(timeFormatted(totalTime))"
+               if totalTime != 0 {
+                   totalTime -= 1
+               } else {
+                   countdownTimer.invalidate()
+                   SnackBarWarning.make(in: self.view, message: "time is up, send the verification code again", duration: .lengthShort).show()
+               }
+    }
+        
+    func timeFormatted(_ totalSeconds: Int) -> String {
+            let seconds: Int = totalSeconds % 60
+            let minutes: Int = (totalSeconds / 60) % 60
+            //     let hours: Int = totalSeconds / 3600
+            return String(format: "%02d:%02d", minutes, seconds)
+        }
     
 
     @IBAction func confirmCode(_ sender: UIButton) {

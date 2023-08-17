@@ -12,51 +12,6 @@ class APICall {
     static let sharedApi = APICall()
     private let baseUrl = "https://lazaapp.shop/"
     
-//    func postParam(email: String, username: String, password: String) {
-//        let params: Parameters = [
-//            "full_name": username,
-//            "email": email,
-//            "username": username,
-//            "password": password
-//        ]
-//
-//        AF.request("\(baseUrl)register", method: .post, parameters: params, encoding: JSONEncoding.default).responseJSON { respon in
-//            print(respon)
-//            print(respon.response?.statusCode)
-//
-//            switch respon.result{
-//            case .success(let data):
-//                print("registerSucess=",data)
-//                do {
-////                    guard let jsonObject = try JSONSerialization.jsonObject(with: data!) as? [String: Any] else {
-////                                           print("Error: Cannot convert data to JSON object")
-////                                           return
-////                    }
-////                    guard let prettyJsonData = try? JSONSerialization.data(withJSONObject: jsonObject, options: .prettyPrinted) else {
-////                        print("Error: Cannot convert JSON object to Pretty JSON data")
-////                        return
-////                    }
-////                    if let prettyPrintedJson = String(data: prettyJsonData, encoding: .utf8){
-////                        let dataini = try! JSONDecoder().decode(UserModel.self, from: respon.data!)
-////                        print("ini \(dataini)")
-////                    } else {
-////                        print("Error: Could print JSON in String")
-////                        return
-////                    }
-////                    let jsonData = data as! Any
-////                                        print("ini ini, \(jsonData)")
-//
-//                } catch {
-//                    print("Error: Trying to convert JSON data to string")
-//                    return
-//                }
-//            case .failure(let error):
-//                print(error)
-//            }
-//
-//
-//        }
-//    }
     func postLogin(userName: String,  password: String, completion: @escaping((LoginUser?) -> Void), onError: @escaping(String) -> Void) {
         let param = [
             "username": userName,
@@ -83,7 +38,7 @@ class APICall {
             guard let data = data else { return }
             
             print(httpRespon.statusCode)
-            if httpRespon.statusCode != 201 {
+            if httpRespon.statusCode != 200 {
                 guard let regisFailed = try? JSONDecoder().decode(ResponFailed.self, from: data) else {
                     onError("Login failed")
                     return
@@ -93,8 +48,9 @@ class APICall {
                 return
             }
             do {
-                let result = try JSONDecoder().decode(LoginUser.self, from: data)
-                completion(result)
+                let result = try JSONDecoder().decode(LoginResponse.self, from: data)
+                completion(result.data)
+                print(result)
             } catch {
                 print(error)
             }
@@ -104,22 +60,33 @@ class APICall {
         
     }
     
-    func getProfile(completion: @escaping((LoginUser?) -> Void)) {
+    func getProfile(accesToken: String, completion: @escaping((DataProfileUser?) -> Void), onError: @escaping(String) -> Void) {
         guard let url = URL(string: "\(baseUrl)user/profile") else { return }
         var request = URLRequest(url: url)
-        request.httpMethod = "GET"
+        request.setValue("Bearer \(accesToken)", forHTTPHeaderField: "X-Auth-Token")
         
-//        let task = URLSession.shared.dataTask(with: request) { data, response, error in
-//            if let data = data {
-//                do {
-//                    let result = try? JSONDecoder().decode(LoginUser.self, from: data)
-//                        completion(result)
-//                } catch {
-//                    print(error)
-//                }
-//            }
-//
-//        }
+        let task = URLSession.shared.dataTask(with: request) { data, response, error in
+            
+            guard let httpRespon = response as? HTTPURLResponse else { return}
+            guard let data = data else { return }
+            
+            print(httpRespon.statusCode)
+            if httpRespon.statusCode != 200 {
+                guard let getFailed = try? JSONDecoder().decode(ResponFailed.self, from: data) else {
+                    onError("Get Profile Gagal")
+                    return
+                }
+                onError(getFailed.description)
+                do {
+                    let result = try JSONDecoder().decode(ProfileUser.self, from: data)
+                    completion(result.data)
+                } catch {
+                    print(error)
+                }
+                
+            }
+        }
+        task.resume()
     }
     
     func postForgetPass(email: String, completion: @escaping(String) -> Void, onError: @escaping(String) -> Void) {

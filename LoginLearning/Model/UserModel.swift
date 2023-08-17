@@ -24,13 +24,17 @@ struct ResponFailed : Codable {
     let description: String
 }
 
+struct LoginResponse: Codable {
+    let status: String
+    let data: LoginUser
+}
 
 struct LoginUser: Codable {
     let access_token: String
     let refresh_token: String
 }
 
-struct DataProfile: Codable {
+struct DataProfileUser: Codable {
     let id: Int
     let username: String
     let password: String
@@ -39,8 +43,9 @@ struct DataProfile: Codable {
     let image_url: String
 }
 
-struct Profile: Codable {
-    let data: DataProfile
+struct ProfileUser: Codable {
+    let status: String
+    let data: DataProfileUser
 }
  
 struct ResponSucces: Codable

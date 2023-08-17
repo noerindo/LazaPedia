@@ -11,6 +11,17 @@ import SnackBar_swift
 class LoginViewController: UIViewController {
     private let userViewModel = UserViewModel()
     
+    @IBOutlet weak var eyePass: UIButton! {
+        didSet {
+            eyePass.setImage(UIImage(systemName: "eye"), for: .normal)
+            eyePass.addTarget(self, action: #selector(securityPass), for: .touchUpInside)
+        }
+    }
+    @IBOutlet weak var checkUserName: UIImageView! {
+        didSet {
+            checkUserName.isHidden = true
+        }
+    }
     @IBOutlet weak var userNameText: UITextField! {
         didSet {
             userNameText.addShadow(color: .gray, width: 0.5, text: userNameText)
@@ -23,6 +34,7 @@ class LoginViewController: UIViewController {
         didSet {
             passwordText.addShadow(color: .gray, width: 0.5, text: passwordText)
             passwordText.font = UIFont(name: "Inter-Medium", size: 15)
+            passwordText.isSecureTextEntry = true
         }
     }
     
@@ -31,6 +43,25 @@ class LoginViewController: UIViewController {
         
     }
     
+    @objc func securityPass() {
+        if eyePass.currentImage == UIImage(systemName: "eye") {
+            eyePass.setImage(UIImage(systemName: "eye.slash.fill"), for: .normal)
+            passwordText.isSecureTextEntry = false
+        } else {
+            eyePass.setImage(UIImage(systemName: "eye"), for: .normal)
+            passwordText.isSecureTextEntry = true
+        }
+    }
+    
+    @IBAction func checkFieldUserName(_ sender: UITextField) {
+        guard let username = userNameText.text else { return }
+        if AcountRegis.invalidUserNAme(userName: username) {
+            checkUserName.isHidden = false
+        } else {
+            checkUserName.isHidden = true
+        }
+
+    }
     
     @IBAction func fogitBtn(_ sender: UIButton) {
 
