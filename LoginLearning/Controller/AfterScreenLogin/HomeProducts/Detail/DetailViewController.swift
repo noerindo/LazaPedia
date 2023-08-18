@@ -67,13 +67,13 @@ class DetailViewController: UIViewController {
         
     }
     func viewDetailProduc(){
-        nameProduk.text = product?.title
-        priceProduk.text = "$ \(product?.price ?? 0)"
-        categoryView.text = product?.category
-        descProduc.text = product?.description
-        
-        let imgURl = URL(string: "\(product?.image ?? "")")
-        self.photoProduc.sd_setImage(with: imgURl)
+//        nameProduk.text = product?.title
+//        priceProduk.text = "$ \(product?.price ?? 0)"
+//        categoryView.text = product?.category
+//        descProduc.text = product?.description
+//
+//        let imgURl = URL(string: "\(product?.image ?? "")")
+//        self.photoProduc.sd_setImage(with: imgURl)
         
         
     }

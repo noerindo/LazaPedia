@@ -8,18 +8,24 @@
 import Foundation
 import UIKit
 
-typealias Categories = [String]
-typealias ProducIndex = [ProducList]
-
-
+struct ProductAll: Codable {
+    let data: [ProducList]
+}
 struct ProducList: Codable {
     let id: Int
-    let title: String
+    let name: String
     let price: Double
-    let description: String
-    let image: String
-    let category: String
-    let rating: Rating
+    let image_url: String
+}
+
+struct AllBrand: Codable {
+    let description: [Brand]
+}
+
+struct Brand: Codable {
+    let id: Int
+    let name: String
+    let logo_url: String
 }
 
 struct Rating: Codable {

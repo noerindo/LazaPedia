@@ -56,13 +56,44 @@ class APICall {
             }
         }
         task.resume()
-
-        
     }
     
-    func getProfile(accesToken: String, completion: @escaping((DataProfileUser?) -> Void), onError: @escaping(String) -> Void) {
+    func getProducAll(completion: @escaping((ProductAll) -> Void)) {
+        guard let url = URL(string: "\(baseUrl)products") else { return }
+        var request = URLRequest(url: url)
+        let task = URLSession.shared.dataTask(with: request) { data, response, error in
+            guard let data = data else { return }
+            do {
+                let result = try JSONDecoder().decode(ProductAll.self, from: data)
+                completion(result)
+            } catch {
+                print(error)
+            }
+        }
+        task.resume()
+    }
+    
+    func getBrand(completion: @escaping ((AllBrand) -> Void)) {
+        guard let url = URL(string: "\(baseUrl)brand") else { return }
+        var request = URLRequest(url: url)
+        let task = URLSession.shared.dataTask(with: request) { data, response, error in
+            guard let data = data else { return }
+            do {
+                let result = try JSONDecoder().decode(AllBrand.self, from: data)
+                completion(result)
+            } catch {
+                print(error)
+            }
+        }
+        task.resume()
+    }
+    
+            
+    func getProfile(completion: @escaping((DataProfileUser?) -> Void), onError: @escaping(String) -> Void) {
         guard let url = URL(string: "\(baseUrl)user/profile") else { return }
         var request = URLRequest(url: url)
+        let accesToken = KeychainManager.shared.getToken()
+        print("Token: \(accesToken)")
         request.setValue("Bearer \(accesToken)", forHTTPHeaderField: "X-Auth-Token")
         
         let task = URLSession.shared.dataTask(with: request) { data, response, error in
@@ -71,19 +102,20 @@ class APICall {
             guard let data = data else { return }
             
             print(httpRespon.statusCode)
-            if httpRespon.statusCode != 200 {
-                guard let getFailed = try? JSONDecoder().decode(ResponFailed.self, from: data) else {
-                    onError("Get Profile Gagal")
-                    return
-                }
-                onError(getFailed.description)
+            if httpRespon.statusCode == 200 {
                 do {
+                    //untuk liat bentuk JSON
+//                    let serializedJson = try JSONSerialization.jsonObject(with: data, options: .fragmentsAllowed)
+//                    print(serializedJson)
                     let result = try JSONDecoder().decode(ProfileUser.self, from: data)
                     completion(result.data)
                 } catch {
                     print(error)
                 }
-                
+            } else {
+                print("Error: \(httpRespon.statusCode)")
+                guard let getFailed = try? JSONDecoder().decode(ResponFailed.self, from: data) else { return }
+                onError(getFailed.description)
             }
         }
         task.resume()

@@ -37,14 +37,11 @@ struct LoginUser: Codable {
 struct DataProfileUser: Codable {
     let id: Int
     let username: String
-    let password: String
     let email: String
     let full_name: String
-    let image_url: String
 }
 
 struct ProfileUser: Codable {
-    let status: String
     let data: DataProfileUser
 }
  

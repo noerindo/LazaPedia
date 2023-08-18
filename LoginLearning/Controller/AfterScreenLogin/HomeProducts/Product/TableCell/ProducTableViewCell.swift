@@ -24,7 +24,7 @@ class ProducTableViewCell: UITableViewCell {
     // deklasi delegatenya
     weak var delegate: ProductTableViewCellDelegate?
 //    weak var delegateSearch: HomeProductionDelegate?
-    var resultProduct = [ProducList]()
+    var resultProduct = ProductAll(data: [ProducList]())
     var isSearchBar: Bool = false
     var textSearch: String = ""
     var produkFilter: [ProducList] = []
@@ -37,25 +37,20 @@ class ProducTableViewCell: UITableViewCell {
         
         let cellNib = UINib( nibName: "ProducCollectionViewCell", bundle:  nil)
         self.collectionProduct.register(cellNib, forCellWithReuseIdentifier: "ProducCollectionViewCell" )
-      
-//        APICall.sharedApi.fetchAPIProduct { producIndex in
-//            DispatchQueue.main.async {
-//                self.resultProduct.append(contentsOf: producIndex)
-//                self.collectionProduct.reloadData()
-//                self.delegate?.fetchApiDone()
-////                for produk in resultProduct {
-////                    if produk.title.lowercased().contains(delegateSearch.)
-////                }
-//            }
-//        }
+        APICall.sharedApi.getProducAll { result in
+            self.resultProduct = result
+            DispatchQueue.main.async {
+                self.collectionProduct.reloadData()
+                self.delegate?.fetchApiDone()
+            }
+        }
+
     }
     
-
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
-        // Configure the view for the selected state
-    }
+}
     
 }
 
@@ -64,18 +59,18 @@ extension ProducTableViewCell: UICollectionViewDelegate, UICollectionViewDataSou
         if isSearchBar == true {
             return produkFilter.count
         } else {
-            return resultProduct.count
+            return resultProduct.data.count
         }
        
     }
-    
+
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if let cell = collectionProduct.dequeueReusableCell(withReuseIdentifier: "ProducCollectionViewCell", for: indexPath) as? ProducCollectionViewCell {
             if isSearchBar == true {
                 let cellList = produkFilter[indexPath.item]
                 cell.configure(data: cellList)
             } else {
-                let cellList = resultProduct[indexPath.item]
+                let cellList = resultProduct.data[indexPath.item]
                 cell.configure(data: cellList)
             }
 
@@ -99,7 +94,7 @@ extension ProducTableViewCell: UICollectionViewDelegate, UICollectionViewDataSou
         if isSearchBar == true {
             delegate?.scDetailProduct(product: produkFilter[indexPath.item])
         } else {
-            delegate?.scDetailProduct(product:resultProduct[indexPath.item])
+            delegate?.scDetailProduct(product:resultProduct.data[indexPath.item])
         }
        
     }
@@ -110,7 +105,7 @@ extension ProducTableViewCell: HomeProductionDelegate {
     func fetchSearch(isActive: Bool, textString: String) {
         print("Search: ", textString)
         isSearchBar = isActive
-        produkFilter = resultProduct.filter{ $0.title.contains(textString) }
+        produkFilter = resultProduct.data.filter{ $0.name.contains(textString) }
         print(produkFilter)
         self.collectionProduct.reloadData()
     }

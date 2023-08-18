@@ -4,6 +4,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21679"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -19,44 +20,58 @@
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="svB-i0-3ew">
-                        <rect key="frame" x="5" y="5" width="170" height="57"/>
+                        <rect key="frame" x="5" y="5" width="170" height="55"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rlu-AW-p4H">
-                                <rect key="frame" x="5" y="5" width="160" height="47"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            <stackView opaque="NO" contentMode="scaleToFill" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="Ob2-1R-on5">
+                                <rect key="frame" x="5" y="5" width="160" height="45"/>
+                                <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="jai-LF-b0O">
+                                        <rect key="frame" x="0.0" y="0.0" width="45" height="45"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="45" id="CN7-xu-2ld"/>
+                                            <constraint firstAttribute="width" constant="45" id="GhI-1k-LHe"/>
+                                        </constraints>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cba-CQ-Edp">
+                                        <rect key="frame" x="50" y="0.0" width="110" height="45"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                        <color key="textColor" name="black"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstAttribute="bottom" secondItem="rlu-AW-p4H" secondAttribute="bottom" constant="5" id="Zui-qt-4nM"/>
-                            <constraint firstItem="rlu-AW-p4H" firstAttribute="top" secondItem="svB-i0-3ew" secondAttribute="top" constant="5" id="eIi-xE-EUC"/>
-                            <constraint firstAttribute="trailing" secondItem="rlu-AW-p4H" secondAttribute="trailing" constant="5" id="mcC-88-0xQ"/>
-                            <constraint firstItem="rlu-AW-p4H" firstAttribute="leading" secondItem="svB-i0-3ew" secondAttribute="leading" constant="5" id="u9O-RQ-h84"/>
+                            <constraint firstAttribute="bottom" secondItem="Ob2-1R-on5" secondAttribute="bottom" constant="5" id="AfQ-TW-QaE"/>
+                            <constraint firstItem="Ob2-1R-on5" firstAttribute="leading" secondItem="svB-i0-3ew" secondAttribute="leading" constant="5" id="GBO-OJ-ioP"/>
+                            <constraint firstAttribute="trailing" secondItem="Ob2-1R-on5" secondAttribute="trailing" constant="5" id="IcE-Tz-YZL"/>
+                            <constraint firstItem="Ob2-1R-on5" firstAttribute="top" secondItem="svB-i0-3ew" secondAttribute="top" constant="5" id="eDJ-gq-SSL"/>
                         </constraints>
                     </view>
                 </subviews>
             </view>
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
             <constraints>
-                <constraint firstAttribute="bottom" secondItem="svB-i0-3ew" secondAttribute="bottom" constant="5" id="W6X-g1-WIp"/>
                 <constraint firstItem="svB-i0-3ew" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="5" id="XWp-Xo-FGP"/>
                 <constraint firstAttribute="trailing" secondItem="svB-i0-3ew" secondAttribute="trailing" constant="5" id="beG-DK-Bzc"/>
                 <constraint firstItem="svB-i0-3ew" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="5" id="xvl-69-Ulr"/>
             </constraints>
             <size key="customSize" width="180" height="67"/>
             <connections>
-                <outlet property="nameCategory" destination="rlu-AW-p4H" id="Wr3-Vu-sUS"/>
+                <outlet property="nameBrand" destination="cba-CQ-Edp" id="QNp-fu-itj"/>
+                <outlet property="photoBrand" destination="jai-LF-b0O" id="xXA-fI-OH9"/>
                 <outlet property="viewBg" destination="svB-i0-3ew" id="K1L-Df-DY2"/>
             </connections>
             <point key="canvasLocation" x="251.90839694656486" y="26.408450704225352"/>
         </collectionViewCell>
     </objects>
     <resources>
+        <namedColor name="black">
+            <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
     </resources>
 </document>
-

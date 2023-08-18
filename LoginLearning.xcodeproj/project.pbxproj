@@ -88,6 +88,8 @@
 		E09396732A706975003445B3 /* LoginSosmedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E09396722A706975003445B3 /* LoginSosmedViewController.swift */; };
 		E09396782A7071BF003445B3 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E09396772A7071BF003445B3 /* SignUpViewController.swift */; };
 		E093967C2A7079CD003445B3 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E093967B2A7079CD003445B3 /* LoginViewController.swift */; };
+		E0C74FC22A8F01FD00DCCB32 /* KeychainManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0C74FC12A8F01FD00DCCB32 /* KeychainManager.swift */; };
+		E0C74FC42A8F568800DCCB32 /* LoadingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0C74FC32A8F568800DCCB32 /* LoadingViewController.swift */; };
 		E0DE4F0D2A8CB62E000C53FA /* KodePassViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0DE4F0C2A8CB62E000C53FA /* KodePassViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -177,6 +179,8 @@
 		E09396722A706975003445B3 /* LoginSosmedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginSosmedViewController.swift; sourceTree = "<group>"; };
 		E09396772A7071BF003445B3 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		E093967B2A7079CD003445B3 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		E0C74FC12A8F01FD00DCCB32 /* KeychainManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainManager.swift; sourceTree = "<group>"; };
+		E0C74FC32A8F568800DCCB32 /* LoadingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingViewController.swift; sourceTree = "<group>"; };
 		E0DE4F0C2A8CB62E000C53FA /* KodePassViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KodePassViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -250,6 +254,7 @@
 				E05C0FD22A724EFA00962579 /* Extension View.swift */,
 				E07B9D932A8DCDE0007CC799 /* IntrinsicTableView.swift */,
 				E07B9D952A8DCE02007CC799 /* DynamicHeightCollectionView.swift */,
+				E0C74FC12A8F01FD00DCCB32 /* KeychainManager.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -571,6 +576,7 @@
 				E09396602A705F6B003445B3 /* ViewController.swift */,
 				E05C0FD42A73B29200962579 /* AfterScreenLogin */,
 				E09396742A707156003445B3 /* ScreenLogin */,
+				E0C74FC32A8F568800DCCB32 /* LoadingViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -780,6 +786,7 @@
 				E02DC1822A75896800CA0192 /* TabBarViewController.swift in Sources */,
 				E07B9D922A8DCDB6007CC799 /* CreditCard.swift in Sources */,
 				E07B9E002A8E06F7007CC799 /* ProfileViewController.swift in Sources */,
+				E0C74FC42A8F568800DCCB32 /* LoadingViewController.swift in Sources */,
 				E05C0FCF2A72162200962579 /* TwitterConstants.swift in Sources */,
 				E07B9DAE2A8DD188007CC799 /* SideMenuViewController.swift in Sources */,
 				E057A5EC2A711AE400A8EC00 /* APIcall.swift in Sources */,
@@ -803,6 +810,7 @@
 				E07B9DAB2A8DD116007CC799 /* AddRiviewViewController.swift in Sources */,
 				E07B9DDF2A8DDE8D007CC799 /* GopayViewController.swift in Sources */,
 				E07B9DF92A8DE84D007CC799 /* OrderViewController.swift in Sources */,
+				E0C74FC22A8F01FD00DCCB32 /* KeychainManager.swift in Sources */,
 				E09396732A706975003445B3 /* LoginSosmedViewController.swift in Sources */,
 				E07B9DDA2A8DDD76007CC799 /* CardCreditCollectionViewCell.swift in Sources */,
 				E07B9DB72A8DD919007CC799 /* ProducCollectionViewCell.swift in Sources */,

@@ -79,6 +79,8 @@ class LoginViewController: UIViewController {
         if userNameText != nil && passwordText != nil {
             APICall().postLogin(userName: userName, password: pass) { response in
                 DispatchQueue.main.async {
+                    guard let token = response?.access_token else { return }
+                    KeychainManager.shared.saveToken(token: token)
                     let homeVC = self.storyboard?.instantiateViewController(withIdentifier: "TabBarViewController") as! TabBarViewController
                     self.navigationController?.pushViewController(homeVC, animated: true)
                     //
@@ -90,27 +92,6 @@ class LoginViewController: UIViewController {
             }
 
         }
-//            APICall().fetchAPIUser { UserIndex in
-//                let matchingUser = UserIndex.first { user in
-//                    user.username == userName && user.password == pass
-//                }
-//                if let isUser = matchingUser {
-//                    DispatchQueue.main.async {
-//                        self.userViewModel.loginDefault(isLogin: true, userName: userName, pass: pass)
-//                        let homeVC = self.storyboard?.instantiateViewController(withIdentifier: "TabBarViewController") as! TabBarViewController
-//                        self.navigationController?.pushViewController(homeVC, animated: true)
-//                        
-//                    }
-//                } else {
-////                    self.present(Alert.createAlertController(title: "Warning", message: "periksa kembali username and password"),animated: true)
-//                    
-//                }
-//                
-//            }
-//        } else {
-////            self.present(Alert.createAlertController(title: "Warning", message: "data belum lengkap"),animated: true)
-//        }
-//        
       
     }
     

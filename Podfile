@@ -17,6 +17,7 @@ pod "CreditCardForm"
 pod 'Stripe'
 pod 'SnackBar.swift'
 pod 'DPOTPView'
+
 end
 
 post_install do |installer|

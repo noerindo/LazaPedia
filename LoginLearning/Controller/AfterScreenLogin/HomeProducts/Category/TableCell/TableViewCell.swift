@@ -9,7 +9,7 @@ import UIKit
 
 class TableViewCell: UITableViewCell {
     
-    var apiResult = Categories()
+    var apiResult =  AllBrand(description: [Brand]())
 
     @IBOutlet weak var collectionViewBrand: UICollectionView!
     @IBOutlet weak var btnSection: UIButton!
@@ -27,13 +27,12 @@ class TableViewCell: UITableViewCell {
         
         let cellNib = UINib( nibName: "CollectionViewCell", bundle:  nil)
         self.collectionViewBrand.register(cellNib, forCellWithReuseIdentifier: "CollectionViewCell" )
-        
-//        APICall.sharedApi.fetchAPICategory { categories in
-//            DispatchQueue.main.async { [self] in
-//                self.apiResult.append(contentsOf: categories)
-//                collectionViewBrand.reloadData()
-//            }
-//        }
+        APICall.sharedApi.getBrand { result in
+            DispatchQueue.main.async {
+                self.apiResult = result
+                self.collectionViewBrand.reloadData()
+            }
+        }
     }
     
 }
@@ -41,7 +40,7 @@ class TableViewCell: UITableViewCell {
 extension TableViewCell:  UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return apiResult.count
+        return apiResult.description.count
         
     }
     
@@ -51,8 +50,8 @@ extension TableViewCell:  UICollectionViewDelegate, UICollectionViewDataSource, 
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CollectionViewCell", for: indexPath) as? CollectionViewCell {
-            let resultCategori = apiResult[indexPath.row]
-            cell.nameCategory.text = resultCategori.capitalized
+            let resultCategori = apiResult.description[indexPath.row]
+            cell.configure(data: resultCategori)
             return cell
             
         }
@@ -67,7 +66,7 @@ extension TableViewCell:  UICollectionViewDelegate, UICollectionViewDataSource, 
         return 5
     }
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: 150, height: 50)
+        return CGSize(width: 170, height: 100)
     }
    
     

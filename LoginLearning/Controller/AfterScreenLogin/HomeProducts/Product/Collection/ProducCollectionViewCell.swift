@@ -10,14 +10,12 @@ import SDWebImage
 
 class ProducCollectionViewCell: UICollectionViewCell {
 
-    @IBOutlet weak var bgProduc: UIView! {
+    @IBOutlet weak var bgProduc: UIView!
+    @IBOutlet weak var photoProduc: UIImageView! {
         didSet {
-            bgProduc.layer.cornerRadius = 10
-            bgProduc.layer.borderColor = UIColor.gray.cgColor
+            photoProduc.layer.cornerRadius = 10
         }
     }
-    @IBOutlet weak var favoriteBtn: UIButton!
-    @IBOutlet weak var photoProduc: UIImageView!
     @IBOutlet weak var descProduc: UILabel!
     @IBOutlet weak var priceProduc: UILabel!
     
@@ -27,9 +25,9 @@ class ProducCollectionViewCell: UICollectionViewCell {
     }
     
     func configure(data: ProducList) {
-        descProduc.text  = data.title
+        descProduc.text  = data.name
         priceProduc.text = String("$ \(data.price)")
-        let imgURl = URL(string: "\(data.image)")
+        let imgURl = URL(string: "\(data.image_url)")
         self.photoProduc.sd_setImage(with: imgURl)
        
     }
