@@ -129,6 +129,7 @@ extension HomeProducViewController: UITableViewDelegate, UITableViewDataSource {
  // menghubungkan dengan home table melalu protocol
 extension HomeProducViewController: ProductTableViewCellDelegate {
     func scDetailProduct(product: ProducList) {
+        print("Click on \(product)")
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let detailVC = storyboard.instantiateViewController(withIdentifier: "DetailViewController") as! DetailViewController
         detailVC.idProduct = product.id

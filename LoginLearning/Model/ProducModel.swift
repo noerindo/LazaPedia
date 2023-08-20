@@ -37,10 +37,10 @@ struct DataProductDetail: Codable {
     let name: String
     let description: String
     let image_url: String
-    let price: Double
+    let price: Int
     let category: Category
     let size: [Size]
-    let reviews: [Reviews]
+    let reviews: [ReviewProduct]
 }
 
 struct Size: Codable {

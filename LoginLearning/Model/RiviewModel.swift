@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Reviews: Codable {
+struct ReviewProduct: Codable {
     let id: Int
     let comment: String
     let rating: Double

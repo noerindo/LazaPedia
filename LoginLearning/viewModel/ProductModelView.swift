@@ -12,6 +12,8 @@ class ProductModelView {
     var resultBrand =  AllBrand(description: [Brand]())
     var resultProduct = ProductAll(data: [ProducList]())
     var detailProductVC: DetailViewController?
+    var sizeProduct = [Size]()
+    var riviewProduct = [ReviewProduct]()
     var isSearchBar: Bool = false
     var textSearch: String = ""
     var produkFilter = ProductAll(data: [ProducList]())
@@ -28,6 +30,12 @@ class ProductModelView {
     var brandCount: Int {
         get {
             return resultBrand.description.count
+        }
+    }
+    
+    var sizeCount: Int {
+        get {
+            return sizeProduct.count
         }
     }
     
@@ -56,17 +64,28 @@ class ProductModelView {
     }
     
     func loadDetail(id: Int) {
-        getDetailProduct(id: id) { product in
-            let resultProductDetail = product
+        getDetailProduct(id: id) { productDetail in
             DispatchQueue.main.async { [self] in
+                
                 guard let unwrappedVC = detailProductVC else { return }
-                unwrappedVC.nameProduk.text = product.data.name
-                unwrappedVC.priceProduk.text = "$ \(product.data.price)"
-                unwrappedVC.descProduc.text = product.data.description
-                unwrappedVC.categoryView.text = product.data.category.category
-                let imgURL = URL(string: "\(product.data.image_url)")
+                unwrappedVC.nameProduk.text = productDetail.data.name
+                unwrappedVC.priceProduk.text = "$ \(productDetail.data.price)".formatDecimal()
+                unwrappedVC.descProduc.text = productDetail.data.description
+                unwrappedVC.categoryView.text = productDetail.data.category.category
+                let imgURL = URL(string: "\(productDetail.data.image_url)")
                 unwrappedVC.photoProduc.sd_setImage(with: imgURL)
                 
+                sizeProduct.append(contentsOf: productDetail.data.size)
+                unwrappedVC.collectionSize.reloadData()
+                
+                riviewProduct.append(contentsOf: productDetail.data.reviews)
+                unwrappedVC.dateUser.text = productDetail.data.reviews[0].created_at.dateReview(date: "\(productDetail.data.reviews[0].created_at)")
+                unwrappedVC.ratingText.text = "\(productDetail.data.reviews[0].rating)"
+                unwrappedVC.starRating.rating =  productDetail.data.reviews[0].rating
+                unwrappedVC.nameUser.text = productDetail.data.reviews[0].full_name
+                unwrappedVC.textRiview.text = productDetail.data.reviews[0].comment
+                let imgURLUser = URL(string: "\(productDetail.data.reviews[0].image_url)")
+                unwrappedVC.photoProfil.sd_setImage(with: imgURLUser)
             }
         }
     }
@@ -104,13 +123,17 @@ class ProductModelView {
     func getDetailProduct(id: Int, completion: @escaping((ProductDetail) -> Void)) {
         guard let url = URL(string: Endpoints.Gets.producDetail(id: id).url) else { return }
         let request = URLRequest(url: url)
+    
         let task = URLSession.shared.dataTask(with: request) { data, response, error in
             guard let data = data else { return }
             do {
+                //untuk liat bentuk JSON
+                            let serializedJson = try JSONSerialization.jsonObject(with: data, options: .fragmentsAllowed)
+                            print(serializedJson)
                 let result = try JSONDecoder().decode(ProductDetail.self, from: data)
                 completion(result)
             } catch {
-                print(error)
+                print("ini erro loh\(error)")
             }
         }
         task.resume()

@@ -8,7 +8,6 @@ target 'LoginLearning' do
   # Pods for LoginLearning
 pod 'FBSDKCoreKit'
 pod 'FBSDKLoginKit'
-pod 'Alamofire'
 pod 'Swifter', :git => "https://github.com/mattdonnelly/Swifter.git"
 pod 'GoogleSignIn'
 pod 'SDWebImage'
@@ -17,6 +16,7 @@ pod "CreditCardForm"
 pod 'Stripe'
 pod 'SnackBar.swift'
 pod 'DPOTPView'
+pod 'Cosmos'
 
 end
 
