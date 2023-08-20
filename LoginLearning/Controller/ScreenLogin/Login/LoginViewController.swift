@@ -9,7 +9,7 @@ import UIKit
 import SnackBar_swift
 
 class LoginViewController: UIViewController {
-    private let userViewModel = UserViewModel()
+    private let loginVM = LoginViewModel()
     
     @IBOutlet weak var eyePass: UIButton! {
         didSet {
@@ -77,7 +77,7 @@ class LoginViewController: UIViewController {
         guard let userName = userNameText.text else { return }
         guard let pass = passwordText.text else { return }
         if userNameText != nil && passwordText != nil {
-            APICall().postLogin(userName: userName, password: pass) { response in
+            loginVM.postLogin(userName: userName, password: pass) { response in
                 DispatchQueue.main.async {
                     guard let token = response?.access_token else { return }
                     KeychainManager.shared.saveToken(token: token)

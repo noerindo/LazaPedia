@@ -8,6 +8,7 @@
 import UIKit
 
 class ForgotEmailViewController: UIViewController {
+    private let ForgotMV = ForgotPassModelView()
 
     @IBOutlet weak var emailText: UITextField! {
         didSet {
@@ -25,7 +26,7 @@ class ForgotEmailViewController: UIViewController {
     @IBAction func confirmActionBtn(_ sender: UIButton) {
         guard let email = emailText.text else { return }
         if AcountRegis.invalidEmail(email: email) {
-            APICall().postForgetPass(email: email) { response in
+            ForgotMV.postForgetPass(email: email) { response in
                 DispatchQueue.main.async {
                     if response == "successfully send mail forgot password" {
                         let alert = UIAlertController(title: "Registration Success", message: response, preferredStyle: .alert)

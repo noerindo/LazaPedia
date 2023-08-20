@@ -10,7 +10,7 @@ import SnackBar_swift
 
 class SignUpViewController: UIViewController {
     var isCheck: Bool = false
-    private let userViewModel = UserViewModel()
+    private let signUpMV = SignUPViewModel()
     
     @IBOutlet weak var checkUserName: UIImageView!
     
@@ -109,7 +109,7 @@ class SignUpViewController: UIViewController {
             if AcountRegis.invalidEmail(email: email) {
                 if AcountRegis.invalidPassword(pass: pass) {
                     if pass == confirPass {
-                        APICall().postRegister(email: email, userName: userName, password: pass) { response in
+                        signUpMV.postRegister(email: email, userName: userName, password: pass) { response in
                             DispatchQueue.main.async {
                                 let alert = UIAlertController(title: "Registration Success", message: "Check email for confirm account", preferredStyle: .alert)
                                 let okAction = UIAlertAction(title: "OK", style: .default) { [weak self] _ in

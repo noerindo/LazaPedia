@@ -8,6 +8,8 @@
 import UIKit
 
 class DetailViewController: UIViewController {
+    let productMV = ProductModelView()
+    var idProduct: Int = 0
 
     @IBOutlet weak var photoProfil: UIImageView! {
         didSet {
@@ -26,8 +28,6 @@ class DetailViewController: UIViewController {
             favoriteBtn.setImage(image, for: .normal)
         }
     }
-    var sizeBaju = ["S", "M", "L","XL", "2XL", "3XL"]
-    var product: ProducList?
     @IBOutlet weak var photoProduc: UIImageView!
     @IBOutlet weak var categoryView: UILabel! {
         didSet {
@@ -54,26 +54,13 @@ class DetailViewController: UIViewController {
     @IBOutlet weak var collectionSize: UICollectionView!
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        print(String(describing: product))
-        
         collectionSize.delegate = self
         collectionSize.dataSource = self
-        viewDetailProduc()
+        productMV.detailProductVC = self
+        productMV.loadDetail(id: idProduct)
         collectionSize.register(UINib(nibName: "SizeCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "SizeCollectionViewCell")
         collectionSize.reloadData()
 
-        
-        
-    }
-    func viewDetailProduc(){
-//        nameProduk.text = product?.title
-//        priceProduk.text = "$ \(product?.price ?? 0)"
-//        categoryView.text = product?.category
-//        descProduc.text = product?.description
-//
-//        let imgURl = URL(string: "\(product?.image ?? "")")
-//        self.photoProduc.sd_setImage(with: imgURl)
         
         
     }
@@ -95,12 +82,12 @@ class DetailViewController: UIViewController {
 
 extension DetailViewController:UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return sizeBaju.count
+        return 2
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "SizeCollectionViewCell", for: indexPath) as? SizeCollectionViewCell {
-            cell.sizeText.text = sizeBaju[indexPath.row]
+//            cell.sizeText.text = sizeBaju[indexPath.row]
             return cell
         }
         return UICollectionViewCell()

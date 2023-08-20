@@ -8,6 +8,8 @@
 import UIKit
 
 class ResetPasswordViewController: UIViewController {
+    private let ForgotMV = ForgotPassModelView()
+    
     var codeEmail: String = ""
     var email: String = ""
     
@@ -44,9 +46,6 @@ class ResetPasswordViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-       
-      
-        
     }
     
     @objc func securePass() {
@@ -78,7 +77,7 @@ class ResetPasswordViewController: UIViewController {
         guard let confirmPass = confirmPassText.text else { return }
         
         if pass != "" && confirmPass != "" {
-            APICall().postNewPassword(newPass: pass, confirPass: confirmPass, email: email, code: codeEmail) { result in
+            ForgotMV.postNewPassword(newPass: pass, confirPass: confirmPass, email: email, code: codeEmail) { result in
                 DispatchQueue.main.async {
                     let alert = UIAlertController(title: "Success", message: result, preferredStyle: .alert)
                     let okAction = UIAlertAction(title: "OK", style: .default) { [weak self] _ in

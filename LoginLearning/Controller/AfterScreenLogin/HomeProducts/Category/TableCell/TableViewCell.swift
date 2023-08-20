@@ -9,30 +9,28 @@ import UIKit
 
 class TableViewCell: UITableViewCell {
     
-    var apiResult =  AllBrand(description: [Brand]())
-
+    let productMV = ProductModelView()
+    
     @IBOutlet weak var collectionViewBrand: UICollectionView!
     @IBOutlet weak var btnSection: UIButton!
     @IBOutlet weak var titleSection: UILabel!
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
-    }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
         self.collectionViewBrand.dataSource = self
         self.collectionViewBrand.delegate = self
         
         let cellNib = UINib( nibName: "CollectionViewCell", bundle:  nil)
         self.collectionViewBrand.register(cellNib, forCellWithReuseIdentifier: "CollectionViewCell" )
-        APICall.sharedApi.getBrand { result in
+        
+        productMV.loadBrand {
             DispatchQueue.main.async {
-                self.apiResult = result
                 self.collectionViewBrand.reloadData()
             }
         }
+    }
+
+    override func setSelected(_ selected: Bool, animated: Bool) {
+        super.setSelected(selected, animated: animated)
     }
     
 }
@@ -40,7 +38,7 @@ class TableViewCell: UITableViewCell {
 extension TableViewCell:  UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return apiResult.description.count
+        return productMV.brandCount
         
     }
     
@@ -50,7 +48,7 @@ extension TableViewCell:  UICollectionViewDelegate, UICollectionViewDataSource, 
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CollectionViewCell", for: indexPath) as? CollectionViewCell {
-            let resultCategori = apiResult.description[indexPath.row]
+            let resultCategori = productMV.resultBrand.description[indexPath.row]
             cell.configure(data: resultCategori)
             return cell
             

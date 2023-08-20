@@ -23,26 +23,26 @@ class ProfileViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupTabBarText()
-        getDataProfile()
+//        getDataProfile()
 
         // Do any additional setup after loading the view.
     }
     
-    func getDataProfile() {
-        APICall().getProfile() { [self] result in
-            DispatchQueue.main.async {
-                self.emailText.text = result?.email
-                self.userNameText.text = result?.username
-                self.nameText.text = result?.full_name
-//                let imgURl = URL(string: "\(result?.image_url ?? "")")
-//                self.photoUser.sd_setImage(with: imgURl)
-            }
-           
-        } onError: { error in
-            print("error")
-        }
-
-    }
+//    func getDataProfile() {
+//        APICall().getProfile() { [self] result in
+//            DispatchQueue.main.async {
+//                self.emailText.text = result?.email
+//                self.userNameText.text = result?.username
+//                self.nameText.text = result?.full_name
+////                let imgURl = URL(string: "\(result?.image_url ?? "")")
+////                self.photoUser.sd_setImage(with: imgURl)
+//            }
+//           
+//        } onError: { error in
+//            print("error")
+//        }
+//
+//    }
     
     private func setupTabBarText() {
         let label2 = UILabel()

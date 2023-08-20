@@ -75,7 +75,6 @@ class HomeProducViewController: UIViewController {
         
         homeTable.register(UINib(nibName: "TableViewCell", bundle: nil), forCellReuseIdentifier: "TableViewCell")
         homeTable.register(UINib(nibName: "ProducTableViewCell", bundle: nil), forCellReuseIdentifier: "ProducTableViewCell")
-    
         
     }
     private func setupTabBarText() {
@@ -130,11 +129,11 @@ extension HomeProducViewController: UITableViewDelegate, UITableViewDataSource {
  // menghubungkan dengan home table melalu protocol
 extension HomeProducViewController: ProductTableViewCellDelegate {
     func scDetailProduct(product: ProducList) {
-        print("Click on \(product)")
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let detailVC = storyboard.instantiateViewController(withIdentifier: "DetailViewController") as! DetailViewController
-        detailVC.product = product
+        detailVC.idProduct = product.id
         self.navigationController?.pushViewController(detailVC , animated: true)
+        
     }
     
     
