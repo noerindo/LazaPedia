@@ -7,7 +7,6 @@
 
 import Foundation
 
-
 class ProductModelView {
     var resultBrand =  AllBrand(description: [Brand]())
     var resultProduct = ProductAll(data: [ProducList]())
@@ -128,8 +127,8 @@ class ProductModelView {
             guard let data = data else { return }
             do {
                 //untuk liat bentuk JSON
-                            let serializedJson = try JSONSerialization.jsonObject(with: data, options: .fragmentsAllowed)
-                            print(serializedJson)
+//                            let serializedJson = try JSONSerialization.jsonObject(with: data, options: .fragmentsAllowed)
+//                            print(serializedJson)
                 let result = try JSONDecoder().decode(ProductDetail.self, from: data)
                 completion(result)
             } catch {

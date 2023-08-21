@@ -10,7 +10,7 @@ import Foundation
 class ProfileModelView {
     
     
-    
+
     func getProfile(completion: @escaping((DataProfileUser?) -> Void), onError: @escaping(String) -> Void) {
         guard let url = URL(string: Endpoints.Gets.profile.url) else { return }
         var request = URLRequest(url: url)

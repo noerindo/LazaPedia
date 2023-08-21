@@ -42,6 +42,7 @@
 		E05C0FD12A7219A000962579 /* GetUserProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = E05C0FD02A7219A000962579 /* GetUserProfile.swift */; };
 		E05C0FD32A724EFA00962579 /* Extension View.swift in Sources */ = {isa = PBXBuildFile; fileRef = E05C0FD22A724EFA00962579 /* Extension View.swift */; };
 		E05C0FD72A73B30500962579 /* HomeProducViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E05C0FD62A73B30500962579 /* HomeProducViewController.swift */; };
+		E06F82E42A92F9EE00496347 /* RiviewModelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E06F82E32A92F9EE00496347 /* RiviewModelView.swift */; };
 		E07B9D902A8DCD77007CC799 /* ProducModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E07B9D8F2A8DCD77007CC799 /* ProducModel.swift */; };
 		E07B9D922A8DCDB6007CC799 /* CreditCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = E07B9D912A8DCDB6007CC799 /* CreditCard.swift */; };
 		E07B9D942A8DCDE0007CC799 /* IntrinsicTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E07B9D932A8DCDE0007CC799 /* IntrinsicTableView.swift */; };
@@ -137,6 +138,7 @@
 		E05C0FD02A7219A000962579 /* GetUserProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetUserProfile.swift; sourceTree = "<group>"; };
 		E05C0FD22A724EFA00962579 /* Extension View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension View.swift"; sourceTree = "<group>"; };
 		E05C0FD62A73B30500962579 /* HomeProducViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeProducViewController.swift; sourceTree = "<group>"; };
+		E06F82E32A92F9EE00496347 /* RiviewModelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RiviewModelView.swift; sourceTree = "<group>"; };
 		E07B9D8F2A8DCD77007CC799 /* ProducModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProducModel.swift; sourceTree = "<group>"; };
 		E07B9D912A8DCDB6007CC799 /* CreditCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreditCard.swift; sourceTree = "<group>"; };
 		E07B9D932A8DCDE0007CC799 /* IntrinsicTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntrinsicTableView.swift; sourceTree = "<group>"; };
@@ -233,6 +235,7 @@
 				E036698B2A90C0F800AA089E /* ForgotPassModelView.swift */,
 				E036698D2A90C37C00AA089E /* ProductModelView.swift */,
 				E036698F2A90C3C200AA089E /* ProfileModelView.swift */,
+				E06F82E32A92F9EE00496347 /* RiviewModelView.swift */,
 			);
 			path = viewModel;
 			sourceTree = "<group>";
@@ -401,8 +404,8 @@
 		E07B9D9C2A8DCF15007CC799 /* Riview */ = {
 			isa = PBXGroup;
 			children = (
-				E07B9DA32A8DD004007CC799 /* TableCell */,
 				E07B9DA12A8DCFD7007CC799 /* ReviewViewController.swift */,
+				E07B9DA32A8DD004007CC799 /* TableCell */,
 			);
 			path = Riview;
 			sourceTree = "<group>";
@@ -840,6 +843,7 @@
 				E0DE4F0D2A8CB62E000C53FA /* KodePassViewController.swift in Sources */,
 				E057A45C2A70B23D00A8EC00 /* ResetPasswordViewController.swift in Sources */,
 				E093965D2A705F6B003445B3 /* AppDelegate.swift in Sources */,
+				E06F82E42A92F9EE00496347 /* RiviewModelView.swift in Sources */,
 				E07B9D9F2A8DCF51007CC799 /* SizeCollectionViewCell.swift in Sources */,
 				E093965F2A705F6B003445B3 /* SceneDelegate.swift in Sources */,
 				E07B9DB12A8DD1B8007CC799 /* SideTableViewCell.swift in Sources */,

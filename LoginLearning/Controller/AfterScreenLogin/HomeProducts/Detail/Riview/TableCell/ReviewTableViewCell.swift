@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Cosmos
 
 class ReviewTableViewCell: UITableViewCell {
 
@@ -13,6 +14,14 @@ class ReviewTableViewCell: UITableViewCell {
         didSet {
             photoRiview.layer.cornerRadius = photoRiview.frame.size.width / 2
             photoRiview.clipsToBounds = true
+        }
+    }
+    @IBOutlet weak var starRating: CosmosView! {
+        didSet {
+            starRating.settings.fillMode = .precise
+            starRating.settings.updateOnTouch = false
+            starRating.settings.totalStars = 5
+            starRating.settings.starMargin = 1
         }
     }
     @IBOutlet weak var nameRiview: UILabel!
@@ -32,12 +41,14 @@ class ReviewTableViewCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
-    func configureRiview(data: Riview) {
-        photoRiview.image = data.photo
-        nameRiview.text = data.name
-        timeRiview.text = data.date
+    func configureRiview(data: ReviewProduct) {
+        let imgURl = URL(string: "\(data.image_url)")
+        self.photoRiview.sd_setImage(with: imgURl)
+        nameRiview.text = data.full_name
+        timeRiview.text = data.created_at.dateReview(date: "\(data.created_at)")
         ratingRiview.text = "\(data.rating)"
-        descRiview.text = data.desc
+        descRiview.text = data.comment
+        starRating.rating = data.rating
     }
     
 }

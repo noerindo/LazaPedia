@@ -67,21 +67,6 @@ var cellSide: [SideItem] = [
     SideItem(imageItem: UIImage(named: "Info Circle")!, ketItem: "Account Information"),
     SideItem(imageItem: UIImage(named: "Lock")!, ketItem: "Password"), SideItem(imageItem: UIImage(named: "Bag")!, ketItem: "Order"), SideItem(imageItem: UIImage(named: "Wallet")!, ketItem: "My Cards"), SideItem(imageItem: UIImage(named: "Heart")!, ketItem: "Wishlist"), SideItem(imageItem: UIImage(named: "Setting")!, ketItem: "Settings")
 ]
-
-struct Riview {
-    let name: String
-    let date: String
-    let rating: Double
-    let desc: String
-    let photo: UIImage
-}
-var riviewList: [Riview] = [
-    Riview(name: "Jenny Wilson", date: "13 Sep, 2020", rating: 4.8, desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque malesuada eget vitae amet...", photo: UIImage(named: "phott")!),
-    Riview(name: "Jenny Wilson", date: "13 Sep, 2020", rating: 4.8, desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque malesuada eget vitae amet...",photo: UIImage(named: "phott")!),
-    Riview(name: "Jenny Wilson", date: "13 Sep, 2020", rating: 4.8, desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque malesuada eget vitae amet...", photo: UIImage(named: "phott")!),
-    Riview(name: "Jenny Wilson", date: "13 Sep, 2020", rating: 4.8, desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque malesuada eget vitae amet...", photo: UIImage(named: "phott")!),
-    Riview(name: "Jenny Wilson", date: "13 Sep, 2020", rating: 4.8, desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque malesuada eget vitae amet...", photo: UIImage(named: "phott")!)]
-
 struct orderProduc {
     let name: String
     let photo: UIImage
