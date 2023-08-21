@@ -16,6 +16,7 @@ protocol ProductTableViewCellDelegate: AnyObject {
 class ProducTableViewCell: UITableViewCell {
     
     let productMV = ProductModelView()
+    var produkFilter: [ProducList] = []
     @IBOutlet weak var viewAllBtn: UIButton!
     @IBOutlet weak var collectionProduct: DynamicHeightCollectionView!
     @IBOutlet weak var newArraival: UILabel!
@@ -49,7 +50,7 @@ class ProducTableViewCell: UITableViewCell {
 extension ProducTableViewCell: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if isSearchBar == true {
-            return productMV.productFilterCount
+            return produkFilter.count
         } else {
             return productMV.productsCount
         }
@@ -59,7 +60,7 @@ extension ProducTableViewCell: UICollectionViewDelegate, UICollectionViewDataSou
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if let cell = collectionProduct.dequeueReusableCell(withReuseIdentifier: "ProducCollectionViewCell", for: indexPath) as? ProducCollectionViewCell {
             if isSearchBar == true {
-                let cellList = productMV.produkFilter.data[indexPath.item]
+                let cellList = produkFilter[indexPath.item]
                 cell.configure(data: cellList)
             } else {
                 let cellList = productMV.resultProduct.data[indexPath.item]
@@ -83,12 +84,12 @@ extension ProducTableViewCell: UICollectionViewDelegate, UICollectionViewDataSou
         return UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
     }
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        delegate?.scDetailProduct(product:productMV.resultProduct.data[indexPath.item])
-//        if isSearchBar == true {
-//            delegate?.scDetailProduct(product: produkFilter[indexPath.item])
-//        } else {
-//            delegate?.scDetailProduct(product:resultProduct.data[indexPath.item])
-//        }
+        
+        if isSearchBar == true {
+            delegate?.scDetailProduct(product: produkFilter[indexPath.item])
+        } else {
+            delegate?.scDetailProduct(product:productMV.resultProduct.data[indexPath.item])
+        }
 
     }
 }
@@ -96,22 +97,9 @@ extension ProducTableViewCell: UICollectionViewDelegate, UICollectionViewDataSou
 extension ProducTableViewCell: HomeProductionDelegate {
     
     func fetchSearch(isActive: Bool, textString: String) {
-        print("Search: ", textString)
         isSearchBar = isActive
-//        productMV.getSearchProduct(name: textString) { [self] result in
-//            productMV.produkFilter = result
-//            self.collectionProduct.reloadData()
-//        }
-//        productMV.loadSearchProduct(name: textString) {
-//            DispatchQueue.main.async {
-//                self.collectionProduct.reloadData()
-//            }
-//        }
-//        productMV.loadSearchProduct(name: textString) {
-//
-//
-//        }
-        
+        produkFilter = productMV.resultProduct.data.filter{$0.name.lowercased().contains(textString.lowercased())}
+        self.collectionProduct.reloadData()
     }
 }
 

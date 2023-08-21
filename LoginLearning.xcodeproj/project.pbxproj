@@ -15,6 +15,9 @@
 		E036698C2A90C0F800AA089E /* ForgotPassModelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E036698B2A90C0F800AA089E /* ForgotPassModelView.swift */; };
 		E036698E2A90C37C00AA089E /* ProductModelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E036698D2A90C37C00AA089E /* ProductModelView.swift */; };
 		E03669902A90C3C200AA089E /* ProfileModelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E036698F2A90C3C200AA089E /* ProfileModelView.swift */; };
+		E03F9EED2A9316F3009CED92 /* SliderRating.swift in Sources */ = {isa = PBXBuildFile; fileRef = E03F9EEC2A9316F3009CED92 /* SliderRating.swift */; };
+		E03F9EF22A936084009CED92 /* ViewAllViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E03F9EF12A936084009CED92 /* ViewAllViewController.swift */; };
+		E03F9EF42A936597009CED92 /* DetailCategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E03F9EF32A936597009CED92 /* DetailCategoryViewController.swift */; };
 		E057A4322A70A80B00A8EC00 /* ForgotEmailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E057A4312A70A80B00A8EC00 /* ForgotEmailViewController.swift */; };
 		E057A4482A70ACC300A8EC00 /* Inter-ExtraBoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E057A4352A70ACC200A8EC00 /* Inter-ExtraBoldItalic.ttf */; };
 		E057A4492A70ACC300A8EC00 /* Inter-MediumItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E057A4362A70ACC200A8EC00 /* Inter-MediumItalic.ttf */; };
@@ -111,6 +114,9 @@
 		E036698B2A90C0F800AA089E /* ForgotPassModelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPassModelView.swift; sourceTree = "<group>"; };
 		E036698D2A90C37C00AA089E /* ProductModelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductModelView.swift; sourceTree = "<group>"; };
 		E036698F2A90C3C200AA089E /* ProfileModelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileModelView.swift; sourceTree = "<group>"; };
+		E03F9EEC2A9316F3009CED92 /* SliderRating.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SliderRating.swift; sourceTree = "<group>"; };
+		E03F9EF12A936084009CED92 /* ViewAllViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewAllViewController.swift; sourceTree = "<group>"; };
+		E03F9EF32A936597009CED92 /* DetailCategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailCategoryViewController.swift; sourceTree = "<group>"; };
 		E057A4312A70A80B00A8EC00 /* ForgotEmailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotEmailViewController.swift; sourceTree = "<group>"; };
 		E057A4352A70ACC200A8EC00 /* Inter-ExtraBoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Inter-ExtraBoldItalic.ttf"; sourceTree = "<group>"; };
 		E057A4362A70ACC200A8EC00 /* Inter-MediumItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Inter-MediumItalic.ttf"; sourceTree = "<group>"; };
@@ -240,6 +246,14 @@
 			path = viewModel;
 			sourceTree = "<group>";
 		};
+		E03F9EF02A936069009CED92 /* ViewAll */ = {
+			isa = PBXGroup;
+			children = (
+				E03F9EF12A936084009CED92 /* ViewAllViewController.swift */,
+			);
+			path = ViewAll;
+			sourceTree = "<group>";
+		};
 		E057A4332A70AC8000A8EC00 /* Font */ = {
 			isa = PBXGroup;
 			children = (
@@ -275,6 +289,7 @@
 				E07B9D932A8DCDE0007CC799 /* IntrinsicTableView.swift */,
 				E07B9D952A8DCE02007CC799 /* DynamicHeightCollectionView.swift */,
 				E0C74FC12A8F01FD00DCCB32 /* KeychainManager.swift */,
+				E03F9EEC2A9316F3009CED92 /* SliderRating.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -314,6 +329,7 @@
 		E05C0FD52A73B2D600962579 /* HomeProducts */ = {
 			isa = PBXGroup;
 			children = (
+				E03F9EF02A936069009CED92 /* ViewAll */,
 				E05C0FD62A73B30500962579 /* HomeProducViewController.swift */,
 				E07B9DFE2A8E06E6007CC799 /* Profile */,
 				E07B9D9A2A8DCE82007CC799 /* Category */,
@@ -386,6 +402,7 @@
 		E07B9D9A2A8DCE82007CC799 /* Category */ = {
 			isa = PBXGroup;
 			children = (
+				E03F9EF32A936597009CED92 /* DetailCategoryViewController.swift */,
 				E07B9DC22A8DDA65007CC799 /* Collection */,
 				E07B9DC12A8DDA4B007CC799 /* TableCell */,
 			);
@@ -815,6 +832,7 @@
 				E07B9D942A8DCDE0007CC799 /* IntrinsicTableView.swift in Sources */,
 				E036698C2A90C0F800AA089E /* ForgotPassModelView.swift in Sources */,
 				E05C0FD72A73B30500962579 /* HomeProducViewController.swift in Sources */,
+				E03F9EF22A936084009CED92 /* ViewAllViewController.swift in Sources */,
 				E036698A2A90BFDD00AA089E /* SignUpViewModel.swift in Sources */,
 				E093967C2A7079CD003445B3 /* LoginViewController.swift in Sources */,
 				E07B9DBF2A8DD9EF007CC799 /* ProducTableViewCell.swift in Sources */,
@@ -824,6 +842,7 @@
 				E07B9DF62A8DE7DC007CC799 /* OrderTableViewCell.swift in Sources */,
 				E05C0FD32A724EFA00962579 /* Extension View.swift in Sources */,
 				E07B9DF12A8DE6D9007CC799 /* AdressViewController.swift in Sources */,
+				E03F9EF42A936597009CED92 /* DetailCategoryViewController.swift in Sources */,
 				E03669902A90C3C200AA089E /* ProfileModelView.swift in Sources */,
 				E07B9DEA2A8DE649007CC799 /* MethodPayViewController.swift in Sources */,
 				E07B9DE82A8DE5F0007CC799 /* AddPayViewController.swift in Sources */,
@@ -849,6 +868,7 @@
 				E07B9DB12A8DD1B8007CC799 /* SideTableViewCell.swift in Sources */,
 				E057A4322A70A80B00A8EC00 /* ForgotEmailViewController.swift in Sources */,
 				E07B9D962A8DCE02007CC799 /* DynamicHeightCollectionView.swift in Sources */,
+				E03F9EED2A9316F3009CED92 /* SliderRating.swift in Sources */,
 				E03669882A90A67C00AA089E /* RiviewModel.swift in Sources */,
 				E057A5E92A71173800A8EC00 /* UserModel.swift in Sources */,
 				E01885F62A74609800ED4B37 /* LoginViewModel.swift in Sources */,

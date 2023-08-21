@@ -10,8 +10,10 @@ import Cosmos
 
 class ReviewViewController: UIViewController {
     
-    @IBOutlet weak var countRiview: UILabel!
+    let riviewMV = RiviewModelView()
+    var idProduct: Int = 0
     
+    @IBOutlet weak var countRiview: UILabel!
     @IBOutlet weak var textRating: UILabel!
     @IBOutlet weak var tableRiview: UITableView!
     
@@ -44,11 +46,22 @@ class ReviewViewController: UIViewController {
         tableRiview.dataSource = self
         tableRiview.delegate = self
         tableRiview.register(UINib(nibName: "ReviewTableViewCell", bundle: nil), forCellReuseIdentifier: "ReviewTableViewCell")
+        riviewMV.riviewVC = self
+        riviewMV.loadAllriviewl(id: idProduct)
         tableRiview.reloadData()
 
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        riviewMV.riviewVC = self
+        riviewMV.loadAllriviewl(id: idProduct)
+        tableRiview.reloadData()
+        
+    }
     @objc func moveAdd() {
         let addRiviewVC = self.storyboard?.instantiateViewController(withIdentifier: "AddRiviewViewController") as! AddRiviewViewController
+        addRiviewVC.idProduct = idProduct
         self.navigationController?.pushViewController(addRiviewVC, animated: true)
     }
     
@@ -59,13 +72,13 @@ class ReviewViewController: UIViewController {
 
 extension ReviewViewController:UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//        return riviewList.count
+        return riviewMV.riviewAllCount
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCell(withIdentifier: "ReviewTableViewCell", for: indexPath) as? ReviewTableViewCell {
-//            let cellList = riviewList[indexPath.item]
-//            cell.configureRiview(data: cellList)
+            let cellList = riviewMV.listRiview [indexPath.item]
+            cell.configureRiview(data: cellList)
             return cell
     }
         return UITableViewCell()

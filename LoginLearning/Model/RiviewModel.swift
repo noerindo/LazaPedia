@@ -25,3 +25,6 @@ struct DataIdRiview: Codable {
     let total: Int
     let reviews: [ReviewProduct]
 }
+struct ResponAddRiview: Codable {
+    let status: String
+}

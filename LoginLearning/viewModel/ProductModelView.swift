@@ -15,7 +15,6 @@ class ProductModelView {
     var riviewProduct = [ReviewProduct]()
     var isSearchBar: Bool = false
     var textSearch: String = ""
-    var produkFilter = ProductAll(data: [ProducList]())
     
     // deklasi delegatenya
     weak var delegate: ProductTableViewCellDelegate?
@@ -38,11 +37,6 @@ class ProductModelView {
         }
     }
     
-    var productFilterCount: Int {
-        get {
-            return produkFilter.data.count
-        }
-    }
     
     func loadProductAll(completion: @escaping (() -> Void)) {
         getProducAll { result in
@@ -89,20 +83,6 @@ class ProductModelView {
         }
     }
     
-//    func getSearchProduct(name: String, completion: @escaping((ProductAll) -> Void)) {
-//        guard let url = URL(string: Endpoints.Gets.searchProduct(name: name).url) else { return }
-//        let request = URLRequest(url: url)
-//        let task = URLSession.shared.dataTask(with: request) { data, response, error in
-//            guard let data = data else { return }
-//            do {
-//                let result = try JSONDecoder().decode(ProductAll.self, from: data)
-//                completion(result)
-//            } catch {
-//                print(error)
-//            }
-//        }
-//        task.resume()
-//    }
         
     func getProducAll(completion: @escaping((ProductAll) -> Void)) {
         guard let url = URL(string: Endpoints.Gets.productAll.url) else { return }

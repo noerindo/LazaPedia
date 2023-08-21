@@ -7,6 +7,10 @@
 
 import UIKit
 
+protocol BrandTableViewCellDelegate: AnyObject {
+    func 
+}
+
 class TableViewCell: UITableViewCell {
     
     let productMV = ProductModelView()

@@ -84,6 +84,7 @@ class DetailViewController: UIViewController {
     
     @IBAction func detailRiview(_ sender: Any) {
         let riviewVC = self.storyboard?.instantiateViewController(withIdentifier: "ReviewViewController") as! ReviewViewController
+        riviewVC.idProduct = idProduct
         self.navigationController?.pushViewController(riviewVC, animated: true)
     }
     

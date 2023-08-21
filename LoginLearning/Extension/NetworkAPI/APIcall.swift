@@ -27,7 +27,6 @@ enum Endpoints {
         case producDetail(id: Int)
         case riview(id: Int)
         case brandAll
-        case searchProduct(name: String)
         public var url: String {
             switch self {
             case .login:
@@ -48,8 +47,6 @@ enum Endpoints {
                 return"\(API.baseUrl)products"
             case .brandAll:
                 return"\(API.baseUrl)brand"
-            case .searchProduct(name: let name):
-                return "\(API.baseUrl)products?search=\(name)"
             case .riview(id: let id):
                 return "\(API.baseUrl)products/\(id)/reviews"
             }
