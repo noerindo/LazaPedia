@@ -10,6 +10,7 @@ import Foundation
 class ProductModelView {
     var resultBrand =  AllBrand(description: [Brand]())
     var resultProduct = ProductAll(data: [ProducList]())
+    var resultBrandProduct = ProductAll(data: [ProducList]())
     var detailProductVC: DetailViewController?
     var sizeProduct = [Size]()
     var riviewProduct = [ReviewProduct]()
@@ -22,6 +23,11 @@ class ProductModelView {
     var productsCount: Int {
         get {
             return resultProduct.data.count
+        }
+    }
+    var allBrandProductCount: Int {
+        get {
+            return resultBrandProduct.data.count
         }
     }
     
@@ -46,6 +52,16 @@ class ProductModelView {
             completion()
         }
     }
+    
+    func loadBrandProductAll(nameBrand: String, completion: @escaping (() -> Void)) {
+        getBrandProduct(nameBrand: nameBrand) { data in
+            DispatchQueue.main.async {
+                self.resultBrandProduct = data
+            }
+            completion()
+        }
+    }
+    
     
     func loadBrand(completion: @escaping (() -> Void)) {
         getBrand { result in
@@ -126,6 +142,20 @@ class ProductModelView {
             guard let data = data else { return }
             do {
                 let result = try JSONDecoder().decode(AllBrand.self, from: data)
+                completion(result)
+            } catch {
+                print(error)
+            }
+        }
+        task.resume()
+    }
+    func getBrandProduct(nameBrand: String, completion: @escaping((ProductAll) -> Void)) {
+        guard let url = URL(string: Endpoints.Gets.brandProduct(nameBrand: nameBrand).url) else {return}
+        let request = URLRequest(url: url)
+        let task = URLSession.shared.dataTask(with: request) { data, response, error in
+            guard let data = data else { return }
+            do {
+                let result = try JSONDecoder().decode(ProductAll.self, from: data)
                 completion(result)
             } catch {
                 print(error)

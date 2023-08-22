@@ -52,7 +52,7 @@ extension ProducTableViewCell: UICollectionViewDelegate, UICollectionViewDataSou
         if isSearchBar == true {
             return produkFilter.count
         } else {
-            return productMV.productsCount
+            return min(6, productMV.productsCount)
         }
        
     }

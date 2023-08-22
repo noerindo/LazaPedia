@@ -29,6 +29,9 @@
                         <color key="tintColor" systemColor="systemGray3Color"/>
                         <state key="normal" title="Button"/>
                         <buttonConfiguration key="configuration" style="plain" title="View all"/>
+                        <connections>
+                            <action selector="viewAllAction:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="T17-ge-yZE"/>
+                        </connections>
                     </button>
                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="V5J-hL-dBf">
                         <rect key="frame" x="0.0" y="39.333333333333329" width="374" height="143.66666666666669"/>
@@ -72,4 +75,3 @@
         </systemColor>
     </resources>
 </document>
-

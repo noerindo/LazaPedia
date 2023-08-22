@@ -103,6 +103,7 @@ extension HomeProducViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.row < 1 {
             if let cellBrand = tableView.dequeueReusableCell(withIdentifier: "TableViewCell") as? TableViewCell {
+                cellBrand.delegateMove = self
                 return cellBrand
             }
             return UITableViewCell()
@@ -128,21 +129,33 @@ extension HomeProducViewController: UITableViewDelegate, UITableViewDataSource {
 }
  // menghubungkan dengan home table melalu protocol
 extension HomeProducViewController: ProductTableViewCellDelegate {
+    
     func scDetailProduct(product: ProducList) {
         print("Click on \(product)")
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let detailVC = storyboard.instantiateViewController(withIdentifier: "DetailViewController") as! DetailViewController
         detailVC.idProduct = product.id
         self.navigationController?.pushViewController(detailVC , animated: true)
-        
     }
-    
     
     func fetchApiDone() {
         homeTable.reloadData()
     }
     
 }
+
+extension HomeProducViewController: BrandTableViewCellDelegate {
+    func moveBrandProduct(brand: Brand) {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let detailBrand = storyboard.instantiateViewController(withIdentifier: "DetailCategoryViewController") as! DetailCategoryViewController
+        detailBrand.brandName = brand.name
+        self.navigationController?.pushViewController(detailBrand , animated: true)
+    }
+    
+}
+
+
+
 extension HomeProducViewController: SideMenuNavigationControllerDelegate {
 //    func sideMenuDidDisappear(menu: SideMenuViewController, animated: Bool) {
 //        parentBluerView.isHidden = true

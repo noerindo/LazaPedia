@@ -8,7 +8,7 @@
 import Foundation
 
 struct ResponRiview: Codable {
-    let data: DataIdRiview
+    var data: DataIdRiview
 }
 
 struct ReviewProduct: Codable {
@@ -23,7 +23,7 @@ struct ReviewProduct: Codable {
 struct DataIdRiview: Codable {
     let rating_avrg: Double
     let total: Int
-    let reviews: [ReviewProduct]
+    var reviews: [ReviewProduct]
 }
 struct ResponAddRiview: Codable {
     let status: String

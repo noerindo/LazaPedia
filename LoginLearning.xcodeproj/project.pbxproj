@@ -329,8 +329,8 @@
 		E05C0FD52A73B2D600962579 /* HomeProducts */ = {
 			isa = PBXGroup;
 			children = (
-				E03F9EF02A936069009CED92 /* ViewAll */,
 				E05C0FD62A73B30500962579 /* HomeProducViewController.swift */,
+				E03F9EF02A936069009CED92 /* ViewAll */,
 				E07B9DFE2A8E06E6007CC799 /* Profile */,
 				E07B9D9A2A8DCE82007CC799 /* Category */,
 				E07B9D992A8DCE71007CC799 /* Product */,

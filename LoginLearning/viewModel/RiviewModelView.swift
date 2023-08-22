@@ -22,13 +22,13 @@ class RiviewModelView {
         getAllRiview(id: id) { result in
             DispatchQueue.main.async { [self] in
                 guard let unwrappedVC = riviewVC else { return }
-                
-                listRiview.append(contentsOf: result.data.reviews)
+                var sortedResult = result
+                sortedResult.data.reviews = result.data.reviews.sorted { $0.created_at > $1.created_at } // Sort by created at
+                listRiview.append(contentsOf: sortedResult.data.reviews)
                 unwrappedVC.tableRiview.reloadData()
-                
-                unwrappedVC.textRating.text = "\(result.data.rating_avrg)"
-                unwrappedVC.starRating.rating = result.data.rating_avrg
-                unwrappedVC.countRiview.text = "\(result.data.total)"
+                unwrappedVC.textRating.text = "\(sortedResult.data.rating_avrg)"
+                unwrappedVC.starRating.rating = sortedResult.data.rating_avrg
+                unwrappedVC.countRiview.text = "\(sortedResult.data.total)"
             }
         }
     }
@@ -40,6 +40,7 @@ class RiviewModelView {
             guard let data = data else { return }
             do {
                 let result = try JSONDecoder().decode(ResponRiview.self, from: data)
+//                result.data.reviews = result.data
                 completion(result)
             } catch {
                 print("riview Gagal: \(error)")
