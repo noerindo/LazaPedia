@@ -12,6 +12,11 @@ class DetailCategoryViewController: UIViewController {
     let productMV = ProductModelView()
     weak var delegate: ProductTableViewCellDelegate?
 
+    @IBOutlet weak var empthyView: UILabel! {
+        didSet {
+            empthyView.isHidden = true
+        }
+    }
     @IBOutlet weak var collectionProduct: UICollectionView!
     @IBOutlet weak var countProductBrand: UILabel!
     @IBOutlet weak var nameBrand: UILabel!
@@ -42,6 +47,11 @@ class DetailCategoryViewController: UIViewController {
 
 extension DetailCategoryViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        if productMV.allBrandProductCount == 0 {
+            empthyView.isHidden = false
+        } else {
+            empthyView.isHidden = true
+        }
         return productMV.allBrandProductCount
     }
     

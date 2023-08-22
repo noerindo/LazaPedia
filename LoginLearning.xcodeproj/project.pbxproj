@@ -88,6 +88,8 @@
 		E07B9DFB2A8DE871007CC799 /* OrderPopUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E07B9DFA2A8DE871007CC799 /* OrderPopUpViewController.swift */; };
 		E07B9DFD2A8DE8A2007CC799 /* ConfirmViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E07B9DFC2A8DE8A2007CC799 /* ConfirmViewController.swift */; };
 		E07B9E002A8E06F7007CC799 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E07B9DFF2A8E06F7007CC799 /* ProfileViewController.swift */; };
+		E0858D822A9499F500FA313A /* WishlistViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0858D812A9499F500FA313A /* WishlistViewModel.swift */; };
+		E0858D842A949D2800FA313A /* Wishlists.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0858D832A949D2800FA313A /* Wishlists.swift */; };
 		E093965D2A705F6B003445B3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E093965C2A705F6B003445B3 /* AppDelegate.swift */; };
 		E093965F2A705F6B003445B3 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E093965E2A705F6B003445B3 /* SceneDelegate.swift */; };
 		E09396612A705F6B003445B3 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E09396602A705F6B003445B3 /* ViewController.swift */; };
@@ -187,6 +189,8 @@
 		E07B9DFA2A8DE871007CC799 /* OrderPopUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderPopUpViewController.swift; sourceTree = "<group>"; };
 		E07B9DFC2A8DE8A2007CC799 /* ConfirmViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmViewController.swift; sourceTree = "<group>"; };
 		E07B9DFF2A8E06F7007CC799 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		E0858D812A9499F500FA313A /* WishlistViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WishlistViewModel.swift; sourceTree = "<group>"; };
+		E0858D832A949D2800FA313A /* Wishlists.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Wishlists.swift; sourceTree = "<group>"; };
 		E09396592A705F6B003445B3 /* LoginLearning.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LoginLearning.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E093965C2A705F6B003445B3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E093965E2A705F6B003445B3 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -242,6 +246,7 @@
 				E036698D2A90C37C00AA089E /* ProductModelView.swift */,
 				E036698F2A90C3C200AA089E /* ProfileModelView.swift */,
 				E06F82E32A92F9EE00496347 /* RiviewModelView.swift */,
+				E0858D812A9499F500FA313A /* WishlistViewModel.swift */,
 			);
 			path = viewModel;
 			sourceTree = "<group>";
@@ -302,6 +307,7 @@
 				E07B9D8F2A8DCD77007CC799 /* ProducModel.swift */,
 				E07B9D912A8DCDB6007CC799 /* CreditCard.swift */,
 				E03669872A90A67C00AA089E /* RiviewModel.swift */,
+				E0858D832A949D2800FA313A /* Wishlists.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -819,11 +825,13 @@
 			files = (
 				E07B9DA22A8DCFD7007CC799 /* ReviewViewController.swift in Sources */,
 				E07B9DA62A8DD04C007CC799 /* ReviewTableViewCell.swift in Sources */,
+				E0858D842A949D2800FA313A /* Wishlists.swift in Sources */,
 				E07B9DA92A8DD0E1007CC799 /* DetailViewController.swift in Sources */,
 				E07B9D902A8DCD77007CC799 /* ProducModel.swift in Sources */,
 				E02DC1822A75896800CA0192 /* TabBarViewController.swift in Sources */,
 				E07B9D922A8DCDB6007CC799 /* CreditCard.swift in Sources */,
 				E07B9E002A8E06F7007CC799 /* ProfileViewController.swift in Sources */,
+				E0858D822A9499F500FA313A /* WishlistViewModel.swift in Sources */,
 				E0C74FC42A8F568800DCCB32 /* LoadingViewController.swift in Sources */,
 				E05C0FCF2A72162200962579 /* TwitterConstants.swift in Sources */,
 				E07B9DAE2A8DD188007CC799 /* SideMenuViewController.swift in Sources */,

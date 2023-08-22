@@ -1953,6 +1953,12 @@
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Empthy Data" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zs9-Jn-YZl">
+                                <rect key="frame" x="0.0" y="179" width="393" height="639"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="31"/>
+                                <color key="textColor" name="AccentColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Available in stock" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="16T-dW-YRS">
                                 <rect key="frame" x="20" y="150.33333333333334" width="130.66666666666666" height="20.333333333333343"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -1972,7 +1978,9 @@
                             <constraint firstItem="fuM-g1-uRA" firstAttribute="trailing" secondItem="wxc-DR-JFR" secondAttribute="trailing" constant="20" id="0rs-tU-aJz"/>
                             <constraint firstItem="fuM-g1-uRA" firstAttribute="trailing" secondItem="HdV-eF-XbZ" secondAttribute="trailing" id="ElG-6G-fUN"/>
                             <constraint firstItem="fuM-g1-uRA" firstAttribute="bottom" secondItem="HdV-eF-XbZ" secondAttribute="bottom" id="Ia2-wM-qkr"/>
+                            <constraint firstItem="fuM-g1-uRA" firstAttribute="bottom" secondItem="zs9-Jn-YZl" secondAttribute="bottom" id="MJM-xi-ruQ"/>
                             <constraint firstItem="CfT-G1-Y4z" firstAttribute="top" secondItem="4ZR-FA-Xxn" secondAttribute="bottom" constant="35" id="PKx-KX-CMI"/>
+                            <constraint firstItem="wxc-DR-JFR" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="16T-dW-YRS" secondAttribute="trailing" constant="8" symbolic="YES" id="PfC-NU-rVm"/>
                             <constraint firstItem="Vlc-Pr-uo1" firstAttribute="centerX" secondItem="WZG-iF-MT6" secondAttribute="centerX" id="Qei-gw-DEB"/>
                             <constraint firstItem="4ZR-FA-Xxn" firstAttribute="top" secondItem="WZG-iF-MT6" secondAttribute="top" constant="45" id="bKr-P3-uxj"/>
                             <constraint firstItem="CfT-G1-Y4z" firstAttribute="leading" secondItem="fuM-g1-uRA" secondAttribute="leading" constant="20" id="bi5-6r-ogM"/>
@@ -1980,14 +1988,18 @@
                             <constraint firstItem="16T-dW-YRS" firstAttribute="leading" secondItem="fuM-g1-uRA" secondAttribute="leading" constant="20" id="cJe-24-6xD"/>
                             <constraint firstItem="wxc-DR-JFR" firstAttribute="top" secondItem="fuM-g1-uRA" secondAttribute="top" constant="66" id="gTs-wv-pT9"/>
                             <constraint firstItem="4ZR-FA-Xxn" firstAttribute="leading" secondItem="fuM-g1-uRA" secondAttribute="leading" constant="20" id="hDX-JS-gGU"/>
+                            <constraint firstItem="zs9-Jn-YZl" firstAttribute="leading" secondItem="fuM-g1-uRA" secondAttribute="leading" id="i4R-Ex-dm6"/>
+                            <constraint firstItem="zs9-Jn-YZl" firstAttribute="top" secondItem="WZG-iF-MT6" secondAttribute="top" constant="179" id="jNW-zz-myg"/>
                             <constraint firstItem="HdV-eF-XbZ" firstAttribute="leading" secondItem="fuM-g1-uRA" secondAttribute="leading" id="qC9-qf-i1u"/>
                             <constraint firstItem="Vlc-Pr-uo1" firstAttribute="top" secondItem="fuM-g1-uRA" secondAttribute="top" constant="6" id="qVr-7t-sT5"/>
                             <constraint firstItem="16T-dW-YRS" firstAttribute="top" secondItem="CfT-G1-Y4z" secondAttribute="bottom" constant="5" id="vEK-L5-mjm"/>
+                            <constraint firstItem="fuM-g1-uRA" firstAttribute="trailing" secondItem="zs9-Jn-YZl" secondAttribute="trailing" id="xRZ-Vn-9JH"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="collectionProduct" destination="HdV-eF-XbZ" id="4Ry-9m-PDJ"/>
                         <outlet property="countProductBrand" destination="ax4-rn-LV4" id="0uj-Zu-wL2"/>
+                        <outlet property="empthyView" destination="zs9-Jn-YZl" id="7s3-qj-O3T"/>
                         <outlet property="nameBrand" destination="Vlc-Pr-uo1" id="kZS-nm-YlQ"/>
                     </connections>
                 </viewController>
@@ -2084,16 +2096,16 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <stackView opaque="NO" contentMode="scaleToFill" spacing="3" translatesAutoresizingMaskIntoConstraints="NO" id="b8Y-PY-Ue2">
-                                <rect key="frame" x="20.000000000000004" y="115" width="55.333333333333343" height="20.333333333333343"/>
+                                <rect key="frame" x="20" y="115" width="55" height="20.333333333333343"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="G5f-kH-a7k">
-                                        <rect key="frame" x="0.0" y="0.0" width="10.333333333333334" height="20.333333333333332"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="G5f-kH-a7k">
+                                        <rect key="frame" x="0.0" y="0.0" width="10" height="20.333333333333332"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Items" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hk0-Yr-xvN">
-                                        <rect key="frame" x="13.333333333333336" y="0.0" width="42" height="20.333333333333332"/>
+                                        <rect key="frame" x="13" y="0.0" width="42" height="20.333333333333332"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -2149,6 +2161,7 @@
                     </tabBarItem>
                     <connections>
                         <outlet property="collectionWishlist" destination="hky-7Z-6An" id="SeP-4g-IFd"/>
+                        <outlet property="textCountWishlist" destination="G5f-kH-a7k" id="Gn5-4y-rE9"/>
                         <outlet property="textEmpty" destination="oZn-63-yo2" id="YVM-uo-zZs"/>
                     </connections>
                 </viewController>
@@ -3640,6 +3653,9 @@
         </scene>
     </scenes>
     <designables>
+        <designable name="CXw-y5-nis">
+            <size key="intrinsicContentSize" width="259" height="44"/>
+        </designable>
         <designable name="bkC-2D-SY4">
             <size key="intrinsicContentSize" width="-1" height="30"/>
         </designable>
@@ -3683,6 +3699,9 @@
         <image name="plus.app" catalog="system" width="128" height="114"/>
         <image name="rectangle.portrait.and.arrow.forward" catalog="system" width="128" height="109"/>
         <image name="sun.max" catalog="system" width="128" height="125"/>
+        <namedColor name="AccentColor">
+            <color red="0.0" green="0.46000000000000002" blue="0.89000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <namedColor name="ColorAdd">
             <color red="0.94499999284744263" green="0.93699997663497925" blue="0.98400002717971802" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
         </namedColor>

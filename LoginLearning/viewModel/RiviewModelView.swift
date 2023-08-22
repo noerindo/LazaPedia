@@ -40,7 +40,6 @@ class RiviewModelView {
             guard let data = data else { return }
             do {
                 let result = try JSONDecoder().decode(ResponRiview.self, from: data)
-//                result.data.reviews = result.data
                 completion(result)
             } catch {
                 print("riview Gagal: \(error)")

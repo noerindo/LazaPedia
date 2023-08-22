@@ -28,6 +28,8 @@ enum Endpoints {
         case riview(id: Int)
         case brandAll
         case brandProduct(nameBrand: String)
+        case addWishList(idProduct: Int)
+        case wishlistAll
         public var url: String {
             switch self {
             case .login:
@@ -52,6 +54,10 @@ enum Endpoints {
                 return "\(API.baseUrl)products/\(id)/reviews"
             case .brandProduct(nameBrand: let nameBrand):
                 return "\(API.baseUrl)products/brand?name=\(nameBrand)"
+            case .addWishList(idProduct: let idProduct):
+                return "\(API.baseUrl)wishlists?ProductId=\(idProduct)"
+            case .wishlistAll:
+                return"\(API.baseUrl)wishlists"
             }
         }
     }
