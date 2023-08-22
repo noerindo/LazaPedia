@@ -35,7 +35,13 @@ class TableViewCell: UITableViewCell {
     }
 
     @IBAction func viewAllAction(_ sender: UIButton) {
-        
+        if let productAllVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ViewAllViewController") as? ViewAllViewController {
+                   productAllVC.modalPresentationStyle = .fullScreen
+            productAllVC.kodeAll = "Brand"
+                   if let navigationController = self.window?.rootViewController as? UINavigationController {
+                       navigationController.pushViewController(productAllVC, animated: false)
+                   }
+            }
     }
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
@@ -46,9 +52,7 @@ class TableViewCell: UITableViewCell {
 extension TableViewCell:  UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-//        return min(3,productMV.brandCount)
-        return productMV.brandCount
-        
+        return min(3,productMV.brandCount)
     }
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {

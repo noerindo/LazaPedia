@@ -40,6 +40,15 @@ class ProducTableViewCell: UITableViewCell {
         }
     }
     
+    @IBAction func viewAllAction(_ sender: UIButton) {
+        if let productAllVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ViewAllViewController") as? ViewAllViewController {
+                   productAllVC.modalPresentationStyle = .fullScreen
+            productAllVC.kodeAll = "Product"
+                   if let navigationController = self.window?.rootViewController as? UINavigationController {
+                       navigationController.pushViewController(productAllVC, animated: false)
+                   }
+            }
+    }
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 

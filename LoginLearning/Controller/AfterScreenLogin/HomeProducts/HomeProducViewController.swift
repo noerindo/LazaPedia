@@ -146,6 +146,7 @@ extension HomeProducViewController: ProductTableViewCellDelegate {
 
 extension HomeProducViewController: BrandTableViewCellDelegate {
     func moveBrandProduct(brand: Brand) {
+        print("Brand on \(brand)")
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let detailBrand = storyboard.instantiateViewController(withIdentifier: "DetailCategoryViewController") as! DetailCategoryViewController
         detailBrand.brandName = brand.name
