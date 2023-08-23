@@ -10,6 +10,8 @@
 		3C3F38CA585490226EC6F65A /* Pods_LoginLearning.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4748EA28B7CDBF4C2232F2DE /* Pods_LoginLearning.framework */; };
 		E01885F62A74609800ED4B37 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E01885F52A74609800ED4B37 /* LoginViewModel.swift */; };
 		E02DC1822A75896800CA0192 /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E02DC1812A75896800CA0192 /* TabBarViewController.swift */; };
+		E034052C2A95C68A00504886 /* EditProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E034052B2A95C68A00504886 /* EditProfileViewController.swift */; };
+		E034052E2A96051100504886 /* PutImageAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = E034052D2A96051100504886 /* PutImageAPI.swift */; };
 		E03669882A90A67C00AA089E /* RiviewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E03669872A90A67C00AA089E /* RiviewModel.swift */; };
 		E036698A2A90BFDD00AA089E /* SignUpViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E03669892A90BFDD00AA089E /* SignUpViewModel.swift */; };
 		E036698C2A90C0F800AA089E /* ForgotPassModelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E036698B2A90C0F800AA089E /* ForgotPassModelView.swift */; };
@@ -111,6 +113,8 @@
 		BA172B1903B68A72EAC9C784 /* Pods-LoginLearning.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LoginLearning.release.xcconfig"; path = "Target Support Files/Pods-LoginLearning/Pods-LoginLearning.release.xcconfig"; sourceTree = "<group>"; };
 		E01885F52A74609800ED4B37 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		E02DC1812A75896800CA0192 /* TabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
+		E034052B2A95C68A00504886 /* EditProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileViewController.swift; sourceTree = "<group>"; };
+		E034052D2A96051100504886 /* PutImageAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PutImageAPI.swift; sourceTree = "<group>"; };
 		E03669872A90A67C00AA089E /* RiviewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RiviewModel.swift; sourceTree = "<group>"; };
 		E03669892A90BFDD00AA089E /* SignUpViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewModel.swift; sourceTree = "<group>"; };
 		E036698B2A90C0F800AA089E /* ForgotPassModelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPassModelView.swift; sourceTree = "<group>"; };
@@ -316,6 +320,7 @@
 			isa = PBXGroup;
 			children = (
 				E057A5EB2A711AE400A8EC00 /* APIcall.swift */,
+				E034052D2A96051100504886 /* PutImageAPI.swift */,
 			);
 			path = NetworkAPI;
 			sourceTree = "<group>";
@@ -573,6 +578,7 @@
 			isa = PBXGroup;
 			children = (
 				E07B9DFF2A8E06F7007CC799 /* ProfileViewController.swift */,
+				E034052B2A95C68A00504886 /* EditProfileViewController.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -825,6 +831,7 @@
 			files = (
 				E07B9DA22A8DCFD7007CC799 /* ReviewViewController.swift in Sources */,
 				E07B9DA62A8DD04C007CC799 /* ReviewTableViewCell.swift in Sources */,
+				E034052E2A96051100504886 /* PutImageAPI.swift in Sources */,
 				E0858D842A949D2800FA313A /* Wishlists.swift in Sources */,
 				E07B9DA92A8DD0E1007CC799 /* DetailViewController.swift in Sources */,
 				E07B9D902A8DCD77007CC799 /* ProducModel.swift in Sources */,
@@ -885,6 +892,7 @@
 				E07B9DF32A8DE6FA007CC799 /* AddAdressViewController.swift in Sources */,
 				E07B9DEE2A8DE698007CC799 /* AdressTableViewCell.swift in Sources */,
 				E09936522A91EFC200A8D11C /* CekUserViewController.swift in Sources */,
+				E034052C2A95C68A00504886 /* EditProfileViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

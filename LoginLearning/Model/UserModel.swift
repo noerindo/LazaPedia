@@ -39,6 +39,19 @@ struct DataProfileUser: Codable {
     let username: String
     let email: String
     let full_name: String
+    let image_url: String
+}
+
+struct DataProfilUserImage: Codable {
+    let id: Int
+    let username: String
+    let email: String
+    let full_name: String
+    let image_url: String
+}
+
+struct ProfileUpdate: Codable {
+    let data: DataProfilUserImage
 }
 
 struct ProfileUser: Codable {
@@ -64,3 +77,4 @@ struct Address: Codable {
 }
 
 typealias AdressUser = [Address]
+

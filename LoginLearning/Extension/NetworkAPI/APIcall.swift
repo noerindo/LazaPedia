@@ -23,6 +23,7 @@ enum Endpoints {
         case codeForgot
         case newPassword(email: String, code: String)
         case profile
+        case putProfile
         case productAll
         case producDetail(id: Int)
         case riview(id: Int)
@@ -58,6 +59,8 @@ enum Endpoints {
                 return "\(API.baseUrl)wishlists?ProductId=\(idProduct)"
             case .wishlistAll:
                 return"\(API.baseUrl)wishlists"
+            case .putProfile:
+                return "\(API.baseUrl)user/update"
             }
         }
     }

@@ -14,7 +14,7 @@ extension UIView {
     func addShadow(color: UIColor, width: CGFloat, text: UITextField) {
         let border = CALayer()
         border.backgroundColor = color.cgColor
-        border.frame = CGRect(x: 0, y: text.frame.height + 10 , width: self.frame.size.width, height: width)
+        border.frame = CGRect(x: 0, y: text.frame.height + 15 , width: self.frame.size.width, height: width)
         self.layer.addSublayer(border)
         }
 }
@@ -82,6 +82,22 @@ extension String {
         return date
     }
     
+}
+
+struct Media {
+    let key: String
+    let filename: String
+    let data: Data
+    let mimeType: String
+    
+    init?(withImage image: UIImage, forKey key: String) {
+        self.key = key
+        self.mimeType = "image/jpeg"
+        self.filename = "Image_\(Date.now).jpg"
+        
+        guard let data = image.jpegData(compressionQuality: 0.7) else { return nil }
+        self.data = data
+    }
 }
 
 

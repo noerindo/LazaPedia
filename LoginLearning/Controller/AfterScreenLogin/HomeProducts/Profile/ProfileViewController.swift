@@ -8,6 +8,7 @@
 import UIKit
 
 class ProfileViewController: UIViewController {
+    var profileMV = ProfileModelView()
 
     @IBOutlet weak var photoUser: UIImageView! {
         didSet {
@@ -23,26 +24,24 @@ class ProfileViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupTabBarText()
-//        getDataProfile()
-
-        // Do any additional setup after loading the view.
+        getDataProfile()
     }
     
-//    func getDataProfile() {
-//        APICall().getProfile() { [self] result in
-//            DispatchQueue.main.async {
-//                self.emailText.text = result?.email
-//                self.userNameText.text = result?.username
-//                self.nameText.text = result?.full_name
-////                let imgURl = URL(string: "\(result?.image_url ?? "")")
-////                self.photoUser.sd_setImage(with: imgURl)
-//            }
-//           
-//        } onError: { error in
-//            print("error")
-//        }
-//
-//    }
+    func getDataProfile() {
+        profileMV.getProfile { [self] result in
+            DispatchQueue.main.async {
+                self.emailText.text = result?.email
+                self.userNameText.text = result?.username
+                self.nameText.text = result?.full_name
+                let imgURl = URL(string: "\(result?.image_url ?? "")")
+                self.photoUser.sd_setImage(with: imgURl)
+            }
+           
+        } onError: { error in
+            print("error")
+        }
+
+    }
     
     private func setupTabBarText() {
         let label2 = UILabel()
@@ -54,5 +53,14 @@ class ProfileViewController: UIViewController {
         
         tabBarItem.selectedImage = UIImage(view: label2)
     }
+    
+    @IBAction func editBtn(_ sender: UIButton) {
+        let updateVC = self.storyboard?.instantiateViewController(withIdentifier: "EditProfileViewController") as! EditProfileViewController
+        updateVC.email = emailText.text!
+        updateVC.userNamee = userNameText.text!
+        updateVC.name = nameText.text!
+        self.navigationController?.pushViewController(updateVC, animated: true)
+    }
+    
 
 }

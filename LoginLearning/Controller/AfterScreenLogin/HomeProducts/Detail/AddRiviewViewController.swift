@@ -26,6 +26,9 @@ class AddRiviewViewController: UIViewController {
         
     }
     
+    @IBAction func backBtn(_ sender: UIButton) {
+        self.navigationController?.popViewController(animated: true)
+    }
     @IBAction func addRiviewAct(_ sender: UIButton) {
         guard let comment = inputRiview.text else { return }
 //        let ratingString = viewTextSlider.text!
