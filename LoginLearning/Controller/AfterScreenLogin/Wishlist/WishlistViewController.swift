@@ -31,20 +31,33 @@ class WishlistViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupTabBarText()
+        textEmpty.isHidden = true
         collectionWishlist.dataSource = self
         collectionWishlist.delegate = self
-        wishlistMC.loadWishList {
+        collectionWishlist.register(UINib(nibName: "ProducCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "ProducCollectionViewCell")
+        wishlistMC.wishlitVC = self
+        wishlistMC.loadWishList { _ in
             DispatchQueue.main.async {
                 self.collectionWishlist.reloadData()
             }
         }
-        
-        collectionWishlist.register(UINib(nibName: "ProducCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "ProducCollectionViewCell")
+        self.collectionWishlist.reloadData()
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        wishlistMC.loadWishList { _ in
+            DispatchQueue.main.async {
+                self.collectionWishlist.reloadData()
+            }
+        }
+    }
+
 }
 
 extension WishlistViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        print(wishlistMC.listWishlist.count)
         if wishlistMC.listWishlist.count != 0 {
             textEmpty.isHidden = true
             

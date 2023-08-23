@@ -18,8 +18,6 @@ class AddRiviewViewController: UIViewController {
     @IBOutlet weak var inputRiview: UITextView!
     override func viewDidLoad() {
         super.viewDidLoad()
-        viewTextSlider.text = "3"
-        // Do any additional setup after loading the view.
     }
 
     @IBAction func sliderAction(_ sender: CustomSlider) {
@@ -31,7 +29,7 @@ class AddRiviewViewController: UIViewController {
     @IBAction func addRiviewAct(_ sender: UIButton) {
         guard let comment = inputRiview.text else { return }
 //        let ratingString = viewTextSlider.text!
-        guard let rating = Double(ratingSlider) else {return }
+        guard let rating = Double(viewTextSlider.text!) else {return }
         print(rating)
         if comment != "" {
             riviewMV.postRiview(id: idProduct, comment: comment, rating: rating) { respon in

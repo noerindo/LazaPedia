@@ -573,7 +573,7 @@
                                         <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Username" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="klC-tA-rWA">
+                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="indahnurindo12" placeholder="Username" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="klC-tA-rWA">
                                         <rect key="frame" x="0.0" y="23.666666666666629" width="313" height="45"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="45" id="las-NS-CZC"/>
@@ -598,7 +598,7 @@
                                         <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="9wS-kv-sqR">
+                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="12345@gmail" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="9wS-kv-sqR">
                                         <rect key="frame" x="0.0" y="23.666666666666686" width="313" height="45"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="45" id="SRX-A7-OYx"/>
@@ -1550,19 +1550,22 @@
                                     <constraint firstAttribute="trailing" secondItem="5fj-nZ-MiO" secondAttribute="trailing" id="piz-JX-kjJ"/>
                                 </constraints>
                             </scrollView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="i9f-hS-u5i">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageSizeForAccessibilityContentSizeCategory="YES" adjustsImageWhenDisabled="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="i9f-hS-u5i">
                                 <rect key="frame" x="328" y="45" width="45" height="45"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="45" id="Jab-lc-lYp"/>
                                     <constraint firstAttribute="height" constant="45" id="i5g-HV-e7J"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="26"/>
-                                <color key="tintColor" name="colorBtn"/>
+                                <color key="tintColor" systemColor="systemRedColor"/>
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                <state key="normal">
+                                <state key="normal" image="suit.heart" catalog="system">
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <color key="titleShadowColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
+                                <connections>
+                                    <action selector="wishlistBtn:" destination="fR6-A1-MA7" eventType="touchUpInside" id="hPF-pF-5Az"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Zre-sM-ddA">
                                 <rect key="frame" x="20" y="46.000000000000007" width="45" height="43.666666666666664"/>
@@ -1663,14 +1666,14 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="245" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QV6-AX-8BT">
-                                <rect key="frame" x="20" y="115" width="29" height="19.333333333333343"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QV6-AX-8BT">
+                                <rect key="frame" x="20" y="115" width="10" height="19.333333333333343"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="4.8" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zBq-zy-WYD">
-                                <rect key="frame" x="20" y="139" width="19.666666666666671" height="17"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zBq-zy-WYD">
+                                <rect key="frame" x="20" y="139" width="8.3333333333333357" height="17"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="17" id="qwH-iM-mp5"/>
                                 </constraints>
@@ -1689,7 +1692,7 @@
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             </tableView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zWc-M1-2hM" customClass="CosmosView" customModule="Cosmos">
-                                <rect key="frame" x="40.666666666666657" y="139" width="74" height="17"/>
+                                <rect key="frame" x="29.333333333333329" y="139" width="74" height="17"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="17" id="GtQ-fD-tum"/>
@@ -1702,7 +1705,7 @@
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Reviews" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ni3-Ya-6du">
-                                <rect key="frame" x="50" y="115" width="60" height="20"/>
+                                <rect key="frame" x="31" y="115" width="60" height="20"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -2121,7 +2124,7 @@
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="hky-7Z-6An">
                                 <rect key="frame" x="0.0" y="182.66666666666669" width="393" height="586.33333333333326"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="fGv-CN-qNl">
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="vTH-Bv-XnN">
                                     <size key="itemSize" width="128" height="128"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
@@ -3653,17 +3656,8 @@
         </scene>
     </scenes>
     <designables>
-        <designable name="CXw-y5-nis">
-            <size key="intrinsicContentSize" width="259" height="44"/>
-        </designable>
         <designable name="bkC-2D-SY4">
             <size key="intrinsicContentSize" width="-1" height="30"/>
-        </designable>
-        <designable name="hL6-Lg-tcZ">
-            <size key="intrinsicContentSize" width="73" height="13"/>
-        </designable>
-        <designable name="zWc-M1-2hM">
-            <size key="intrinsicContentSize" width="85" height="13"/>
         </designable>
     </designables>
     <resources>
@@ -3698,6 +3692,7 @@
         <image name="photoProfile" width="1532" height="1532"/>
         <image name="plus.app" catalog="system" width="128" height="114"/>
         <image name="rectangle.portrait.and.arrow.forward" catalog="system" width="128" height="109"/>
+        <image name="suit.heart" catalog="system" width="128" height="107"/>
         <image name="sun.max" catalog="system" width="128" height="125"/>
         <namedColor name="AccentColor">
             <color red="0.0" green="0.46000000000000002" blue="0.89000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -3749,6 +3744,9 @@
         </systemColor>
         <systemColor name="systemOrangeColor">
             <color red="1" green="0.58431372549019611" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemRedColor">
+            <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

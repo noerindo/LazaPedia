@@ -10,7 +10,9 @@ import Cosmos
 
 class DetailViewController: UIViewController {
     let productMV = ProductModelView()
+    let wishlistMV = WishlistViewModel()
     var idProduct: Int = 0
+    var isInWishlist: Bool? = false
     
     @IBOutlet weak var dateUser: UILabel!
     
@@ -31,17 +33,18 @@ class DetailViewController: UIViewController {
             photoProfil.clipsToBounds = true
         }
     }
-    @IBOutlet weak var favoriteBtn: UIButton! {
-        didSet {
-            let size = CGSize(width: 35, height: 35)
-            let rect = CGRect(origin: .zero, size: size)
-            var image = UIImage(named: "Heart")
-            UIGraphicsBeginImageContextWithOptions(size, false, 1)
-            image?.draw(in: rect)
-            image = UIGraphicsGetImageFromCurrentImageContext()
-            favoriteBtn.setImage(image, for: .normal)
-        }
-    }
+    @IBOutlet weak var favoriteBtn: UIButton!
+    //    {
+    //        didSet {
+    //            let size = CGSize(width: 35, height: 35)
+    //            let rect = CGRect(origin: .zero, size: size)
+    //            var image = UIImage(systemName: "Heart")
+    //            UIGraphicsBeginImageContextWithOptions(size, false, 1)
+    //            image?.draw(in: rect)
+    //            image = UIGraphicsGetImageFromCurrentImageContext()
+    //            favoriteBtn.setImage(image, for: .normal)
+    //        }
+    //    }
     @IBOutlet weak var photoProduc: UIImageView!
     @IBOutlet weak var categoryView: UILabel! {
         didSet {
@@ -74,13 +77,70 @@ class DetailViewController: UIViewController {
         productMV.detailProductVC = self
         productMV.loadDetail(id: idProduct)
         collectionSize.reloadData()
-        
+        updateWishlistBtn()
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-       
+    func updateWishlistBtn() {
+        
+        wishlistMV.loadWishList(completion: { wishlistList in
+            print("Completion updateWishlistBtn")
+            DispatchQueue.main.async { [weak self] in
+                guard let self = self else { return }
+                print("iniiiiii \(wishlistList)")
+                wishlistList.data.products.forEach { productList in
+                    print("wishlist id: \(productList.id), product id: \(self.idProduct)")
+                    if productList.id == self.idProduct {
+                        self.favoriteBtn.setImage(UIImage(systemName: "suit.heart.fill")!.withTintColor(.red, renderingMode: .alwaysOriginal), for: .normal)
+                        self.isInWishlist = true
+                        return
+                    }
+                }
+            }
+        })
     }
+    
+    @IBAction func wishlistBtn(_ sender: UIButton) {
+        if isInWishlist! {
+            print("hapus")
+            actionWishlist(sender)
+        } else {
+            print("save")
+            actionWishlist(sender)
+        }
+    }
+    private func actionWishlist(_ sender: UIButton) {
+        wishlistMV.putWishlist(id: idProduct) { wishlist in
+            DispatchQueue.main.async {
+                if wishlist == "successfully added wishlist" {
+                    self.isInWishlist?.toggle()
+                    self.setButtonBackGround(
+                        view: sender,
+                        on: UIImage(systemName: "suit.heart.fill")!.withTintColor(.red, renderingMode: .alwaysOriginal),
+                        off: UIImage(systemName: "suit.heart")!,
+                        onOffStatus: self.isInWishlist!
+                    )
+                    SnackBarSuccess.make(in: self.view, message: wishlist, duration: .lengthShort).show()
+                } else {
+                    self.isInWishlist?.toggle()
+                    self.setButtonBackGround(
+                        view: sender,
+                        on: UIImage(systemName: "suit.heart.fill")!.withTintColor(.red, renderingMode: .alwaysOriginal),
+                        off: UIImage(systemName: "suit.heart")!,
+                        onOffStatus: self.isInWishlist!
+                    )
+                    SnackBarSuccess.make(in: self.view, message: wishlist, duration: .lengthShort).show()
+                }
+            }
+        }
+    }
+    
+    private func setButtonBackGround(view: UIButton, on: UIImage, off: UIImage, onOffStatus: Bool ) {
+        switch onOffStatus {
+        case true:
+            view.setImage(on, for: .normal)
+        default:
+            view.setImage(off, for: .normal)
+        }    }
     
     @IBAction func detailRiview(_ sender: Any) {
         let riviewVC = self.storyboard?.instantiateViewController(withIdentifier: "ReviewViewController") as! ReviewViewController
@@ -120,5 +180,5 @@ extension DetailViewController:UICollectionViewDelegate, UICollectionViewDataSou
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: 60, height: 60)
     }
-
+    
 }

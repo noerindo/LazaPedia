@@ -23,7 +23,9 @@ class RiviewModelView {
             DispatchQueue.main.async { [self] in
                 guard let unwrappedVC = riviewVC else { return }
                 var sortedResult = result
+               
                 sortedResult.data.reviews = result.data.reviews.sorted { $0.created_at > $1.created_at } // Sort by created at
+//                sortedResult.data.reviews.removeAll()
                 listRiview.append(contentsOf: sortedResult.data.reviews)
                 unwrappedVC.tableRiview.reloadData()
                 unwrappedVC.textRating.text = "\(sortedResult.data.rating_avrg)"
