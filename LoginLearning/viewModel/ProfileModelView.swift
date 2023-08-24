@@ -38,16 +38,17 @@ class ProfileModelView {
                     //untuk liat bentuk JSON
                     let serializedJson = try JSONSerialization.jsonObject(with: data, options: .fragmentsAllowed)
                     print(serializedJson)
-                    let result = try JSONDecoder().decode(ResponFailed.self, from: data)
-                    completion(result.description)
+                    let result = try JSONDecoder().decode(ResponUpdate.self, from: data)
+                    completion(result.status)
+                    print("Berhasil update profile")
                 } catch {
                     print(error)
                 }
             }  else {
                 print("Error: \(httpRespon.statusCode)")
                 guard let getFailed = try? JSONDecoder().decode(ResponFailed.self, from: data) else { return }
-                onError(getFailed.description)
-                print(getFailed.description)
+                onError(getFailed.status)
+                print(getFailed.status)
             }
         }
         task.resume()

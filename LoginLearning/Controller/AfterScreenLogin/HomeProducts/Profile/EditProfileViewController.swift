@@ -16,6 +16,7 @@ class EditProfileViewController: UIViewController {
     var email: String = ""
     var name: String = ""
     var userNamee: String = ""
+    var photoOld: String = ""
     var profileMV = ProfileModelView()
     weak var delegate: EditProfileViewControllerDelegate?
     @IBOutlet weak var userName: UITextField! {
@@ -37,7 +38,12 @@ class EditProfileViewController: UIViewController {
             fullName.text = name
        }
    }
-    @IBOutlet weak var photoProfile: UIImageView!
+    @IBOutlet weak var photoProfile: UIImageView! {
+        didSet {
+            let imgURl = URL(string: "\(photoOld )")
+            self.photoProfile.sd_setImage(with: imgURl)
+        }
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         setupView()
@@ -57,6 +63,10 @@ class EditProfileViewController: UIViewController {
         self.present(imagePicker, animated: true, completion: nil)
     }
     
+    @IBAction func backAction(_ sender: UIButton) {
+        self.navigationController?.popViewController(animated: true)
+    }
+    
     @IBAction func saveActionBtn(_ sender: UIButton) {
         guard let userName = userName.text else {return}
         guard let fullName = fullName.text else {return}
@@ -66,17 +76,23 @@ class EditProfileViewController: UIViewController {
         }
         
         if userName != "" && fullName != "" && email != "" {
-            profileMV.putProfile(fullName: fullName, username: userName, email: email, media: media) { update in
-                    print("move")
-                    let updateVC = self.storyboard?.instantiateViewController(withIdentifier: "ProfileViewController") as! ProfileViewController
-                    self.navigationController?.pushViewController(updateVC, animated: true)
-                
+            profileMV.putProfile(fullName: fullName, username: userName, email: email, media: media) { result in
+                DispatchQueue.main.async {
+                    let alert = UIAlertController(title: "Sukses", message: "Data sudah diUpadet", preferredStyle: .alert)
+                    let okAction = UIAlertAction(title: "OK", style: .default) { [weak self] _ in
+                      DispatchQueue.main.async {
+                          self?.navigationController?.popViewController(animated: true)
+                      }
+                    }
+                    alert.addAction(okAction)
+                    self.present(alert, animated: true, completion: nil)
+                }
             } onError: { error in
                 DispatchQueue.main.async {
                     SnackBarWarning.make(in: self.view, message: error, duration: .lengthShort).show()
                 }
             }
-
+            
         } else {
             SnackBarWarning.make(in: self.view, message: "Data update Belum Lengkap", duration: .lengthShort).show()
         }

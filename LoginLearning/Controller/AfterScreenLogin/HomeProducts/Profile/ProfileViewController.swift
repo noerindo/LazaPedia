@@ -9,7 +9,7 @@ import UIKit
 
 class ProfileViewController: UIViewController {
     var profileMV = ProfileModelView()
-
+    var linkPhoto: String = ""
     @IBOutlet weak var photoUser: UIImageView! {
         didSet {
             photoUser.layer.cornerRadius = photoUser.frame.size.width / 2
@@ -33,6 +33,7 @@ class ProfileViewController: UIViewController {
                 self.emailText.text = result?.email
                 self.userNameText.text = result?.username
                 self.nameText.text = result?.full_name
+                self.linkPhoto = "\(result?.image_url ?? "")"
                 let imgURl = URL(string: "\(result?.image_url ?? "")")
                 self.photoUser.sd_setImage(with: imgURl)
             }
@@ -41,6 +42,11 @@ class ProfileViewController: UIViewController {
             print("error")
         }
 
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        getDataProfile()
     }
     
     private func setupTabBarText() {
@@ -59,6 +65,7 @@ class ProfileViewController: UIViewController {
         updateVC.email = emailText.text!
         updateVC.userNamee = userNameText.text!
         updateVC.name = nameText.text!
+        updateVC.photoOld = linkPhoto
         self.navigationController?.pushViewController(updateVC, animated: true)
     }
     

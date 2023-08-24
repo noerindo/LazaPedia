@@ -23,6 +23,9 @@ struct ResponFailed : Codable {
     let status: String
     let description: String
 }
+struct ResponUpdate: Codable {
+    let status: String
+}
 
 struct LoginResponse: Codable {
     let status: String
