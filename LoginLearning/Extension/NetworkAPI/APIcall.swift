@@ -31,6 +31,9 @@ enum Endpoints {
         case brandProduct(nameBrand: String)
         case addWishList(idProduct: Int)
         case wishlistAll
+        case allChart
+        case chart(idProduct: Int, idSize: Int)
+        
         public var url: String {
             switch self {
             case .login:
@@ -61,6 +64,10 @@ enum Endpoints {
                 return"\(API.baseUrl)wishlists"
             case .putProfile:
                 return "\(API.baseUrl)user/update"
+            case .allChart:
+                return "\(API.baseUrl)carts"
+            case .chart(idProduct: let idProduct, idSize: let idSize):
+                return "\(API.baseUrl)carts?ProductId=\(idProduct)&SizeId=\(idSize)"
             }
         }
     }

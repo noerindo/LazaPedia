@@ -12,6 +12,7 @@ protocol SideMenuViewControllerDelegate {
 }
 
 class SideMenuViewController: UIViewController {
+    var profileMV = ProfileModelView()
     
     @IBOutlet weak var orderText: UILabel! {
         didSet {
@@ -52,14 +53,13 @@ class SideMenuViewController: UIViewController {
     }
     override func viewDidLoad() {
         super.viewDidLoad()
+        getDataProfile()
         tableSide.dataSource = self
         tableSide.delegate = self
         tableSide.register(UINib(nibName: "SideTableViewCell", bundle: nil), forCellReuseIdentifier: "SideTableViewCell")
         
-        // Set Highlighted Cell
         DispatchQueue.main.async {
             _ = IndexPath(row: self.defaultHighlightedCell, section: 0)
-//            self.sideMenuTableView.selectRow(at: defaultRow, animated: false, scrollPosition: .none)
         }
     }
     
@@ -97,17 +97,22 @@ class SideMenuViewController: UIViewController {
         }
     }
     @IBAction func backBtn(_ sender: UIButton) {
-//        print("printy")
-//        self.navigationController?.popViewController(animated: true)
-//        let mainStoryboard = UIStoryboard(name: "Main", bundle: Bundle.main)
-//        let vc: UITabBarController = mainStoryboard.instantiateViewController(withIdentifier: "TabBarViewController") as! UITabBarController
-//        vc.selectedIndex = 0
-//        _ = vc.selectedViewController
-//        self.navigationController?.view.window?.windowScene?.keyWindow?.rootViewController = vc
-//        navigationController?.setNavigationBarHidden(true, animated: true)
         navigationController?.setNavigationBarHidden(true, animated: true)
         let homeVC = self.storyboard?.instantiateViewController(withIdentifier: "TabBarViewController") as! TabBarViewController
         self.navigationController?.pushViewController(homeVC, animated: true)
+    }
+    
+    func getDataProfile() {
+        profileMV.getProfile {data in
+            DispatchQueue.main.async { [self] in
+                nameAcount.text = data?.full_name
+                let imgURl = URL(string: "\(data?.image_url ?? "")")
+                self.photoAcount.sd_setImage(with: imgURl)
+            }
+        } onError: { error in
+            print(error)
+        }
+
     }
 }
 

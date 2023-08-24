@@ -9,10 +9,9 @@ import UIKit
 import FBSDKCoreKit
 import FBSDKLoginKit
 import Swifter
-import SafariServices
 import GoogleSignIn
 
-class LoginSosmedViewController: UIViewController,SFSafariViewControllerDelegate {
+class LoginSosmedViewController: UIViewController {
     
     var swifter: Swifter!
     var accToken: Credential.OAuthAccessToken?
@@ -42,7 +41,11 @@ class LoginSosmedViewController: UIViewController,SFSafariViewControllerDelegate
     
     
     @IBAction func googleActionBtn(_ sender: UIButton) {
-        self.loginBtnGoggle()
+        GIDSignIn.sharedInstance.signIn(withPresenting: self) { signInResult, error in
+            guard error == nil else { return }
+
+            // If sign in succeeded, display the app's main content View.
+          }
     }
     @IBAction func fbActionBtn(_ sender: UIButton) {
         self.loginBtnFb()
@@ -82,13 +85,14 @@ class LoginSosmedViewController: UIViewController,SFSafariViewControllerDelegate
     }
     
     func loginBtnGoggle() {
-        if let urlGoogle = URL(string: "https://accounts.google.com/InteractiveLogin/signinchooser?"){
-            let config = SFSafariViewController.Configuration()
-            config.entersReaderIfAvailable = true
-            
-            let googleVC = SFSafariViewController(url: urlGoogle, configuration: config)
-            present(googleVC, animated: true)
-        }
+        
+//        if let urlGoogle = URL(string: "https://accounts.google.com/InteractiveLogin/signinchooser?"){
+//            let config = SFSafariViewController.Configuration()
+//            config.entersReaderIfAvailable = true
+//
+//            let googleVC = SFSafariViewController(url: urlGoogle, configuration: config)
+//            present(googleVC, animated: true)
+//        }
     }
 
     func getUserProfile() {

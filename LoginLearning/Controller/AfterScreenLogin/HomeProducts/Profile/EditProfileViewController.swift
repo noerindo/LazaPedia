@@ -87,6 +87,7 @@ class EditProfileViewController: UIViewController {
                     alert.addAction(okAction)
                     self.present(alert, animated: true, completion: nil)
                 }
+                
             } onError: { error in
                 DispatchQueue.main.async {
                     SnackBarWarning.make(in: self.view, message: error, duration: .lengthShort).show()

@@ -34,17 +34,6 @@ class DetailViewController: UIViewController {
         }
     }
     @IBOutlet weak var favoriteBtn: UIButton!
-    //    {
-    //        didSet {
-    //            let size = CGSize(width: 35, height: 35)
-    //            let rect = CGRect(origin: .zero, size: size)
-    //            var image = UIImage(systemName: "Heart")
-    //            UIGraphicsBeginImageContextWithOptions(size, false, 1)
-    //            image?.draw(in: rect)
-    //            image = UIGraphicsGetImageFromCurrentImageContext()
-    //            favoriteBtn.setImage(image, for: .normal)
-    //        }
-    //    }
     @IBOutlet weak var photoProduc: UIImageView!
     @IBOutlet weak var categoryView: UILabel! {
         didSet {
@@ -180,5 +169,8 @@ extension DetailViewController:UICollectionViewDelegate, UICollectionViewDataSou
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: 60, height: 60)
     }
+//    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+//        <#code#>
+//    }
     
 }
