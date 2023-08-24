@@ -33,6 +33,8 @@ enum Endpoints {
         case wishlistAll
         case allChart
         case chart(idProduct: Int, idSize: Int)
+        case adress
+        case sendVerifikasi
         
         public var url: String {
             switch self {
@@ -68,6 +70,10 @@ enum Endpoints {
                 return "\(API.baseUrl)carts"
             case .chart(idProduct: let idProduct, idSize: let idSize):
                 return "\(API.baseUrl)carts?ProductId=\(idProduct)&SizeId=\(idSize)"
+            case .adress:
+                return "\(API.baseUrl)address"
+            case .sendVerifikasi:
+                return "\(API.baseUrl)auth/confirm/resend"
             }
         }
     }

@@ -33,8 +33,6 @@ class DetailCategoryViewController: UIViewController {
                 self.countProductBrand.text = "\(self.productMV.resultBrandProduct.data.count)"
             }
         }
-        
-
     }
     
     @IBAction func sortProductAction(_ sender: UIButton) {

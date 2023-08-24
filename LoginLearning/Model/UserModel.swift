@@ -18,7 +18,6 @@ struct RegisterUser: Codable {
     let username: String
 }
 
-
 struct ResponFailed : Codable {
     let status: String
     let description: String
@@ -70,7 +69,6 @@ struct ResponSucces: Codable
 struct MessageForgot : Codable {
     let message: String
 }
-
 
 struct Address: Codable {
     let city: String

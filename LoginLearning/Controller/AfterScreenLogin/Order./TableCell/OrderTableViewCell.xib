@@ -59,7 +59,7 @@ Nike Sportswear</string>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gvv-Kf-Njz">
-                                <rect key="frame" x="220" y="107" width="45" height="45"/>
+                                <rect key="frame" x="211.66666666666666" y="107" width="44.999999999999972" height="45"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="45" id="oCL-al-rq6"/>
                                     <constraint firstAttribute="width" constant="45" id="zw0-Dw-FWN"/>
@@ -74,8 +74,8 @@ Nike Sportswear</string>
                                     <action selector="addOrder:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="kTE-hX-Eod"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="01" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zFC-7l-DZx">
-                                <rect key="frame" x="185" y="117" width="20" height="23"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zFC-7l-DZx">
+                                <rect key="frame" x="185" y="117" width="11.666666666666657" height="23"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="19"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -148,4 +148,3 @@ Nike Sportswear</string>
         </systemColor>
     </resources>
 </document>
-

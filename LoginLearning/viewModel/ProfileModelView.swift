@@ -36,8 +36,8 @@ class ProfileModelView {
             if httpRespon.statusCode == 200 {
                 do {
                     //untuk liat bentuk JSON
-                    let serializedJson = try JSONSerialization.jsonObject(with: data, options: .fragmentsAllowed)
-                    print(serializedJson)
+//                    let serializedJson = try JSONSerialization.jsonObject(with: data, options: .fragmentsAllowed)
+//                    print(serializedJson)
                     let result = try JSONDecoder().decode(ResponUpdate.self, from: data)
                     completion(result.status)
                     print("Berhasil update profile")
@@ -47,8 +47,7 @@ class ProfileModelView {
             }  else {
                 print("Error: \(httpRespon.statusCode)")
                 guard let getFailed = try? JSONDecoder().decode(ResponFailed.self, from: data) else { return }
-                onError(getFailed.status)
-                print(getFailed.status)
+                onError(getFailed.description)
             }
         }
         task.resume()

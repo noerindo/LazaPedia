@@ -8,33 +8,6 @@
 import Foundation
 import Security
 
-//class KeychainManager {
-//    static let standard = KeychainManager()
-//
-//    func saveToken(accesToken: String) {
-//        let query = [
-//            kSecAttrService: accesToken
-//        ] as [CFString : Any]
-//        // Add data in query to keychain
-//        let status = SecItemAdd(query as CFDictionary, nil)
-//
-//            if status != errSecSuccess {
-//                // Print out the error
-//                print("Error: \(status)")
-//            }
-//    }
-//
-//    func getToken(accesToken: String)-> String {
-//        var result: AnyObject?
-//        SecItemCopyMatching([kSecAttrService: accesToken] as CFDictionary, &result)
-//        return accesToken
-//    }
-//
-//    func deleteToken() {
-//
-//    }
-//}
-
 class KeychainManager {
     static let shared = KeychainManager()
     
@@ -97,6 +70,5 @@ class KeychainManager {
         } else {
             print("Delete from keychain failed")
         }
-        
     }
 }

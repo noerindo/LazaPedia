@@ -45,13 +45,13 @@ class OrderViewController: UIViewController {
 
 extension OrderViewController:UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return orderList.count
+        return 3
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCell(withIdentifier: "OrderTableViewCell", for: indexPath) as? OrderTableViewCell {
-            let cellList = orderList[indexPath.item]
-            cell.configure(data: cellList)
+//            let cellList = orderList[indexPath.item]
+//            cell.configure(data: cellList)
             return cell
         }
         return UITableViewCell()

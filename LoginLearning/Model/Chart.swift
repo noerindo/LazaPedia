@@ -14,5 +14,29 @@ struct DataChart: Codable {
     let user_id: Int
     let product_id: Int
     let size_id: Int
-    
+    let quantity: Int
+}
+
+struct AllChart: Codable {
+    let data: DataAllChart
+}
+
+struct DataAllChart: Codable {
+    let products: [ProductChart]
+    let order_info: OrderInfo
+}
+
+struct ProductChart: Codable {
+    let id: Int
+    let product_name: String
+    let image_url: String
+    let price: Int
+    let brand_name: String
+    let quantity: Int
+    let size: String
+}
+struct OrderInfo: Codable {
+    let sub_total: Int
+    let shipping_cost: Int
+    let total: Int
 }

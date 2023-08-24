@@ -37,10 +37,11 @@ class OrderTableViewCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
     }
     
-    func configure(data: orderProduc ) {
-        photoOrder.image = data.photo
-        nameOrder.text = data.name
-        countOrder.text = "\(data.countOrder)"
+    func configure(data: ProductChart ) {
+        let imgURl = URL(string: "\(data.image_url)")
+        self.photoOrder.sd_setImage(with: imgURl)
+        nameOrder.text = data.product_name
+        countOrder.text = "\(data.quantity)"
         priceOrder.text =  "\(data.price)"
     }
     

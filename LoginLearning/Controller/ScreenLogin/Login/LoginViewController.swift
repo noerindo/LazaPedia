@@ -87,7 +87,17 @@ class LoginViewController: UIViewController {
                 }
             } onError: { error in
                 DispatchQueue.main.async {
-                    SnackBarWarning.make(in: self.view, message: error, duration: .lengthShort).show()
+                    let refreshAlert = UIAlertController(title: "Failed Login", message: "\(error), Send Again Verification Account", preferredStyle: UIAlertController.Style.alert)
+
+                    refreshAlert.addAction(UIAlertAction(title: "Send", style: .default, handler: { (action: UIAlertAction!) in
+                        let sendEmailVC = self.storyboard?.instantiateViewController(withIdentifier: "SendEmailViewController") as! SendEmailViewController
+                        self.navigationController?.pushViewController(sendEmailVC, animated: true)
+                    }))
+                    refreshAlert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { (action: UIAlertAction!) in
+                        refreshAlert .dismiss(animated: true, completion: nil)
+                    }))
+
+                    self.present(refreshAlert, animated: true, completion: nil)
                 }
             }
 

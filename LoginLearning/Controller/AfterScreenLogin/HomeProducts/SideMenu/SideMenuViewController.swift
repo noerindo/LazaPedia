@@ -67,15 +67,12 @@ class SideMenuViewController: UIViewController {
         let refreshAlert = UIAlertController(title: "Warning", message: "you will exit the application", preferredStyle: UIAlertController.Style.alert)
 
         refreshAlert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { (action: UIAlertAction!) in
-//            UserDefaults.standard.set(false, forKey: "UseriIsLogin")
-//            UserDefaults.standard.removeObject(forKey: "Email")
             print("before",Array(UserDefaults.standard.dictionaryRepresentation().keys).count)
             let domain = Bundle.main.bundleIdentifier!
             print("domain=",domain)
             UserDefaults.standard.removePersistentDomain(forName: domain)
             UserDefaults.standard.synchronize()
             print(Array(UserDefaults.standard.dictionaryRepresentation().keys))
-//            UserDefaults.standard.set(false, forKey: "UseriIsLogin")
                 let tabVC = self.storyboard?.instantiateViewController(withIdentifier: "LoginSosmedViewController") as! LoginSosmedViewController
                 self.navigationController?.pushViewController(tabVC, animated: true)
         }))
@@ -119,15 +116,15 @@ class SideMenuViewController: UIViewController {
 
 extension SideMenuViewController:  UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return cellSide.count
+        return 5
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 45
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCell(withIdentifier: "SideTableViewCell", for: indexPath) as? SideTableViewCell {
-            let cellSideA = cellSide[indexPath.item]
-            cell.configure(data: cellSideA)
+//            let cellSideA = cellSide[indexPath.item]
+//            cell.configure(data: cellSideA)
             return cell
             
         } else {
