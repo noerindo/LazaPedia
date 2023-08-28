@@ -6,9 +6,69 @@
 //
 
 import Foundation
+import FBSDKCoreKit
+import FBSDKLoginKit
+import Swifter
+import GoogleSignIn
 
 class LoginViewModel {
     
+    //Login SosialMedia
+    var swifter: Swifter!
+    var accToken: Credential.OAuthAccessToken?
+    var googleSignIn = GIDSignIn.sharedInstance
+    // fb
+    func loginBtnFb(sosmedVC: UIViewController) {
+        let loginfbManager = LoginManager()
+        loginfbManager.logIn(permissions: ["public_profile", "email"], from: sosmedVC , handler: { result, error in
+                  if error != nil {
+                      print("ERROR: Trying to get login results")
+                  } else if result?.isCancelled != nil {
+                      print("The token is \(result?.token?.tokenString ?? "")")
+                      if result?.token?.tokenString != nil {
+                          print("Logged in")
+                      } else {
+                          print("Cancelled")
+                      }
+                  }
+              })
+    }
+    
+    // twiter
+    func loginBtnTwitter(sosmedVC: UIViewController) {
+        self.swifter = Swifter(consumerKey: TwitterConstants.CONSUMER_KEY, consumerSecret: TwitterConstants.CONSUMER_SECRET_KEY)
+               self.swifter.authorize(withCallback: URL(string: TwitterConstants.CALLBACK_URL)!, presentingFrom: sosmedVC, success: { accessToken, _ in
+                   self.accToken = accessToken
+//                   self.getUserProfile()
+               }, failure: { _ in
+                   print("ERROR: Trying to authorize")
+               })
+    }
+    
+//    func getUserProfile() {
+//            self.swifter.verifyAccountCredentials(includeEntities: false, skipStatus: false, includeEmail: true, success: { json in
+//                let userDefaults = UserDefaults.standard
+//                userDefaults.set(self.accToken?.key, forKey: "oauth_token")
+//                userDefaults.set(self.accToken?.secret, forKey: "oauth_token_secret")
+//            }) { error in
+//                print("ERROR: \(error.localizedDescription)")
+//            }
+//        }
+    func loginBtnGoggle(sosmedVC: UIViewController) {
+        GIDSignIn.sharedInstance.signIn(
+          withPresenting: sosmedVC) { signInResult, error in
+            guard let result = signInResult else {
+              // Inspect error
+              return
+            }
+            print("Username: ",signInResult?.user.profile?.name)
+          }
+        
+    }
+    
+    
+    
+    //login Register
     func postLogin(userName: String,  password: String, completion: @escaping((LoginUser?) -> Void), onError: @escaping(String) -> Void) {
         let param = [
             "username": userName,

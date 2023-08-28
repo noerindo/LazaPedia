@@ -52,6 +52,7 @@
 		E05C0FD32A724EFA00962579 /* Extension View.swift in Sources */ = {isa = PBXBuildFile; fileRef = E05C0FD22A724EFA00962579 /* Extension View.swift */; };
 		E05C0FD72A73B30500962579 /* HomeProducViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E05C0FD62A73B30500962579 /* HomeProducViewController.swift */; };
 		E06F82E42A92F9EE00496347 /* RiviewModelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E06F82E32A92F9EE00496347 /* RiviewModelView.swift */; };
+		E0747EF92A9849FC0076ADF4 /* SideMenuModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0747EF82A9849FC0076ADF4 /* SideMenuModel.swift */; };
 		E07B9D902A8DCD77007CC799 /* ProducModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E07B9D8F2A8DCD77007CC799 /* ProducModel.swift */; };
 		E07B9D922A8DCDB6007CC799 /* CreditCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = E07B9D912A8DCDB6007CC799 /* CreditCard.swift */; };
 		E07B9D942A8DCDE0007CC799 /* IntrinsicTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E07B9D932A8DCDE0007CC799 /* IntrinsicTableView.swift */; };
@@ -159,6 +160,7 @@
 		E05C0FD22A724EFA00962579 /* Extension View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension View.swift"; sourceTree = "<group>"; };
 		E05C0FD62A73B30500962579 /* HomeProducViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeProducViewController.swift; sourceTree = "<group>"; };
 		E06F82E32A92F9EE00496347 /* RiviewModelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RiviewModelView.swift; sourceTree = "<group>"; };
+		E0747EF82A9849FC0076ADF4 /* SideMenuModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuModel.swift; sourceTree = "<group>"; };
 		E07B9D8F2A8DCD77007CC799 /* ProducModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProducModel.swift; sourceTree = "<group>"; };
 		E07B9D912A8DCDB6007CC799 /* CreditCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreditCard.swift; sourceTree = "<group>"; };
 		E07B9D932A8DCDE0007CC799 /* IntrinsicTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntrinsicTableView.swift; sourceTree = "<group>"; };
@@ -323,6 +325,7 @@
 				E0858D832A949D2800FA313A /* Wishlists.swift */,
 				E03EA8DF2A97077C00E5E631 /* Chart.swift */,
 				E03EA8E32A97380E00E5E631 /* Adress.swift */,
+				E0747EF82A9849FC0076ADF4 /* SideMenuModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -875,6 +878,7 @@
 				E03F9EF42A936597009CED92 /* DetailCategoryViewController.swift in Sources */,
 				E03669902A90C3C200AA089E /* ProfileModelView.swift in Sources */,
 				E07B9DEA2A8DE649007CC799 /* MethodPayViewController.swift in Sources */,
+				E0747EF92A9849FC0076ADF4 /* SideMenuModel.swift in Sources */,
 				E07B9DE82A8DE5F0007CC799 /* AddPayViewController.swift in Sources */,
 				E07B9DFD2A8DE8A2007CC799 /* ConfirmViewController.swift in Sources */,
 				E07B9DFB2A8DE871007CC799 /* OrderPopUpViewController.swift in Sources */,

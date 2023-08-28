@@ -23,10 +23,12 @@ class SendEmailViewController: UIViewController {
     
 
     @IBAction func backAction(_ sender: UIButton) {
+        self.navigationController?.popViewController(animated: true)
     }
     
 
     @IBAction func sendActionBtn(_ sender: UIButton) {
+        
     }
     
 }

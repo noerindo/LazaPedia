@@ -6,16 +6,10 @@
 //
 
 import UIKit
-import FBSDKCoreKit
-import FBSDKLoginKit
-import Swifter
-import GoogleSignIn
+
 
 class LoginSosmedViewController: UIViewController {
-    
-    var swifter: Swifter!
-    var accToken: Credential.OAuthAccessToken?
-    var googleSignIn = GIDSignIn.sharedInstance
+    private let loginVM = LoginViewModel()
     
     @IBOutlet weak var fbBtn: UIButton! {
         didSet {
@@ -41,69 +35,15 @@ class LoginSosmedViewController: UIViewController {
     
     
     @IBAction func googleActionBtn(_ sender: UIButton) {
-        GIDSignIn.sharedInstance.signIn(withPresenting: self) { signInResult, error in
-            guard error == nil else { return }
-
-            // If sign in succeeded, display the app's main content View.
-          }
+        loginVM.loginBtnGoggle(sosmedVC: self)
     }
     @IBAction func fbActionBtn(_ sender: UIButton) {
-        self.loginBtnFb()
+        loginVM.loginBtnFb(sosmedVC: self)
     }
     
     @IBAction func twitterActionBtn(_ sender: UIButton) {
-        self.loginBtnTwitter()
+        loginVM.loginBtnTwitter(sosmedVC: self)
     }
-    
-    
-    // fb
-    func loginBtnFb() {
-        let loginfbManager = LoginManager()
-        loginfbManager.logIn(permissions: ["public_profile", "email"], from: self, handler: { result, error in
-                  if error != nil {
-                      print("ERROR: Trying to get login results")
-                  } else if result?.isCancelled != nil {
-                      print("The token is \(result?.token?.tokenString ?? "")")
-                      if result?.token?.tokenString != nil {
-                          print("Logged in")
-                      } else {
-                          print("Cancelled")
-                      }
-                  }
-              })
-    }
-    
-    // twiter
-    func loginBtnTwitter() {
-        self.swifter = Swifter(consumerKey: TwitterConstants.CONSUMER_KEY, consumerSecret: TwitterConstants.CONSUMER_SECRET_KEY)
-               self.swifter.authorize(withCallback: URL(string: TwitterConstants.CALLBACK_URL)!, presentingFrom: self, success: { accessToken, _ in
-                   self.accToken = accessToken
-//                   self.getUserProfile()
-               }, failure: { _ in
-                   print("ERROR: Trying to authorize")
-               })
-    }
-    
-    func loginBtnGoggle() {
-        
-//        if let urlGoogle = URL(string: "https://accounts.google.com/InteractiveLogin/signinchooser?"){
-//            let config = SFSafariViewController.Configuration()
-//            config.entersReaderIfAvailable = true
-//
-//            let googleVC = SFSafariViewController(url: urlGoogle, configuration: config)
-//            present(googleVC, animated: true)
-//        }
-    }
-
-    func getUserProfile() {
-            self.swifter.verifyAccountCredentials(includeEntities: false, skipStatus: false, includeEmail: true, success: { json in
-                let userDefaults = UserDefaults.standard
-                userDefaults.set(self.accToken?.key, forKey: "oauth_token")
-                userDefaults.set(self.accToken?.secret, forKey: "oauth_token_secret")
-            }) { error in
-                print("ERROR: \(error.localizedDescription)")
-            }
-        }
     
     @IBAction func signInActionBtn(_ sender: UIButton) {
         navigationController?.setNavigationBarHidden(true, animated: true)

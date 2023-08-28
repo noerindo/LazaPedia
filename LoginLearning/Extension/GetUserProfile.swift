@@ -25,15 +25,13 @@ class AcountRegis {
         let predicate = NSPredicate(format: "SELF MATCHES %@", userName)
         return predicate.evaluate(with: userName)
     }
+    
 }
 
-class UserProfile {
+class RememberUser {
     
-    func loginDefault(isLogin: Bool, accessToken: String, fullName: String, userName: String, email: String) {
-        UserDefaults.standard.set(true, forKey: "UseriIsLogin")
+    func loginDefault(userName: String, email: String) {
         UserDefaults.standard.set(userName, forKey: "UserName")
-        UserDefaults.standard.set(accessToken, forKey: "AccessToken")
-        UserDefaults.standard.set(fullName, forKey: "FullName")
         UserDefaults.standard.set(email, forKey: "Email")
     }
 

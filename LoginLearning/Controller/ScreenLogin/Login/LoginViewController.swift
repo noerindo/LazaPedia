@@ -10,6 +10,11 @@ import SnackBar_swift
 
 class LoginViewController: UIViewController {
     private let loginVM = LoginViewModel()
+    @IBOutlet weak var loadingView: UIActivityIndicatorView! {
+        didSet {
+            loadingView.isHidden = true
+        }
+    }
     
     @IBOutlet weak var eyePass: UIButton! {
         didSet {
@@ -29,6 +34,7 @@ class LoginViewController: UIViewController {
         }
     }
     
+    @IBOutlet weak var switchRemember: UISwitch!
     
     @IBOutlet weak var passwordText: UITextField! {
         didSet {
@@ -53,6 +59,14 @@ class LoginViewController: UIViewController {
         }
     }
     
+    @IBAction func switchRemember(_ sender: UISwitch) {
+        if switchRemember.isOn {
+            switchRemember.setOn(false, animated:true)
+        } else {
+            
+        }
+        
+    }
     @IBAction func checkFieldUserName(_ sender: UITextField) {
         guard let username = userNameText.text else { return }
         if AcountRegis.invalidUserNAme(userName: username) {
@@ -74,6 +88,8 @@ class LoginViewController: UIViewController {
         }
         
     @IBAction func loginActionBtn(_ sender: UIButton) {
+        loadingView.isHidden = false
+        loadingView.startAnimating()
         guard let userName = userNameText.text else { return }
         guard let pass = passwordText.text else { return }
         if userNameText != nil && passwordText != nil {
@@ -81,23 +97,30 @@ class LoginViewController: UIViewController {
                 DispatchQueue.main.async {
                     guard let token = response?.access_token else { return }
                     KeychainManager.shared.saveToken(token: token)
+                    self.loadingView.stopAnimating()
+                    self.loadingView.hidesWhenStopped = true
                     let homeVC = self.storyboard?.instantiateViewController(withIdentifier: "TabBarViewController") as! TabBarViewController
                     self.navigationController?.pushViewController(homeVC, animated: true)
                     //
                 }
             } onError: { error in
                 DispatchQueue.main.async {
-                    let refreshAlert = UIAlertController(title: "Failed Login", message: "\(error), Send Again Verification Account", preferredStyle: UIAlertController.Style.alert)
+                    if error == "please verify your account" {
+                        let refreshAlert = UIAlertController(title: "Failed Login", message: "\(error), Send Again Verification Account", preferredStyle: UIAlertController.Style.alert)
 
-                    refreshAlert.addAction(UIAlertAction(title: "Send", style: .default, handler: { (action: UIAlertAction!) in
-                        let sendEmailVC = self.storyboard?.instantiateViewController(withIdentifier: "SendEmailViewController") as! SendEmailViewController
-                        self.navigationController?.pushViewController(sendEmailVC, animated: true)
-                    }))
-                    refreshAlert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { (action: UIAlertAction!) in
-                        refreshAlert .dismiss(animated: true, completion: nil)
-                    }))
+                        refreshAlert.addAction(UIAlertAction(title: "Send", style: .default, handler: { (action: UIAlertAction!) in
+                            let sendEmailVC = self.storyboard?.instantiateViewController(withIdentifier: "SendEmailViewController") as! SendEmailViewController
+                            self.navigationController?.pushViewController(sendEmailVC, animated: true)
+                        }))
+                        refreshAlert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { (action: UIAlertAction!) in
+                            refreshAlert .dismiss(animated: true, completion: nil)
+                        }))
 
-                    self.present(refreshAlert, animated: true, completion: nil)
+                        self.present(refreshAlert, animated: true, completion: nil)
+                    } else {
+                        SnackBarWarning.make(in: self.view, message: error, duration: .lengthShort).show()
+                    }
+                    
                 }
             }
 

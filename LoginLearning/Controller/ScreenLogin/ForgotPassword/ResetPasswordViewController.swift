@@ -10,6 +10,11 @@ import UIKit
 class ResetPasswordViewController: UIViewController {
     private let ForgotMV = ForgotPassModelView()
     
+    @IBOutlet weak var loadngView: UIActivityIndicatorView! {
+        didSet {
+            loadngView.isHidden = true
+        }
+    }
     var codeEmail: String = ""
     var email: String = ""
     
@@ -75,9 +80,12 @@ class ResetPasswordViewController: UIViewController {
     @IBAction func resetActionBtn(_ sender: UIButton) {
         guard let pass = passwordText.text else { return }
         guard let confirmPass = confirmPassText.text else { return }
-        
+        loadngView.isHidden = false
+        loadngView.startAnimating()
         if pass != "" && confirmPass != "" {
             ForgotMV.postNewPassword(newPass: pass, confirPass: confirmPass, email: email, code: codeEmail) { result in
+                self.loadngView.stopAnimating()
+                self.loadngView.hidesWhenStopped = true
                 DispatchQueue.main.async {
                     let alert = UIAlertController(title: "Success", message: result, preferredStyle: .alert)
                     let okAction = UIAlertAction(title: "OK", style: .default) { [weak self] _ in

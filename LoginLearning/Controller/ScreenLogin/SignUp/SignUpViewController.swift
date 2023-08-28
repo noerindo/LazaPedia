@@ -12,8 +12,14 @@ class SignUpViewController: UIViewController {
     var isCheck: Bool = false
     private let signUpMV = SignUPViewModel()
     
+    @IBOutlet weak var switchRemember: UISwitch!
     @IBOutlet weak var checkUserName: UIImageView!
     
+    @IBOutlet weak var loadingView: UIActivityIndicatorView! {
+        didSet {
+            loadingView.isHidden = true
+        }
+    }
     @IBOutlet weak var strongPass: UILabel!
     @IBOutlet weak var checkEmail: UIImageView!
     @IBOutlet weak var eyePass: UIButton! {
@@ -58,6 +64,7 @@ class SignUpViewController: UIViewController {
         checkEmail.isHidden = true
         checkUserName.isHidden = true
         strongPass.isHidden = true
+        rememberUser()
 
     }
     @objc func securityConfir() {
@@ -98,12 +105,30 @@ class SignUpViewController: UIViewController {
             checkUserName.isHidden = true
         }
     }
+  
     
+    @IBAction func switchAction(_ sender: UISwitch) {
+        guard let userName = userNameText.text else { return }
+        guard let email = emailText.text else { return }
+        if !switchRemember.isOn {
+            RememberUser().loginDefault(userName: userName, email: email)
+        }
+       
+    }
+    func rememberUser() {
+        if switchRemember.isOn {
+            userNameText.text = UserDefaults.standard.string(forKey: "UserName")
+            emailText.text = UserDefaults.standard.string(forKey: "Email")
+        }
+        
+    }
     @IBAction func signUpAction(_ sender: UIButton) {
         guard let userName = userNameText.text else { return }
         guard let email = emailText.text else { return }
         guard let pass = passwordText.text else { return }
         guard let confirPass = confirPassText.text else { return }
+        loadingView.isHidden = false
+        loadingView.startAnimating()
         
         if AcountRegis.invalidUserNAme(userName: userName) {
             if AcountRegis.invalidEmail(email: email) {
@@ -111,6 +136,8 @@ class SignUpViewController: UIViewController {
                     if pass == confirPass {
                         signUpMV.postRegister(email: email, userName: userName, password: pass) { response in
                             DispatchQueue.main.async {
+                                self.loadingView.stopAnimating()
+                                self.loadingView.hidesWhenStopped = true
                                 let alert = UIAlertController(title: "Registration Success", message: "Check email for confirm account", preferredStyle: .alert)
                                 let okAction = UIAlertAction(title: "OK", style: .default) { [weak self] _ in
                                   DispatchQueue.main.async {

@@ -29,7 +29,7 @@ class ForgotEmailViewController: UIViewController {
             ForgotMV.postForgetPass(email: email) { response in
                 DispatchQueue.main.async {
                     if response == "successfully send mail forgot password" {
-                        let alert = UIAlertController(title: "Registration Success", message: response, preferredStyle: .alert)
+                        let alert = UIAlertController(title: "Success", message: response, preferredStyle: .alert)
                         let okAction = UIAlertAction(title: "OK", style: .default) { [weak self] _ in
                           DispatchQueue.main.async {
                               let kodeVC = self?.storyboard?.instantiateViewController(withIdentifier: "KodePassViewController") as! KodePassViewController

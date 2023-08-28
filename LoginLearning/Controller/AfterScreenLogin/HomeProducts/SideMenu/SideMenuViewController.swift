@@ -116,15 +116,15 @@ class SideMenuViewController: UIViewController {
 
 extension SideMenuViewController:  UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 5
+        return cellSide.count
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 45
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCell(withIdentifier: "SideTableViewCell", for: indexPath) as? SideTableViewCell {
-//            let cellSideA = cellSide[indexPath.item]
-//            cell.configure(data: cellSideA)
+            let cellSideA = cellSide[indexPath.item]
+            cell.configure(data: cellSideA)
             return cell
             
         } else {

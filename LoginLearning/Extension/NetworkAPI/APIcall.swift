@@ -36,6 +36,7 @@ enum Endpoints {
         case adress
         case sendVerifikasi
         
+        
         public var url: String {
             switch self {
             case .login:

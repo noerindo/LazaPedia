@@ -11,6 +11,11 @@ import DPOTPView
 class KodePassViewController: UIViewController {
     private let ForgotMV = ForgotPassModelView()
     
+    @IBOutlet weak var loadingView: UIActivityIndicatorView!{
+        didSet {
+            loadingView.isHidden = true
+        }
+    }
     @IBOutlet weak var timerView: UILabel!
     @IBOutlet weak var inputCode: DPOTPView!
     var emailForgot: String = ""
@@ -44,10 +49,14 @@ class KodePassViewController: UIViewController {
     
 
     @IBAction func confirmCode(_ sender: UIButton) {
+        loadingView.isHidden = false
+        loadingView.startAnimating()
         guard let codeInput = inputCode.text else { return }
         if codeInput != "" {
             ForgotMV.postCodeForgot(email: emailForgot, code: codeInput) { result in
                 DispatchQueue.main.async {
+                    self.loadingView.stopAnimating()
+                    self.loadingView.hidesWhenStopped = true
                     if result == "code is valid" {
                         let moveVC = self.storyboard?.instantiateViewController(withIdentifier: "ResetPasswordViewController") as! ResetPasswordViewController
                         moveVC.email = self.emailForgot

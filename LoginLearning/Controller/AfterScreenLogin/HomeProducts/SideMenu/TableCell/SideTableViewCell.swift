@@ -20,10 +20,10 @@ class SideTableViewCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
 
     }
-//    func configure(data: SideItem) {
-//        ketSide.text = data.ketItem
-//        imageSide.image = data.imageItem
-//       
-//    }
+    func configure(data: SideItem) {
+        ketSide.text = data.ketItem
+        imageSide.image = data.imageItem
+       
+    }
     
 }
