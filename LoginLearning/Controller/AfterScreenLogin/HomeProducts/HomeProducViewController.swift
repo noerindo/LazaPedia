@@ -13,7 +13,6 @@ protocol HomeProductionDelegate: AnyObject {
 }
 
 class HomeProducViewController: UIViewController {
-    
     private var sideMenuViewController: SideMenuViewController!
     
     // delegate protocol
@@ -48,6 +47,9 @@ class HomeProducViewController: UIViewController {
             sideBtn.addTarget(self, action: #selector(sideMenuAction), for: .touchUpInside)
         }
     }
+    
+    private var sideMenuNavController: SideMenuNavigationController?
+    
     @objc func sideMenuAction() {
         print("haiii")
         if isMenuClick {
@@ -56,7 +58,8 @@ class HomeProducViewController: UIViewController {
         } else {
             isMenuClick = true
             parentBluerView.isHidden = false
-            performSegue(withIdentifier: "SideMenuViewController", sender: nil)
+//            performSegue(withIdentifier: "SideMenuViewController", sender: nil)
+            present(sideMenuNavController!, animated: true)
         }
     }
     
@@ -64,7 +67,7 @@ class HomeProducViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupTabBarText()
-        
+        setupSideMenu()
         
         view.addSubview(parentBluerView)
         parentBluerView.isHidden = true
@@ -89,6 +92,18 @@ class HomeProducViewController: UIViewController {
         tabBarItem.selectedImage = UIImage(view: label2)
     }
 
+    private func setupSideMenu() {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        guard let vc = storyboard.instantiateViewController(withIdentifier: "SideMenuViewController") as? SideMenuViewController else { return }
+        vc.delegate = self
+        
+        sideMenuNavController = SideMenuNavigationController(rootViewController: vc)
+        sideMenuNavController?.delegate = self
+        sideMenuNavController?.leftSide = true
+        sideMenuNavController?.menuWidth = view.bounds.width * 0.8
+        sideMenuNavController?.presentationStyle = .menuSlideIn
+        sideMenuNavController?.navigationBar.isHidden = true
+    }
 }
 
 extension HomeProducViewController: UITableViewDelegate, UITableViewDataSource {
@@ -131,7 +146,6 @@ extension HomeProducViewController: UITableViewDelegate, UITableViewDataSource {
 extension HomeProducViewController: ProductTableViewCellDelegate {
     
     func scDetailProduct(product: ProducList) {
-        print("Click on \(product)")
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let detailVC = storyboard.instantiateViewController(withIdentifier: "DetailViewController") as! DetailViewController
         detailVC.idProduct = product.id
@@ -155,9 +169,7 @@ extension HomeProducViewController: BrandTableViewCellDelegate {
     
 }
 
-
-
-extension HomeProducViewController: SideMenuNavigationControllerDelegate {
+extension HomeProducViewController: SideMenuNavigationControllerDelegate, UINavigationControllerDelegate {
 //    func sideMenuDidDisappear(menu: SideMenuViewController, animated: Bool) {
 //        parentBluerView.isHidden = true
 //    }
@@ -174,5 +186,12 @@ extension HomeProducViewController: UISearchBarDelegate {
             delegate?.fetchSearch(isActive: true, textString: searchText)
             homeTable.reloadData()
         }
+    }
+}
+
+extension HomeProducViewController: SideMenuViewControllerDelegate {
+    
+    func selectedCell(_ row: Int) {
+        tabBarController?.selectedIndex = row
     }
 }

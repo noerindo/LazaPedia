@@ -52,5 +52,8 @@ struct Category: Codable {
     let id: Int
     let category: String
 }
+struct AllSize: Codable {
+    let data: [Size]
+}
 
 

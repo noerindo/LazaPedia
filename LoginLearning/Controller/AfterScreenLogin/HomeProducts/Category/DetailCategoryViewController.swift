@@ -9,6 +9,7 @@ import UIKit
 
 class DetailCategoryViewController: UIViewController {
     var brandName: String = ""
+    
     let productMV = ProductModelView()
     weak var delegate: ProductTableViewCellDelegate?
 

@@ -52,6 +52,10 @@ class ResetPasswordViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
     }
+    func loadingStop() {
+        self.loadngView.stopAnimating()
+        self.loadngView.hidesWhenStopped = true
+    }
     
     @objc func securePass() {
         if eyePass.currentImage == UIImage(systemName: "eye") {
@@ -84,9 +88,8 @@ class ResetPasswordViewController: UIViewController {
         loadngView.startAnimating()
         if pass != "" && confirmPass != "" {
             ForgotMV.postNewPassword(newPass: pass, confirPass: confirmPass, email: email, code: codeEmail) { result in
-                self.loadngView.stopAnimating()
-                self.loadngView.hidesWhenStopped = true
                 DispatchQueue.main.async {
+                    self.loadingStop()
                     let alert = UIAlertController(title: "Success", message: result, preferredStyle: .alert)
                     let okAction = UIAlertAction(title: "OK", style: .default) { [weak self] _ in
                         DispatchQueue.main.async {
@@ -98,6 +101,7 @@ class ResetPasswordViewController: UIViewController {
                     self.present(alert, animated: true, completion: nil)
                 }
             } onError: { error in
+                self.loadingStop()
                 DispatchQueue.main.async {
                     SnackBarWarning.make(in: self.view, message: error, duration: .lengthShort).show()
                 }

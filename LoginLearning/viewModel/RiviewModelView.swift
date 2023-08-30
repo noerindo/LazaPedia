@@ -10,7 +10,7 @@ import Foundation
 
 class RiviewModelView {
     var listRiview = [ReviewProduct]()
-    var riviewVC: ReviewViewController?
+    var resultRiview: DataIdRiview?
     
     var riviewAllCount: Int {
         get {
@@ -18,20 +18,15 @@ class RiviewModelView {
         }
     }
     
-    func loadAllriviewl(id:Int) {
+    func loadAllriviewl(id:Int, completion: @escaping (() -> Void)) {
         getAllRiview(id: id) { result in
             DispatchQueue.main.async { [self] in
-                guard let unwrappedVC = riviewVC else { return }
+                resultRiview = result.data
                 var sortedResult = result
-               
                 sortedResult.data.reviews = result.data.reviews.sorted { $0.created_at > $1.created_at } // Sort by created at
-//                sortedResult.data.reviews.removeAll()
                 listRiview.append(contentsOf: sortedResult.data.reviews)
-                unwrappedVC.tableRiview.reloadData()
-                unwrappedVC.textRating.text = "\(sortedResult.data.rating_avrg)"
-                unwrappedVC.starRating.rating = sortedResult.data.rating_avrg
-                unwrappedVC.countRiview.text = "\(sortedResult.data.total)"
             }
+            completion()
         }
     }
     
@@ -73,7 +68,7 @@ class RiviewModelView {
             
             guard let httpRespon = response as? HTTPURLResponse else { return}
             guard let data = data else { return }
-            print(httpRespon.statusCode)
+            
             if httpRespon.statusCode != 201 {
                 guard let createFailed = try? JSONDecoder().decode(ResponFailed.self, from: data) else {
                     onError("addRiview Failed")

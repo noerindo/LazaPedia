@@ -106,7 +106,10 @@ class SignUpViewController: UIViewController {
         }
     }
   
-    
+    func loadingStop() {
+        self.loadingView.stopAnimating()
+        self.loadingView.hidesWhenStopped = true
+    }
     @IBAction func switchAction(_ sender: UISwitch) {
         guard let userName = userNameText.text else { return }
         guard let email = emailText.text else { return }
@@ -123,21 +126,20 @@ class SignUpViewController: UIViewController {
         
     }
     @IBAction func signUpAction(_ sender: UIButton) {
+        loadingView.isHidden = false
+        loadingView.startAnimating()
+        
         guard let userName = userNameText.text else { return }
         guard let email = emailText.text else { return }
         guard let pass = passwordText.text else { return }
         guard let confirPass = confirPassText.text else { return }
-        loadingView.isHidden = false
-        loadingView.startAnimating()
-        
         if AcountRegis.invalidUserNAme(userName: userName) {
             if AcountRegis.invalidEmail(email: email) {
                 if AcountRegis.invalidPassword(pass: pass) {
                     if pass == confirPass {
                         signUpMV.postRegister(email: email, userName: userName, password: pass) { response in
                             DispatchQueue.main.async {
-                                self.loadingView.stopAnimating()
-                                self.loadingView.hidesWhenStopped = true
+                                self.loadingStop()
                                 let alert = UIAlertController(title: "Registration Success", message: "Check email for confirm account", preferredStyle: .alert)
                                 let okAction = UIAlertAction(title: "OK", style: .default) { [weak self] _ in
                                   DispatchQueue.main.async {
@@ -146,25 +148,31 @@ class SignUpViewController: UIViewController {
                                   }
                                 }
                                 alert.addAction(okAction)
+                                self.loadingStop()
                                 self.present(alert, animated: true, completion: nil)
                             }
                         } onError: { error in
                             DispatchQueue.main.async {
+                                self.loadingStop()
                                 SnackBarWarning.make(in: self.view, message: error, duration: .lengthShort).show()
                             }
                         }
 
                     } else {
+                        self.loadingStop()
                         SnackBarWarning.make(in: self.view, message: "password and confirm password are not the same", duration: .lengthShort).show()
                     }
 
                 } else {
+                    self.loadingStop()
                     SnackBarWarning.make(in: self.view, message: "Password min 8 characters, 1 letter, 1 number, & 1 special character.", duration: .lengthShort).show()
                 }
             } else {
+                self.loadingStop()
                 SnackBarWarning.make(in: self.view, message: "Email is not valid.", duration: .lengthShort).show()
             }
         } else {
+            self.loadingStop()
             SnackBarWarning.make(in: self.view, message: "UserName mn 8 characters", duration: .lengthShort).show()
         }
     }

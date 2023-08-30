@@ -26,6 +26,12 @@ class AcountRegis {
         return predicate.evaluate(with: userName)
     }
     
+    static func invalidNoHp(noHp: String) -> Bool {
+        let regexNumberHp = "[+62801][0-9]{10,14}"
+        let predicate = NSPredicate(format: "SELF MATCHES %@", regexNumberHp)
+        return predicate.evaluate(with: noHp)
+    }
+    
 }
 
 class RememberUser {

@@ -14,8 +14,12 @@ protocol BtnBackDelegate: AnyObject {
 
 class AdressViewController: UIViewController {
 
-    @IBOutlet weak var textEmpty: UIButton!
-    let adressModel = AdressUser()
+    @IBOutlet weak var textEmpty: UILabel! {
+        didSet {
+            textEmpty.isHidden = true
+        }
+    }
+    let adressVM = AdressViewModel()
     @IBOutlet weak var tableAdress: UITableView!
     weak var delegate: BtnBackDelegate?
     override func viewDidLoad() {
@@ -24,9 +28,13 @@ class AdressViewController: UIViewController {
         tableAdress.delegate = self
         tableAdress.register(UINib(nibName: "AdressTableViewCell", bundle: nil), forCellReuseIdentifier: "AdressTableViewCell")
 
-        // Do any additional setup after loading the view.
+        adressVM.loadAdress { result in
+            DispatchQueue.main.async {
+                self.tableAdress.reloadData()
+            }
+        }
     }
-    
+  
     @IBAction func backBtn(_ sender: UIButton) {
         self.navigationController?.popViewController(animated: true)
         delegate?.backOrderUp()
@@ -39,20 +47,43 @@ class AdressViewController: UIViewController {
 }
 extension AdressViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if adressModel.count == 0 {
+        if adressVM .adressCount == 0 {
             textEmpty.isHidden = false
         } else {
             textEmpty.isHidden = true
         }
-        return adressModel.count
+        return adressVM .adressCount
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = tableAdress.dequeueReusableCell(withIdentifier: "AdressTableViewCell", for: indexPath) as? AdressTableViewCell{
+            let dataCell = adressVM.resultAdress[indexPath.item]
+            cell.configureAdress(data: dataCell)
             return cell
         }
         return UITableViewCell()
     }
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 90
+    }
     
-    
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let data = adressVM.resultAdress[indexPath.item]
+        let deleteData = UIContextualAction(style: .destructive, title: "Delete") { [weak self] (action, view, completionHandler) in
+              DispatchQueue.main.async {
+                  self?.adressVM.deleteAdress(id: data.id, completion: { respon in
+                      DispatchQueue.main.async {
+                          self?.adressVM.resultAdress.removeAll {$0.id == data.id}
+                          self?.tableAdress.deleteRows(at: [indexPath], with: .left)
+                      }
+                  })
+              }
+            }
+            deleteData.backgroundColor = .systemRed
+        
+        
+        let configuration = UISwipeActionsConfiguration(actions: [deleteData])
+            return configuration
+        
+    }
 }

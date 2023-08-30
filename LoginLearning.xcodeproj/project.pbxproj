@@ -107,6 +107,8 @@
 		E09396782A7071BF003445B3 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E09396772A7071BF003445B3 /* SignUpViewController.swift */; };
 		E093967C2A7079CD003445B3 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E093967B2A7079CD003445B3 /* LoginViewController.swift */; };
 		E09936522A91EFC200A8D11C /* CekUserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E09936512A91EFC200A8D11C /* CekUserViewController.swift */; };
+		E0A95FD92A9DDA5600654A9B /* AdressViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0A95FD82A9DDA5600654A9B /* AdressViewModel.swift */; };
+		E0BBA1E42A9F3ECA00B36494 /* UpdateAdressViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0BBA1E32A9F3ECA00B36494 /* UpdateAdressViewController.swift */; };
 		E0C74FC22A8F01FD00DCCB32 /* KeychainManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0C74FC12A8F01FD00DCCB32 /* KeychainManager.swift */; };
 		E0C74FC42A8F568800DCCB32 /* LoadingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0C74FC32A8F568800DCCB32 /* LoadingViewController.swift */; };
 		E0DE4F0D2A8CB62E000C53FA /* KodePassViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0DE4F0C2A8CB62E000C53FA /* KodePassViewController.swift */; };
@@ -217,6 +219,8 @@
 		E09396772A7071BF003445B3 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		E093967B2A7079CD003445B3 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		E09936512A91EFC200A8D11C /* CekUserViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CekUserViewController.swift; sourceTree = "<group>"; };
+		E0A95FD82A9DDA5600654A9B /* AdressViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdressViewModel.swift; sourceTree = "<group>"; };
+		E0BBA1E32A9F3ECA00B36494 /* UpdateAdressViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateAdressViewController.swift; sourceTree = "<group>"; };
 		E0C74FC12A8F01FD00DCCB32 /* KeychainManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainManager.swift; sourceTree = "<group>"; };
 		E0C74FC32A8F568800DCCB32 /* LoadingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingViewController.swift; sourceTree = "<group>"; };
 		E0DE4F0C2A8CB62E000C53FA /* KodePassViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KodePassViewController.swift; sourceTree = "<group>"; };
@@ -262,6 +266,7 @@
 				E06F82E32A92F9EE00496347 /* RiviewModelView.swift */,
 				E0858D812A9499F500FA313A /* WishlistViewModel.swift */,
 				E03EA8E12A97108B00E5E631 /* OrderModelView.swift */,
+				E0A95FD82A9DDA5600654A9B /* AdressViewModel.swift */,
 			);
 			path = viewModel;
 			sourceTree = "<group>";
@@ -345,7 +350,7 @@
 				E02DC1812A75896800CA0192 /* TabBarViewController.swift */,
 				E05C0FD52A73B2D600962579 /* HomeProducts */,
 				E07B9D8C2A8DB348007CC799 /* Wishlist */,
-				E07B9D8E2A8DB3CE007CC799 /* Order. */,
+				E07B9D8E2A8DB3CE007CC799 /* Chart */,
 				E07B9D8D2A8DB35F007CC799 /* My Cards */,
 			);
 			path = AfterScreenLogin;
@@ -382,7 +387,7 @@
 			path = "My Cards";
 			sourceTree = "<group>";
 		};
-		E07B9D8E2A8DB3CE007CC799 /* Order. */ = {
+		E07B9D8E2A8DB3CE007CC799 /* Chart */ = {
 			isa = PBXGroup;
 			children = (
 				E07B9DF82A8DE84D007CC799 /* OrderViewController.swift */,
@@ -391,7 +396,7 @@
 				E07B9DE32A8DE54C007CC799 /* Adress */,
 				E07B9DE22A8DE53F007CC799 /* payment */,
 			);
-			path = Order.;
+			path = Chart;
 			sourceTree = "<group>";
 		};
 		E07B9D972A8DCE58007CC799 /* Detail */ = {
@@ -564,6 +569,7 @@
 			children = (
 				E07B9DF02A8DE6D9007CC799 /* AdressViewController.swift */,
 				E07B9DF22A8DE6FA007CC799 /* AddAdressViewController.swift */,
+				E0BBA1E32A9F3ECA00B36494 /* UpdateAdressViewController.swift */,
 				E07B9DFC2A8DE8A2007CC799 /* ConfirmViewController.swift */,
 				E07B9DEB2A8DE676007CC799 /* TableCell */,
 			);
@@ -851,6 +857,7 @@
 				E07B9DA92A8DD0E1007CC799 /* DetailViewController.swift in Sources */,
 				E03EA8E62A973F1E00E5E631 /* SendEmailViewController.swift in Sources */,
 				E07B9D902A8DCD77007CC799 /* ProducModel.swift in Sources */,
+				E0BBA1E42A9F3ECA00B36494 /* UpdateAdressViewController.swift in Sources */,
 				E02DC1822A75896800CA0192 /* TabBarViewController.swift in Sources */,
 				E07B9D922A8DCDB6007CC799 /* CreditCard.swift in Sources */,
 				E07B9E002A8E06F7007CC799 /* ProfileViewController.swift in Sources */,
@@ -900,6 +907,7 @@
 				E06F82E42A92F9EE00496347 /* RiviewModelView.swift in Sources */,
 				E07B9D9F2A8DCF51007CC799 /* SizeCollectionViewCell.swift in Sources */,
 				E093965F2A705F6B003445B3 /* SceneDelegate.swift in Sources */,
+				E0A95FD92A9DDA5600654A9B /* AdressViewModel.swift in Sources */,
 				E07B9DB12A8DD1B8007CC799 /* SideTableViewCell.swift in Sources */,
 				E057A4322A70A80B00A8EC00 /* ForgotEmailViewController.swift in Sources */,
 				E07B9D962A8DCE02007CC799 /* DynamicHeightCollectionView.swift in Sources */,

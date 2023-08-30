@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SideMenu
 
 protocol SideMenuViewControllerDelegate {
     func selectedCell(_ row: Int)
@@ -149,11 +150,14 @@ extension SideMenuViewController:  UITableViewDataSource, UITableViewDelegate {
 
 extension SideMenuViewController {
     func moveCellSide(index: Int) {
-        let mainStoryboard = UIStoryboard(name: "Main", bundle: Bundle.main)
-        let vc: UITabBarController = mainStoryboard.instantiateViewController(withIdentifier: "TabBarViewController") as! UITabBarController
-        vc.selectedIndex = index
-        _ = vc.selectedViewController
-        
-self.navigationController?.view.window?.windowScene?.keyWindow?.rootViewController = vc
+//        let mainStoryboard = UIStoryboard(name: "Main", bundle: Bundle.main)
+//        let vc: UITabBarController = mainStoryboard.instantiateViewController(withIdentifier: "TabBarViewController") as! UITabBarController
+//        vc.selectedIndex = index
+//        _ = vc.selectedViewController
+//
+//self.navigationController?.view.window?.windowScene?.keyWindow?.rootViewController = vc
+        let sideMenuNav = self.navigationController as? SideMenuNavigationController
+        sideMenuNav?.dismiss(animated: true)
+        delegate?.selectedCell(index)
     }
 }

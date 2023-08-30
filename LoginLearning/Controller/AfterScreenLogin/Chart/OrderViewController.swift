@@ -8,16 +8,52 @@
 import UIKit
 
 class OrderViewController: UIViewController {
+    let orderMV = OrderModelView()
     lazy var bottomSheet = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "OrderPopUpViewController")
-    
+
+    @IBOutlet weak var totalPriceText: UILabel!
     @IBOutlet weak var tableOrder: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        registerObserver()
+        
         setupTabBarText()
         tableOrder.delegate = self
         tableOrder.dataSource = self
         tableOrder.register(UINib(nibName: "OrderTableViewCell", bundle: nil), forCellReuseIdentifier: "OrderTableViewCell")
+        orderMV.loadProductChart { [weak self] in
+            self?.orderMV.loadAllSize {
+                DispatchQueue.main.async {
+                    guard let self = self else { return }
+                    self.tableOrder.reloadData()
+                    self.totalPriceText.text = "$\(String(describing: self.orderMV.resultOrderInfo!.total))".formatDecimal()
+                }
+            }
+        }
+    }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self, name:Notification.Name.UpdateChart, object: nil)
+    }
+    
+    private func registerObserver() {
+        NotificationCenter.default.addObserver(self, selector: #selector(reloadCart), name: Notification.Name.UpdateChart, object: nil)
+    }
+    
+    static func notifyObserver() {
+        NotificationCenter.default.post(name: Notification.Name.UpdateChart, object: nil)
+    }
+    
+    @objc private func reloadCart() {
+        print("Reload Cart")
+        orderMV.loadProductChart {
+            DispatchQueue.main.async {
+                self.tableOrder.reloadData()
+                self.totalPriceText.text = "$\(String(describing: self.orderMV.resultOrderInfo!.total))".formatDecimal()
+            }
+        }
     }
     
     private func setupTabBarText() {
@@ -27,7 +63,6 @@ class OrderViewController: UIViewController {
         label2.text = "Order"
         label2.font = UIFont(name: "inter-Medium", size: 11)
         label2.sizeToFit()
-        
         tabBarItem.selectedImage = UIImage(view: label2)
     }
     
@@ -45,13 +80,14 @@ class OrderViewController: UIViewController {
 
 extension OrderViewController:UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 3
+        return orderMV.productCharCount
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCell(withIdentifier: "OrderTableViewCell", for: indexPath) as? OrderTableViewCell {
-//            let cellList = orderList[indexPath.item]
-//            cell.configure(data: cellList)
+            let cellList = orderMV.resultProductChart[indexPath.item]
+            cell.configure(data: cellList)
+            cell.delegate = self
             return cell
         }
         return UITableViewCell()
@@ -101,4 +137,44 @@ extension OrderViewController: BtnBackDelegate {
     }
     
 
+}
+
+extension OrderViewController: OrderTableDelegate {
+    func plusCountProduct(cell: OrderTableViewCell, completion: @escaping (Int) -> Void) {
+        if let indexPath = tableOrder.indexPath(for: cell) {
+            let dataCell = orderMV.resultProductChart[indexPath.item]
+            let idSize = orderMV.GetIdSize(sizeString: dataCell.size)
+            
+            orderMV.postChart(idProduct: dataCell.id, idSize: idSize) { result in
+                OrderViewController.notifyObserver()
+                DispatchQueue.main.async {
+                    completion(dataCell.quantity)
+                    
+                }
+            }
+        }
+    }
+    
+    func minCountProduct(cell: OrderTableViewCell) {
+        if let indexPath = tableOrder.indexPath(for: cell) {
+            let dataCell = orderMV.resultProductChart[indexPath.item]
+           let idSize = orderMV.GetIdSize(sizeString: dataCell.size)
+            orderMV.putProductChart(idProduct: dataCell.id, idSize: idSize)
+            OrderViewController.notifyObserver()
+        }
+       
+    }
+    
+    func deleteOrder(cell: OrderTableViewCell) {
+        if let indexPath = tableOrder.indexPath(for: cell) {
+            let dataCell = orderMV.resultProductChart[indexPath.item]
+           let idSize = orderMV.GetIdSize(sizeString: dataCell.size)
+            orderMV.deletProductChart(idProduct: dataCell.id, idSize: idSize) { result in
+                OrderViewController.notifyObserver()
+                DispatchQueue.main.async {
+                    SnackBarSuccess.make(in: self.view, message: result, duration: .lengthShort).show()
+                }
+            }
+        }
+    }
 }

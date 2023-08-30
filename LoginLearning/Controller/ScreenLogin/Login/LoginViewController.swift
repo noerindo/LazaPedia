@@ -48,7 +48,10 @@ class LoginViewController: UIViewController {
         super.viewDidLoad()
         
     }
-    
+    func loadingStop() {
+        self.loadingView.stopAnimating()
+        self.loadingView.hidesWhenStopped = true
+    }
     @objc func securityPass() {
         if eyePass.currentImage == UIImage(systemName: "eye") {
             eyePass.setImage(UIImage(systemName: "eye.slash.fill"), for: .normal)
@@ -93,18 +96,18 @@ class LoginViewController: UIViewController {
         guard let userName = userNameText.text else { return }
         guard let pass = passwordText.text else { return }
         if userNameText != nil && passwordText != nil {
-            loginVM.postLogin(userName: userName, password: pass) { response in
+            loginVM.postLogin(userName: userName, password: pass) { [self] response in
                 DispatchQueue.main.async {
                     guard let token = response?.access_token else { return }
                     KeychainManager.shared.saveToken(token: token)
-                    self.loadingView.stopAnimating()
-                    self.loadingView.hidesWhenStopped = true
+                    self.loadingStop()
                     let homeVC = self.storyboard?.instantiateViewController(withIdentifier: "TabBarViewController") as! TabBarViewController
                     self.navigationController?.pushViewController(homeVC, animated: true)
                     //
                 }
             } onError: { error in
                 DispatchQueue.main.async {
+                    self.loadingStop()
                     if error == "please verify your account" {
                         let refreshAlert = UIAlertController(title: "Failed Login", message: "\(error), Send Again Verification Account", preferredStyle: UIAlertController.Style.alert)
 
@@ -118,6 +121,7 @@ class LoginViewController: UIViewController {
 
                         self.present(refreshAlert, animated: true, completion: nil)
                     } else {
+                        self.loadingStop()
                         SnackBarWarning.make(in: self.view, message: error, duration: .lengthShort).show()
                     }
                     

@@ -25,6 +25,10 @@ class KodePassViewController: UIViewController {
         super.viewDidLoad()
         starCountDown()
     }
+    func loadingStop() {
+        self.loadingView.stopAnimating()
+        self.loadingView.hidesWhenStopped = true
+    }
     
     private func starCountDown() {
        countdownTimer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(updateTime), userInfo: nil, repeats: true)
@@ -55,8 +59,7 @@ class KodePassViewController: UIViewController {
         if codeInput != "" {
             ForgotMV.postCodeForgot(email: emailForgot, code: codeInput) { result in
                 DispatchQueue.main.async {
-                    self.loadingView.stopAnimating()
-                    self.loadingView.hidesWhenStopped = true
+                    self.loadingStop()
                     if result == "code is valid" {
                         let moveVC = self.storyboard?.instantiateViewController(withIdentifier: "ResetPasswordViewController") as! ResetPasswordViewController
                         moveVC.email = self.emailForgot
@@ -64,15 +67,18 @@ class KodePassViewController: UIViewController {
                         self.navigationController?.pushViewController(moveVC, animated: true)
                         
                     } else {
+                        self.loadingStop()
                         SnackBarWarning.make(in: self.view, message: result, duration: .lengthShort).show()
                     }
                 }
             } onError: { error in
                 DispatchQueue.main.async {
+                    self.loadingStop()
                     SnackBarWarning.make(in: self.view, message: error, duration: .lengthShort).show()
                 }
             }
         } else {
+            self.loadingStop()
             SnackBarWarning.make(in: self.view, message: "Code is Empty", duration: .lengthShort).show()
         }
     }

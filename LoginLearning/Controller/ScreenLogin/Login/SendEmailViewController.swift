@@ -9,6 +9,11 @@ import UIKit
 
 class SendEmailViewController: UIViewController {
     private let loginVM = LoginViewModel()
+    @IBOutlet weak var loadingView: UIActivityIndicatorView! {
+        didSet {
+            loadingView.isHidden = true
+        }
+    }
     @IBOutlet weak var emailTextInput: UITextField! {
     didSet {
         emailTextInput.addShadow(color: .gray, width: 0.5, text: emailTextInput)
@@ -17,8 +22,11 @@ class SendEmailViewController: UIViewController {
 }
     override func viewDidLoad() {
         super.viewDidLoad()
-
-      
+    }
+    
+    func loadingStop() {
+        self.loadingView.stopAnimating()
+        self.loadingView.hidesWhenStopped = true
     }
     
 
@@ -28,11 +36,13 @@ class SendEmailViewController: UIViewController {
     
 
     @IBAction func sendActionBtn(_ sender: UIButton) {
+        loadingView.isHidden = false
+        loadingView.startAnimating()
         guard let email = emailTextInput.text else {return}
-         
         if AcountRegis.invalidEmail(email: email) {
             loginVM.postVerifikasiAccount(email: email) { result in
                 DispatchQueue.main.async {
+                    self.loadingStop()
                     let refreshAlert = UIAlertController(title: "Succes", message: result, preferredStyle: UIAlertController.Style.alert)
 
                     refreshAlert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { (action: UIAlertAction!) in
@@ -43,10 +53,12 @@ class SendEmailViewController: UIViewController {
                     self.present(refreshAlert, animated: true, completion: nil)
                 }
             } onError: { error in
+                self.loadingStop()
                 SnackBarWarning.make(in: self.view, message: error, duration: .lengthShort).show()
             }
 
         } else {
+            self.loadingStop()
             SnackBarWarning.make(in: self.view, message: "Email is not valid.", duration: .lengthShort).show()
         }
         

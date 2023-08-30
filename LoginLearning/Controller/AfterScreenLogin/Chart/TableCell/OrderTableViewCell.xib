@@ -21,7 +21,7 @@
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Vgf-dj-hki">
                         <rect key="frame" x="0.0" y="0.0" width="572" height="162"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="cK5-z7-sl2">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="cK5-z7-sl2">
                                 <rect key="frame" x="10" y="10" width="100" height="100"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="100" id="5hh-Sw-eaK"/>
@@ -92,10 +92,18 @@ Nike Sportswear</string>
                                     <action selector="removeOrder:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="xK4-HA-Eii"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Size: M" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bSG-aY-nf2">
+                                <rect key="frame" x="501.66666666666669" y="58.000000000000007" width="55.333333333333314" height="20.333333333333336"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" systemColor="systemGray2Color"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="oOf-rc-EbF" firstAttribute="leading" secondItem="cK5-z7-sl2" secondAttribute="trailing" constant="15" id="0sZ-NI-0gJ"/>
+                            <constraint firstAttribute="trailing" secondItem="bSG-aY-nf2" secondAttribute="trailing" constant="15" id="86J-wo-MjK"/>
+                            <constraint firstItem="bSG-aY-nf2" firstAttribute="top" secondItem="oOf-rc-EbF" secondAttribute="bottom" constant="10" id="HnA-zr-jYa"/>
                             <constraint firstAttribute="bottom" secondItem="avU-Lt-GI9" secondAttribute="bottom" constant="10" id="KvK-hc-F4T"/>
                             <constraint firstItem="lBf-2u-m0p" firstAttribute="leading" secondItem="cK5-z7-sl2" secondAttribute="trailing" constant="15" id="OyR-NK-UaT"/>
                             <constraint firstItem="oOf-rc-EbF" firstAttribute="top" secondItem="Vgf-dj-hki" secondAttribute="top" constant="12" id="XWg-wK-Bwk"/>
@@ -128,6 +136,7 @@ Nike Sportswear</string>
                 <outlet property="nameOrder" destination="oOf-rc-EbF" id="dCe-zo-FJG"/>
                 <outlet property="photoOrder" destination="cK5-z7-sl2" id="e1f-mf-Seq"/>
                 <outlet property="priceOrder" destination="lBf-2u-m0p" id="xdc-Sl-Er2"/>
+                <outlet property="sizeProduct" destination="bSG-aY-nf2" id="n11-wW-lMA"/>
             </connections>
             <point key="canvasLocation" x="331.29770992366412" y="61.267605633802823"/>
         </tableViewCell>

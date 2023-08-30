@@ -46,17 +46,30 @@ class ReviewViewController: UIViewController {
         tableRiview.dataSource = self
         tableRiview.delegate = self
         tableRiview.register(UINib(nibName: "ReviewTableViewCell", bundle: nil), forCellReuseIdentifier: "ReviewTableViewCell")
-        riviewMV.riviewVC = self
-        riviewMV.loadAllriviewl(id: idProduct)
-        tableRiview.reloadData()
+        riviewMV.loadAllriviewl(id: idProduct) {
+            DispatchQueue.main.async { [self] in
+                tableRiview.reloadData()
+                configureRiview(model: riviewMV.resultRiview!)
+            }
+        }
+        
 
+    }
+    
+    func configureRiview(model: DataIdRiview) {
+        textRating.text = "\(model.rating_avrg)"
+        starRating.rating = model.rating_avrg
+        countRiview.text = "\(model.total)"
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        riviewMV.riviewVC = self
-        riviewMV.loadAllriviewl(id: idProduct)
-        tableRiview.reloadData()
+        riviewMV.loadAllriviewl(id: idProduct) {
+            DispatchQueue.main.async { [self] in
+                tableRiview.reloadData()
+                configureRiview(model: riviewMV.resultRiview!)
+            }
+        }
         
     }
     @objc func moveAdd() {

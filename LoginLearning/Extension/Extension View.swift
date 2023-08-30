@@ -74,7 +74,7 @@ extension String {
     
     func dateReview(date: String) -> String {
         let formatter = DateFormatter()
-        formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
+//        formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
         if let formattedDate = formatter.date(from: date) {
             formatter.dateFormat = "d MMM, yyyy"
             return formatter.string(from: formattedDate)
@@ -84,22 +84,10 @@ extension String {
     
 }
 
-struct Media {
-    let key: String
-    let filename: String
-    let data: Data
-    let mimeType: String
-    
-    init?(withImage image: UIImage, forKey key: String) {
-        self.key = key
-        self.mimeType = "image/jpeg"
-        self.filename = "Image_\(Date.now).jpg"
-        
-        guard let data = image.jpegData(compressionQuality: 0.7) else { return nil }
-        self.data = data
+extension Notification.Name {
+    static var UpdateChart: Notification.Name {
+        return .init("CartUpdated")
     }
 }
-
-
 
 

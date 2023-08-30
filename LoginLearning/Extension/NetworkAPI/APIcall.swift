@@ -34,8 +34,9 @@ enum Endpoints {
         case allChart
         case chart(idProduct: Int, idSize: Int)
         case adress
+        case deleteAdress(id: Int)
         case sendVerifikasi
-        
+        case size
         
         public var url: String {
             switch self {
@@ -75,6 +76,10 @@ enum Endpoints {
                 return "\(API.baseUrl)address"
             case .sendVerifikasi:
                 return "\(API.baseUrl)auth/confirm/resend"
+            case .size:
+                return "\(API.baseUrl)size"
+            case .deleteAdress(id: let id):
+                return "\(API.baseUrl)address/\(id)"
             }
         }
     }

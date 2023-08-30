@@ -57,7 +57,6 @@ class ProfileModelView {
         guard let url = URL(string: Endpoints.Gets.profile.url) else { return }
         var request = URLRequest(url: url)
         let accesToken = KeychainManager.shared.getToken()
-        print("Token: \(accesToken)")
         request.setValue("Bearer \(accesToken)", forHTTPHeaderField: "X-Auth-Token")
         
         let task = URLSession.shared.dataTask(with: request) { data, response, error in

@@ -25,7 +25,7 @@ class LoginViewModel {
                       print("ERROR: Trying to get login results")
                   } else if result?.isCancelled != nil {
                       print("The token is \(result?.token?.tokenString ?? "")")
-                      if result?.token?.tokenString != nil {
+                          if result?.token?.tokenString != nil {
                           print("Logged in")
                       } else {
                           print("Cancelled")
@@ -45,15 +45,6 @@ class LoginViewModel {
                })
     }
     
-//    func getUserProfile() {
-//            self.swifter.verifyAccountCredentials(includeEntities: false, skipStatus: false, includeEmail: true, success: { json in
-//                let userDefaults = UserDefaults.standard
-//                userDefaults.set(self.accToken?.key, forKey: "oauth_token")
-//                userDefaults.set(self.accToken?.secret, forKey: "oauth_token_secret")
-//            }) { error in
-//                print("ERROR: \(error.localizedDescription)")
-//            }
-//        }
     func loginBtnGoggle(sosmedVC: UIViewController) {
         GIDSignIn.sharedInstance.signIn(
           withPresenting: sosmedVC) { signInResult, error in

@@ -8,29 +8,20 @@
 import Foundation
 
 class WishlistViewModel {
-    var wishlitVC: WishlistViewController?
     var listWishlist = [ProducList]()
     
     func loadWishList(completion: @escaping ((WishlistList) -> Void)) {
         getWishlist { result in
             DispatchQueue.main.async {
-                guard let unwrappedVC = self.wishlitVC else {return}
-                unwrappedVC.textCountWishlist.text = String(result.data.total)
                 self.listWishlist.removeAll()
                 self.listWishlist.append(contentsOf: result.data.products)
-                unwrappedVC.collectionWishlist.reloadData()
-                print("Completion loadWishlist")
             }
             completion(result)
         }
     }
         
     func getWishlist(completion: @escaping((WishlistList) -> Void)) {
-        guard let url = URL(string: Endpoints.Gets.wishlistAll.url) else {
-            print("Failed to create url")
-            return
-        }
-        print(url)
+        guard let url = URL(string: Endpoints.Gets.wishlistAll.url) else {return}
         var request = URLRequest(url: url)
         let accesToken = KeychainManager.shared.getToken()
         request.setValue("Bearer \(accesToken)", forHTTPHeaderField: "X-Auth-Token")

@@ -35,10 +35,10 @@ class WishlistViewController: UIViewController {
         collectionWishlist.dataSource = self
         collectionWishlist.delegate = self
         collectionWishlist.register(UINib(nibName: "ProducCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "ProducCollectionViewCell")
-        wishlistMC.wishlitVC = self
-        wishlistMC.loadWishList { _ in
+        wishlistMC.loadWishList { result in
             DispatchQueue.main.async {
                 self.collectionWishlist.reloadData()
+                self.textCountWishlist.text = "\(result.data.total)"
             }
         }
         self.collectionWishlist.reloadData()
@@ -46,9 +46,10 @@ class WishlistViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        wishlistMC.loadWishList { _ in
+        wishlistMC.loadWishList { result in
             DispatchQueue.main.async {
                 self.collectionWishlist.reloadData()
+                self.textCountWishlist.text = "\(result.data.total)"
             }
         }
     }
