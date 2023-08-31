@@ -47,7 +47,6 @@ class OrderViewController: UIViewController {
     }
     
     @objc private func reloadCart() {
-        print("Reload Cart")
         orderMV.loadProductChart {
             DispatchQueue.main.async {
                 self.tableOrder.reloadData()
@@ -75,6 +74,11 @@ class OrderViewController: UIViewController {
             }
             self.present(tabVC, animated: true)
     }
+    
+    @IBAction func CheckoutAction(_ sender: UIButton) {
+        
+    }
+    
     
 }
 
@@ -118,6 +122,20 @@ extension OrderViewController:BtnMoveIntoDelegate {
 }
 
 extension OrderViewController: BtnBackDelegate {
+
+    func sendAdressOrder(country: String, city: String, isChoose: Bool) {
+        let tabVC = UINavigationController(rootViewController: bottomSheet)
+        let vc = bottomSheet as? OrderPopUpViewController
+        vc?.delegate = self
+            if let sheet = tabVC.sheetPresentationController {
+              sheet.detents = [.medium()]
+            }
+        vc!.cityText.text = city
+        vc!.countryText.text = country
+        vc!.isChoose = isChoose
+        self.present(tabVC, animated: true)
+    }
+    
     
     func orderPopactive() {
         let tabVC = UINavigationController(rootViewController: bottomSheet)
@@ -136,7 +154,6 @@ extension OrderViewController: BtnBackDelegate {
         orderPopactive()
     }
     
-
 }
 
 extension OrderViewController: OrderTableDelegate {

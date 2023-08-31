@@ -170,9 +170,6 @@ extension HomeProducViewController: BrandTableViewCellDelegate {
 }
 
 extension HomeProducViewController: SideMenuNavigationControllerDelegate, UINavigationControllerDelegate {
-//    func sideMenuDidDisappear(menu: SideMenuViewController, animated: Bool) {
-//        parentBluerView.isHidden = true
-//    }
     func sideMenuDidDisappear(menu: SideMenuNavigationController, animated: Bool) {
         parentBluerView.isHidden = true
     }

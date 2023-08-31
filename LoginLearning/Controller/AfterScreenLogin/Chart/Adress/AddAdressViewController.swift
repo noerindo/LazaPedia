@@ -10,7 +10,8 @@ import UIKit
 class AddAdressViewController: UIViewController {
     var adressVM = AdressViewModel()
     var isPrimaryAdress: Bool = true
-    var idUpdate: Int
+    var adressData: DataAdress?
+    var idData: Int = 0
 
     @IBOutlet weak var titleVC: UILabel!
     @IBOutlet weak var switchPrimary: UISwitch!
@@ -36,10 +37,15 @@ class AddAdressViewController: UIViewController {
     }
     override func viewDidLoad() {
         super.viewDidLoad()
+        if idData != 0 {
+            configureUpdate(data: adressData!)
+        }
+        
     }
     
     func configureUpdate(data: DataAdress) {
         titleVC.text = "Update Address"
+        nameText.text = "\(data.receiver_name)"
         phoneText.text = "\(data.phone_number)"
         countryText.text = "\(data.country)"
         cityText.text = "\(data.city)"
@@ -90,19 +96,39 @@ class AddAdressViewController: UIViewController {
         guard let phone = phoneText.text else {return}
         
         if AcountRegis.invalidNoHp(noHp: phone) {
-            adressVM.postAdress(country: country, city: city, receiver_name: name, phone_number: phone, is_primary: isPrimaryAdress) { result in
-                DispatchQueue.main.async {
-                    let alert = UIAlertController(title: "Success", message: "Add Adress Success", preferredStyle: .alert)
-                    let okAction = UIAlertAction(title: "OK", style: .default) { [weak self] _ in
-                        DispatchQueue.main.async {
-                            self?.navigationController?.popViewController(animated: true)
+            if idData != 0 {
+                adressVM.putAdress(id: idData, country: country, city: city, receiver_name: name, phone_number: phone, is_primary: isPrimaryAdress) { result in
+                    DispatchQueue.main.async {
+                        let alert = UIAlertController(title: "Success", message: "Add Adress Success", preferredStyle: .alert)
+                        let okAction = UIAlertAction(title: "OK", style: .default) { [weak self] _ in
+                            AdressViewController.notifyObserver()
+                            DispatchQueue.main.async {
+                                self?.navigationController?.popViewController(animated: true)
+                            }
                         }
+                        alert.addAction(okAction)
+                        self.present(alert, animated: true, completion: nil)
                     }
-                    alert.addAction(okAction)
-                    self.present(alert, animated: true, completion: nil)
+                } onError: { error in
+                    SnackBarWarning.make(in: self.view, message:error, duration: .lengthShort).show()
                 }
-            } onError: { error in
-                SnackBarWarning.make(in: self.view, message:error, duration: .lengthShort).show()
+            } else {
+                adressVM.postAdress(country: country, city: city, receiver_name: name, phone_number: phone, is_primary: isPrimaryAdress) { result in
+                    DispatchQueue.main.async {
+                        let alert = UIAlertController(title: "Success", message: "Add Adress Success", preferredStyle: .alert)
+                        let okAction = UIAlertAction(title: "OK", style: .default) { [weak self] _ in
+                            AdressViewController.notifyObserver()
+                            DispatchQueue.main.async {
+                                self?.navigationController?.popViewController(animated: true)
+                            }
+                        }
+                        alert.addAction(okAction)
+                        self.present(alert, animated: true, completion: nil)
+                    }
+                } onError: { error in
+                    SnackBarWarning.make(in: self.view, message:error, duration: .lengthShort).show()
+                }
+
             }
         } else {
             SnackBarWarning.make(in: self.view, message: "Number HP is not valid", duration: .lengthShort).show()

@@ -37,6 +37,7 @@ class DetailCategoryViewController: UIViewController {
     }
     
     @IBAction func sortProductAction(_ sender: UIButton) {
+        
     }
     
     @IBAction func backAction(_ sender: UIButton) {

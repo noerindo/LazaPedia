@@ -78,7 +78,7 @@ class RiviewModelView {
                 return
             }
             do {
-                let result = try JSONDecoder().decode(ResponAddRiview.self, from: data)
+                let result = try JSONDecoder().decode(ResponPut.self, from: data)
                 completion(result.status)
             } catch {
                 print(error)

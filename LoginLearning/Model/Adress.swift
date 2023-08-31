@@ -8,7 +8,7 @@
 import Foundation
 
 struct GetAllAdres: Codable {
-    let data: [DataAdress]
+    var data: [DataAdress]
 }
 struct DataAdress: Codable {
     let id: Int

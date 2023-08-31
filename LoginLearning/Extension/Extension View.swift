@@ -81,12 +81,14 @@ extension String {
         }
         return date
     }
-    
 }
 
 extension Notification.Name {
     static var UpdateChart: Notification.Name {
         return .init("CartUpdated")
+    }
+    static var UpdateAdress: Notification.Name {
+        return .init("AdressUpadte")
     }
 }
 

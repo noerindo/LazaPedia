@@ -40,6 +40,8 @@ class AdressTableViewCell: UITableViewCell {
         adressComplite.text = "\(data.country) | \(data.city)"
         if data.is_primary == true {
             isPrimary.isHidden = false
+        } else {
+            isPrimary.isHidden = true
         }
     }
     

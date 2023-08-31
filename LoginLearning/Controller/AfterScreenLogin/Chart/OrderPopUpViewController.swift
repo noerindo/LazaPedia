@@ -15,6 +15,8 @@ protocol BtnMoveIntoDelegate: AnyObject {
 class OrderPopUpViewController: UIViewController {
     
     let orderMV = OrderModelView()
+    let adressVM = AdressViewModel()
+    var isChoose: Bool = false
     
     @IBOutlet weak var totalView: UILabel!
     @IBOutlet weak var shippingText: UILabel!
@@ -28,23 +30,49 @@ class OrderPopUpViewController: UIViewController {
     
     private var orderInfo: OrderInfo?
     
+    @IBOutlet weak var cityText: UILabel!
+    @IBOutlet weak var countryText: UILabel!
     override func viewDidLoad() {
         super.viewDidLoad()
         orderMV.loadProductChart { [self] in
             DispatchQueue.main.async {
-                self.setData(orderInfo: self.orderMV.resultOrderInfo!)
+                self.setDataOrder(orderInfo: self.orderMV.resultOrderInfo!)
             }
         }
+        if isChoose != true {
+            adressVM.loadAdress { adress in
+                DispatchQueue.main.async { [self] in
+                    let dataAdress = adressVM.resultAdress.data
+                    if !dataAdress.isEmpty {
+                        cityText.text = "\(dataAdress.first!.city)"
+                        countryText.text = "\(dataAdress.first!.country)"
+                    }
+                }
+            }
+        }
+        
+        
     }
     override func viewWillAppear(_ animated: Bool) {
         orderMV.loadProductChart { [self] in
             DispatchQueue.main.async {
-                self.setData(orderInfo: self.orderMV.resultOrderInfo!)
+                self.setDataOrder(orderInfo: self.orderMV.resultOrderInfo!)
+            }
+        }
+        if isChoose != true {
+            adressVM.loadAdress { adress in
+                DispatchQueue.main.async { [self] in
+                    let dataAdress = adressVM.resultAdress.data
+                    if !dataAdress.isEmpty {
+                        cityText.text = "\(dataAdress.first!.city)"
+                        countryText.text = "\(dataAdress.first!.country)"
+                    }
+                }
             }
         }
     }
     
-    func setData(orderInfo: OrderInfo) {
+    func setDataOrder(orderInfo: OrderInfo) {
         self.totalView.text = "$\(orderInfo.total)".formatDecimal()
         self.shippingText.text = "$\(orderInfo.shipping_cost)".formatDecimal()
         self.subTotalText.text = "$\(orderInfo.sub_total)".formatDecimal()

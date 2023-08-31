@@ -145,8 +145,7 @@ class OrderModelView {
         let task = URLSession.shared.dataTask(with: request) {data, response, error in
             guard let httpRespon = response as? HTTPURLResponse else { return}
             guard let data = data else { return }
-            
-            print(httpRespon.statusCode)
+
             if httpRespon.statusCode == 200 {
                 do {
                     let result = try JSONDecoder().decode(AllSize.self, from: data)

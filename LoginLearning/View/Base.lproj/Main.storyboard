@@ -2249,6 +2249,9 @@
                                 <buttonConfiguration key="configuration" style="plain" title="Checkout">
                                     <fontDescription key="titleFontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
                                 </buttonConfiguration>
+                                <connections>
+                                    <action selector="CheckoutAction:" destination="WKU-ZN-JgQ" eventType="touchUpInside" id="2gj-Zd-UPZ"/>
+                                </connections>
                             </button>
                             <stackView opaque="NO" contentMode="scaleToFill" spacing="150" translatesAutoresizingMaskIntoConstraints="NO" id="aXF-uV-Ubi">
                                 <rect key="frame" x="0.0" y="700.66666666666663" width="393" height="34.333333333333371"/>
@@ -2603,21 +2606,22 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Amex" translatesAutoresizingMaskIntoConstraints="NO" id="u3l-ag-14w">
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="mappin.and.ellipse" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="u3l-ag-14w">
                                         <rect key="frame" x="20" y="50.333333333333314" width="50" height="50"/>
+                                        <color key="tintColor" name="colorBg 1"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="50" id="bij-Wb-HeM"/>
                                             <constraint firstAttribute="height" constant="50" id="lM4-Z6-zcr"/>
                                         </constraints>
                                     </imageView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Chhatak, Sunamgonj 12/8AB" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="J2C-DG-b1d">
-                                        <rect key="frame" x="84.999999999999986" y="55.333333333333314" width="194.66666666666663" height="18"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="None" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="J2C-DG-b1d">
+                                        <rect key="frame" x="85" y="55.333333333333314" width="36.666666666666657" height="18"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sylhet" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pp7-bH-0E7">
-                                        <rect key="frame" x="85" y="76.333333333333314" width="47.666666666666657" height="20.333333333333329"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="None" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pp7-bH-0E7">
+                                        <rect key="frame" x="85" y="76.333333333333314" width="40.666666666666657" height="20.333333333333329"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" name="grayText"/>
                                         <nil key="highlightedColor"/>
@@ -2636,7 +2640,7 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="amex-logo.png" translatesAutoresizingMaskIntoConstraints="NO" id="xSG-v3-Efr">
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="paymentcard" translatesAutoresizingMaskIntoConstraints="NO" id="xSG-v3-Efr">
                                         <rect key="frame" x="20" y="155.66666666666663" width="50" height="50"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="50" id="UGO-7h-cbS"/>
@@ -2793,6 +2797,8 @@
                     </view>
                     <navigationItem key="navigationItem" id="FN3-3m-dI9"/>
                     <connections>
+                        <outlet property="cityText" destination="Pp7-bH-0E7" id="RND-oZ-1HC"/>
+                        <outlet property="countryText" destination="J2C-DG-b1d" id="ws6-g3-vCR"/>
                         <outlet property="shippingText" destination="d5R-kY-QA2" id="ehy-2N-aYT"/>
                         <outlet property="subTotalText" destination="gb8-O0-XTX" id="xxu-bX-976"/>
                         <outlet property="totalView" destination="Pvc-Ej-gXw" id="1Dp-31-5Je"/>
@@ -3909,21 +3915,11 @@
         </scene>
     </scenes>
     <designables>
-        <designable name="CXw-y5-nis">
-            <size key="intrinsicContentSize" width="259" height="44"/>
-        </designable>
         <designable name="bkC-2D-SY4">
             <size key="intrinsicContentSize" width="-1" height="30"/>
         </designable>
-        <designable name="hL6-Lg-tcZ">
-            <size key="intrinsicContentSize" width="73" height="13"/>
-        </designable>
-        <designable name="zWc-M1-2hM">
-            <size key="intrinsicContentSize" width="85" height="13"/>
-        </designable>
     </designables>
     <resources>
-        <image name="Amex" width="64" height="64"/>
         <image name="Badge" width="30" height="30"/>
         <image name="Gopay" width="497" height="101"/>
         <image name="Photo" width="90" height="90"/>
@@ -3931,7 +3927,6 @@
         <image name="Vector-2" width="20" height="21"/>
         <image name="Vector-3" width="21" height="20"/>
         <image name="Vector-4" width="21" height="22"/>
-        <image name="amex-logo.png" width="52" height="52"/>
         <image name="arrow.up.and.down.text.horizontal" catalog="system" width="128" height="87"/>
         <image name="btnFB" width="223.33332824707031" height="33.333332061767578"/>
         <image name="btnGoggle" width="223.33332824707031" height="33.333332061767578"/>
@@ -3947,6 +3942,7 @@
         <image name="eye" catalog="system" width="128" height="79"/>
         <image name="frame 16" width="1500" height="2264"/>
         <image name="imageForgot" width="216.66667175292969" height="151.66667175292969"/>
+        <image name="mappin.and.ellipse" catalog="system" width="117" height="128"/>
         <image name="mic" catalog="system" width="110" height="128"/>
         <image name="paymentcard" width="512" height="512"/>
         <image name="person.circle" catalog="system" width="128" height="123"/>
