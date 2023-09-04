@@ -6,7 +6,6 @@
 //
 
 import UIKit
-import SnackBar_swift
 
 
 extension UIView {
@@ -14,7 +13,7 @@ extension UIView {
     func addShadow(color: UIColor, width: CGFloat, text: UITextField) {
         let border = CALayer()
         border.backgroundColor = color.cgColor
-        border.frame = CGRect(x: 0, y: text.frame.height + 15 , width: self.frame.size.width, height: width)
+        border.frame = CGRect(x: 0, y: text.frame.height + 10 , width: self.frame.size.width, height: width)
         self.layer.addSublayer(border)
         }
 }
@@ -35,25 +34,6 @@ extension UIImage {
         } else {
             return nil
         }
-    }
-}
-
-class SnackBarWarning: SnackBar {
-    
-    override var style: SnackBarStyle {
-        var style = SnackBarStyle()
-        style.background = .red
-        style.textColor = .white
-        return style
-    }
-}
-class SnackBarSuccess: SnackBar {
-    
-    override var style: SnackBarStyle {
-        var style = SnackBarStyle()
-        style.background = .green
-        style.textColor = .white
-        return style
     }
 }
 
@@ -88,7 +68,10 @@ extension Notification.Name {
         return .init("CartUpdated")
     }
     static var UpdateAdress: Notification.Name {
-        return .init("AdressUpadte")
+        return .init("AdressUpdte")
+    }
+    static var UpdateWishlist: Notification.Name {
+        return .init("WishlistUpdate")
     }
 }
 

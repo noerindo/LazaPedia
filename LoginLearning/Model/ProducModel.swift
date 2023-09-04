@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 
 struct ProductAll: Codable {
-    let data: [ProducList]
+    var data: [ProducList]
 }
 struct ProducList: Codable {
     let id: Int

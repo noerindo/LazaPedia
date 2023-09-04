@@ -23,7 +23,7 @@ class WishlistViewModel {
     func getWishlist(completion: @escaping((WishlistList) -> Void)) {
         guard let url = URL(string: Endpoints.Gets.wishlistAll.url) else {return}
         var request = URLRequest(url: url)
-        let accesToken = KeychainManager.shared.getToken()
+        let accesToken = KeychainManager.shared.getTokenValid()
         request.setValue("Bearer \(accesToken)", forHTTPHeaderField: "X-Auth-Token")
         let task = URLSession.shared.dataTask(with: request) { data, response, error in
             guard let data = data else {
@@ -32,7 +32,6 @@ class WishlistViewModel {
             }
             do {
                 let result = try JSONDecoder().decode(WishlistList.self, from: data)
-                print("Completion")
                 completion(result)
             } catch {
                 print("get Wishlist failed; \(error)")
@@ -45,7 +44,7 @@ class WishlistViewModel {
         guard let url = URL(string: Endpoints.Gets.addWishList(idProduct: id).url) else {return}
         var request = URLRequest(url: url)
         request.httpMethod = "PUT"
-        let accesToken = KeychainManager.shared.getToken()
+        let accesToken = KeychainManager.shared.getTokenValid()
         request.setValue("Bearer \(accesToken)", forHTTPHeaderField: "X-Auth-Token")
         
         let task = URLSession.shared.dataTask(with: request) { data, response, error in

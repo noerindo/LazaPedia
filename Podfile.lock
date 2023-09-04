@@ -24,6 +24,7 @@ PODS:
     - AppAuth/Core (~> 1.6)
     - GTMSessionFetcher/Core (< 4.0, >= 1.5)
   - GTMSessionFetcher/Core (3.1.1)
+  - JWTDecode (3.1.0)
   - SDWebImage (5.17.0):
     - SDWebImage/Core (= 5.17.0)
   - SDWebImage/Core (5.17.0)
@@ -60,6 +61,7 @@ DEPENDENCIES:
   - FBSDKCoreKit
   - FBSDKLoginKit
   - GoogleSignIn
+  - JWTDecode
   - SDWebImage
   - SideMenu
   - SnackBar.swift
@@ -79,6 +81,7 @@ SPEC REPOS:
     - GoogleSignIn
     - GTMAppAuth
     - GTMSessionFetcher
+    - JWTDecode
     - SDWebImage
     - SideMenu
     - SnackBar.swift
@@ -111,6 +114,7 @@ SPEC CHECKSUMS:
   GoogleSignIn: b232380cf495a429b8095d3178a8d5855b42e842
   GTMAppAuth: 99fb010047ba3973b7026e45393f51f27ab965ae
   GTMSessionFetcher: e8647203b65cee28c5f73d0f473d096653945e72
+  JWTDecode: 3eaab1e06b6f4dcbdd6716aff09ba4c2104ca8b7
   SDWebImage: 750adf017a315a280c60fde706ab1e552a3ae4e9
   SideMenu: f583187d21c5b1dd04c72002be544b555a2627a2
   SnackBar.swift: 79ea4df13ea9e6633137dd6acbd490534d26440d
@@ -123,6 +127,6 @@ SPEC CHECKSUMS:
   StripeUICore: 171fcf535c658ee1ebd7aaf08fa6a0eceb3fb3db
   Swifter: 4c2f8cf320c2f751c10128f841d8e9bd8609d988
 
-PODFILE CHECKSUM: bc9be163fd9b15ce3f7dec06753e234e3772b866
+PODFILE CHECKSUM: 8a6122e69d386aeae49de708f658cc9f2dd2eed5
 
 COCOAPODS: 1.12.1

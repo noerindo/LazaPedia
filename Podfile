@@ -17,6 +17,7 @@ pod 'Stripe'
 pod 'SnackBar.swift'
 pod 'DPOTPView'
 pod 'Cosmos'
+pod 'JWTDecode'
 
 
 end

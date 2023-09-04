@@ -8,11 +8,10 @@
 import Foundation
 
 struct Card {
-    let name: String
-    let numberCard: Int32
-    let expMonth: Int
-    let exYear: Int
-    let cvc: Int
+    var nameCard: String = ""
+    var numberCard: String = ""
+    var expMonCard: String = ""
+    var cvv: String = ""
+    var expYearCard : String = ""
 }
 
-typealias CreditCard = [Card]
