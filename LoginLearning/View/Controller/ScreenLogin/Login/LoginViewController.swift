@@ -10,6 +10,9 @@ import SnackBar_swift
 
 class LoginViewController: UIViewController {
     private let loginVM = LoginViewModel()
+    var profileMV = ProfileViewModel()
+    var isRemember: Bool = false
+    
     @IBOutlet weak var loadingView: UIActivityIndicatorView! {
         didSet {
             loadingView.isHidden = true
@@ -46,16 +49,8 @@ class LoginViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-//        loginCek()
-//        self.navigationController?.setNavigationBarHidden(true, animated: true)
-//        let homeVC = self.storyboard?.instantiateViewController(withIdentifier: "TabBarViewController") as! TabBarViewController
-//        self.navigationController?.pushViewController(homeVC, animated: true)
-        
     }
     
-//    func loginCek() {
-//        if     }
     func loadingStop() {
         self.loadingView.stopAnimating()
         self.loadingView.hidesWhenStopped = true
@@ -72,9 +67,11 @@ class LoginViewController: UIViewController {
     
     @IBAction func switchRemember(_ sender: UISwitch) {
         if switchRemember.isOn {
-            switchRemember.setOn(false, animated:true)
+            isRemember = false
+            self.userNameText.text = ""
         } else {
-            
+            isRemember = true
+            self.userNameText.text = UserDefaults.standard.string(forKey: "UserName")
         }
         
     }
@@ -98,19 +95,38 @@ class LoginViewController: UIViewController {
             self.navigationController?.popViewController(animated: true)
         }
         
+    @IBAction func signUpBtn(_ sender: UIButton) {
+        let signUpVC = self.storyboard?.instantiateViewController(withIdentifier: "SignUpViewController") as! SignUpViewController
+        self.navigationController?.pushViewController(signUpVC, animated: true)
+    }
     @IBAction func loginActionBtn(_ sender: UIButton) {
         loadingView.isHidden = false
         loadingView.startAnimating()
         guard let userName = userNameText.text else { return }
         guard let pass = passwordText.text else { return }
-        if userNameText != nil && passwordText != nil {
+        
+        if !userNameText.hasText {
+            SnackBarWarning.make(in: self.view, message:"UserName is Empty", duration: .lengthShort).show()
+            return
+        }
+        
+        if !passwordText.hasText {
+            SnackBarWarning.make(in: self.view, message:"Password is Empty", duration: .lengthShort).show()
+            return
+        }
+        
             loginVM.postLogin(userName: userName, password: pass) { [self] response in
-                DispatchQueue.main.async {
+                DispatchQueue.main.async { [self] in
                     self.loadingStop()
-                    CardDataManager().deleteCard("4242424242424242") { result in
-                        print("hapus")
-                    }
-                    self.navigationController?.setNavigationBarHidden(true, animated: true)
+//                    profileMV.getProfile { result in
+//                        UserDefaults.standard.set(true, forKey: "isLogin")
+//                        let homeVC = self.storyboard?.instantiateViewController(withIdentifier: "TabBarViewController") as! TabBarViewController
+//                        self.navigationController?.pushViewController(homeVC, animated: true)
+//                    } onError: { error in
+//                        SnackBarWarning.make(in: self.view, message: error, duration: .lengthShort).show()
+//                    }
+
+                    UserDefaults.standard.set(true, forKey: "isLogin")
                     let homeVC = self.storyboard?.instantiateViewController(withIdentifier: "TabBarViewController") as! TabBarViewController
                     self.navigationController?.pushViewController(homeVC, animated: true)
                     //
@@ -137,8 +153,6 @@ class LoginViewController: UIViewController {
                     
                 }
             }
-
-        }
       
     }
     

@@ -73,6 +73,9 @@ extension Notification.Name {
     static var UpdateWishlist: Notification.Name {
         return .init("WishlistUpdate")
     }
+    static var UpdateCard: Notification.Name {
+        return .init("CardUpdate")
+    }
 }
 
 

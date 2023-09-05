@@ -124,6 +124,7 @@ class SignUpViewController: UIViewController {
                         signUpMV.postRegister(email: email, userName: userName, password: pass) { response in
                             DispatchQueue.main.async {
                                 self.loadingStop()
+                                RememberUser().loginDefault(isLogin: false, userName: userName)
                                 let alert = UIAlertController(title: "Registration Success", message: "Check email for confirm account", preferredStyle: .alert)
                                 let okAction = UIAlertAction(title: "OK", style: .default) { [weak self] _ in
                                   DispatchQueue.main.async {

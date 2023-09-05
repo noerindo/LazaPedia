@@ -8,6 +8,7 @@
 import UIKit
 
 class OrderViewController: UIViewController {
+    
     let orderMV = OrderViewModel()
     lazy var bottomSheet = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "OrderPopUpViewController")
 
@@ -114,15 +115,27 @@ extension OrderViewController:BtnMoveIntoDelegate {
     }
     
     func moveMethodPay() {
-        let storyboard = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "MethodPayViewController")
+        let storyboard = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "PaymentViewController")
         //menghubungkan
-        let payMetdoVC = storyboard as? MethodPayViewController
+        let payMetdoVC = storyboard as? PaymentViewController
         payMetdoVC?.delegate = self
         self.navigationController?.pushViewController(storyboard, animated: true)
     }
 }
 
 extension OrderViewController: BtnBackDelegate {
+    func sendCard(numberCard: String, isChoose: Bool) {
+        let tabVC = UINavigationController(rootViewController: bottomSheet)
+        let vc = bottomSheet as? OrderPopUpViewController
+        vc?.delegate = self
+            if let sheet = tabVC.sheetPresentationController {
+              sheet.detents = [.medium()]
+                vc!.numberCardText.text = numberCard
+                vc!.isChooseCard = isChoose
+            }
+        self.present(tabVC, animated: true)
+    }
+    
 
     func sendAdressOrder(country: String, city: String, isChoose: Bool) {
         let tabVC = UINavigationController(rootViewController: bottomSheet)

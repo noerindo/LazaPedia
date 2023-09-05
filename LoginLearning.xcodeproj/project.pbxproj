@@ -111,7 +111,6 @@
 		E093F0BC2AA4B59D00C34F9F /* CardDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E093F0BB2AA4B59D00C34F9F /* CardDataManager.swift */; };
 		E09936522A91EFC200A8D11C /* CekUserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E09936512A91EFC200A8D11C /* CekUserViewController.swift */; };
 		E0A95FD92A9DDA5600654A9B /* AdressViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0A95FD82A9DDA5600654A9B /* AdressViewModel.swift */; };
-		E0BBA1E42A9F3ECA00B36494 /* UpdateAdressViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0BBA1E32A9F3ECA00B36494 /* UpdateAdressViewController.swift */; };
 		E0C1DC892AA1E9A600B9EC4D /* ChangePasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0C1DC882AA1E9A600B9EC4D /* ChangePasswordViewController.swift */; };
 		E0C74FC22A8F01FD00DCCB32 /* KeychainManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0C74FC12A8F01FD00DCCB32 /* KeychainManager.swift */; };
 		E0DE4F0D2A8CB62E000C53FA /* KodePassViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0DE4F0C2A8CB62E000C53FA /* KodePassViewController.swift */; };
@@ -226,7 +225,6 @@
 		E093F0BB2AA4B59D00C34F9F /* CardDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardDataManager.swift; sourceTree = "<group>"; };
 		E09936512A91EFC200A8D11C /* CekUserViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CekUserViewController.swift; sourceTree = "<group>"; };
 		E0A95FD82A9DDA5600654A9B /* AdressViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdressViewModel.swift; sourceTree = "<group>"; };
-		E0BBA1E32A9F3ECA00B36494 /* UpdateAdressViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateAdressViewController.swift; sourceTree = "<group>"; };
 		E0C1DC882AA1E9A600B9EC4D /* ChangePasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePasswordViewController.swift; sourceTree = "<group>"; };
 		E0C74FC12A8F01FD00DCCB32 /* KeychainManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainManager.swift; sourceTree = "<group>"; };
 		E0DE4F0C2A8CB62E000C53FA /* KodePassViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KodePassViewController.swift; sourceTree = "<group>"; };
@@ -381,7 +379,7 @@
 			children = (
 				E07B9D8E2A8DB3CE007CC799 /* Chart */,
 				E05C0FD52A73B2D600962579 /* HomeProducts */,
-				E07B9D8D2A8DB35F007CC799 /* My Cards */,
+				E07B9DFE2A8E06E6007CC799 /* Profile */,
 				E02DC1812A75896800CA0192 /* TabBarViewController.swift */,
 				E07B9D8C2A8DB348007CC799 /* Wishlist */,
 			);
@@ -394,7 +392,6 @@
 				E07B9D9A2A8DCE82007CC799 /* Category */,
 				E05C0FD62A73B30500962579 /* HomeProducViewController.swift */,
 				E07B9D992A8DCE71007CC799 /* Product */,
-				E07B9DFE2A8E06E6007CC799 /* Profile */,
 				E07B9D982A8DCE60007CC799 /* SideMenu */,
 				E03F9EF02A936069009CED92 /* ViewAll */,
 			);
@@ -407,15 +404,6 @@
 				E07B9DCB2A8DDB83007CC799 /* WishlistViewController.swift */,
 			);
 			path = Wishlist;
-			sourceTree = "<group>";
-		};
-		E07B9D8D2A8DB35F007CC799 /* My Cards */ = {
-			isa = PBXGroup;
-			children = (
-				E07B9DCE2A8DDC1F007CC799 /* CardPaymnet */,
-				E07B9DCF2A8DDC44007CC799 /* MyCardsViewController.swift */,
-			);
-			path = "My Cards";
 			sourceTree = "<group>";
 		};
 		E07B9D8E2A8DB3CE007CC799 /* Chart */ = {
@@ -472,34 +460,12 @@
 			path = Riview;
 			sourceTree = "<group>";
 		};
-		E07B9DCE2A8DDC1F007CC799 /* CardPaymnet */ = {
-			isa = PBXGroup;
-			children = (
-				E07B9DD72A8DDD30007CC799 /* Cards */,
-				E07B9DD62A8DDD27007CC799 /* GoPay */,
-			);
-			path = CardPaymnet;
-			sourceTree = "<group>";
-		};
-		E07B9DD62A8DDD27007CC799 /* GoPay */ = {
-			isa = PBXGroup;
-			children = (
-				E07B9DDE2A8DDE8D007CC799 /* GopayViewController.swift */,
-			);
-			path = GoPay;
-			sourceTree = "<group>";
-		};
-		E07B9DD72A8DDD30007CC799 /* Cards */ = {
-			isa = PBXGroup;
-			children = (
-				E07B9DDC2A8DDE59007CC799 /* PaymentViewController.swift */,
-			);
-			path = Cards;
-			sourceTree = "<group>";
-		};
 		E07B9DE22A8DE53F007CC799 /* payment */ = {
 			isa = PBXGroup;
 			children = (
+				E07B9DDC2A8DDE59007CC799 /* PaymentViewController.swift */,
+				E07B9DDE2A8DDE8D007CC799 /* GopayViewController.swift */,
+				E07B9DCF2A8DDC44007CC799 /* MyCardsViewController.swift */,
 				E07B9DE72A8DE5F0007CC799 /* AddPayViewController.swift */,
 				E07B9DE92A8DE649007CC799 /* MethodPayViewController.swift */,
 			);
@@ -511,7 +477,6 @@
 			children = (
 				E07B9DF02A8DE6D9007CC799 /* AdressViewController.swift */,
 				E07B9DF22A8DE6FA007CC799 /* AddAdressViewController.swift */,
-				E0BBA1E32A9F3ECA00B36494 /* UpdateAdressViewController.swift */,
 				E07B9DFC2A8DE8A2007CC799 /* ConfirmViewController.swift */,
 			);
 			path = Adress;
@@ -865,7 +830,6 @@
 				E07B9DA92A8DD0E1007CC799 /* DetailViewController.swift in Sources */,
 				E03EA8E62A973F1E00E5E631 /* SendEmailViewController.swift in Sources */,
 				E07B9D902A8DCD77007CC799 /* ProducModel.swift in Sources */,
-				E0BBA1E42A9F3ECA00B36494 /* UpdateAdressViewController.swift in Sources */,
 				E02DC1822A75896800CA0192 /* TabBarViewController.swift in Sources */,
 				E07B9D922A8DCDB6007CC799 /* CreditCard.swift in Sources */,
 				E07B9E002A8E06F7007CC799 /* ProfileViewController.swift in Sources */,

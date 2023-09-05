@@ -22,9 +22,16 @@ class CardViewModel{
     func loadCard(completion: @escaping (() -> Void)) {
         self.cardDataManager.getCard { card in
             DispatchQueue.main.async {
+                self.cardList.removeAll()
                 self.cardList.append(contentsOf: card)
             }
             completion()
+        }
+    }
+    
+    func deleteCard( numberCard: String, completion: @escaping((String) -> Void)) {
+        cardDataManager.deleteCard(numberCard) { result in
+            completion(result)
         }
     }
     

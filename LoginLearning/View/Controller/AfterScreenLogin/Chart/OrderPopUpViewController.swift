@@ -17,7 +17,9 @@ class OrderPopUpViewController: UIViewController {
     let orderMV = OrderViewModel()
     let adressVM = AdressViewModel()
     var isChoose: Bool = false
+    var isChooseCard: Bool = false
     
+    @IBOutlet weak var numberCardText: UILabel!
     @IBOutlet weak var totalView: UILabel!
     @IBOutlet weak var shippingText: UILabel!
     @IBOutlet weak var subTotalText: UILabel!
@@ -71,7 +73,6 @@ class OrderPopUpViewController: UIViewController {
             }
         }
     }
-    
     func setDataOrder(orderInfo: OrderInfo) {
         self.totalView.text = "$\(orderInfo.total)".formatDecimal()
         self.shippingText.text = "$\(orderInfo.shipping_cost)".formatDecimal()

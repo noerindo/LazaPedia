@@ -36,9 +36,9 @@ class AcountRegis {
 
 class RememberUser {
     
-    func loginDefault(userName: String, email: String) {
+    func loginDefault(isLogin: Bool, userName: String) {
         UserDefaults.standard.set(userName, forKey: "UserName")
-        UserDefaults.standard.set(email, forKey: "Email")
+        UserDefaults.standard.set(isLogin, forKey: "isLogin")
     }
 
 

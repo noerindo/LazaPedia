@@ -24,7 +24,6 @@ class CardCreditCollectionViewCell: UICollectionViewCell {
         let expYear = data.expYearCard
         let cvv = data.cvv
         
-        // mengatur view card
         cardView.paymentCardTextFieldDidChange(cardNumber: numberCard, expirationYear: UInt(expYear), expirationMonth: UInt(expMon), cvc: cvv)
         cardView.cardHolderString = nameCard
     }

@@ -12,6 +12,7 @@ import Stripe
 
 class AddPayViewController: UIViewController,  STPPaymentCardTextFieldDelegate {
 
+    var isEditCard: Bool = false
     @IBOutlet weak var nameOwner: UITextField! {
         didSet {
             nameOwner.addTarget(self, action: #selector(cardNameTextChanged(_:)), for: .editingChanged)
@@ -35,13 +36,13 @@ class AddPayViewController: UIViewController,  STPPaymentCardTextFieldDelegate {
     }
   
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         cardParams = STPPaymentMethodCardParams()
         cardParams.number = inputCardText.cardNumber
-        cardParams.expMonth = 03
-        cardParams.expYear = 23
-        cardParams.cvc = "1234"
+        inputCardText.postalCodeEntryEnabled = false
+        
 
     }
     override func viewWillAppear(_ animated: Bool) {
@@ -84,8 +85,15 @@ class AddPayViewController: UIViewController,  STPPaymentCardTextFieldDelegate {
             expMonCard: expMonth,
             cvv: cardCvv,
             expYearCard: expYear)
-        
-        CardDataManager().createCard(addCard)
+        if isEditCard == true {
+            CardDataManager().updateCard(addCard, cardNumber)
+            PaymentViewController.notifyObserver()
+            self.navigationController?.popViewController(animated: true)
+        } else {
+            CardDataManager().createCard(addCard)
+            PaymentViewController.notifyObserver()
+            self.navigationController?.popViewController(animated: true)
+        }
         
     }
     // MARK: - Navigation

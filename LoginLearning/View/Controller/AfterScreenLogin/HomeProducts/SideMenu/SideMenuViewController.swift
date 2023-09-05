@@ -16,11 +16,6 @@ protocol SideMenuViewControllerDelegate {
 class SideMenuViewController: UIViewController {
     var profileMV = ProfileViewModel()
     
-    @IBOutlet weak var orderText: UILabel! {
-        didSet {
-            orderText.layer.cornerRadius = 20
-        }
-    }
     var defaultHighlightedCell: Int = 0
     var delegate: SideMenuViewControllerDelegate?
     
@@ -28,11 +23,6 @@ class SideMenuViewController: UIViewController {
         didSet {
             photoAcount.layer.cornerRadius = photoAcount.frame.size.width / 2
             photoAcount.clipsToBounds = true
-        }
-    }
-    @IBOutlet weak var orderView: UILabel! {
-        didSet {
-            orderView.layer.cornerRadius = 20
         }
     }
     @IBOutlet weak var tableSide: UITableView!
@@ -72,6 +62,7 @@ class SideMenuViewController: UIViewController {
             DispatchQueue.main.async {
                 KeychainManager.shared.deleteToken()
                 KeychainManager.shared.deleteResfreshToken()
+                UserDefaults.standard.set(false, forKey: "isLogin")
             }
                 let tabVC = self.storyboard?.instantiateViewController(withIdentifier: "LoginSosmedViewController") as! LoginSosmedViewController
                 self.navigationController?.pushViewController(tabVC, animated: true)
@@ -103,7 +94,7 @@ class SideMenuViewController: UIViewController {
         profileMV.getProfile {data in
             DispatchQueue.main.async { [self] in
                 nameAcount.text = data!.full_name
-                let imgURl = URL(string: "\(String(describing: data?.image_url))")
+                let imgURl = URL(string: "\(data!.image_url ?? "")")
                 self.photoAcount.sd_setImage(with: imgURl)
             }
         } onError: { error in

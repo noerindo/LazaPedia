@@ -61,7 +61,6 @@ class HomeProducViewController: UIViewController {
             present(sideMenuNavController!, animated: true)
         }
     }
-    
 
     override func viewDidLoad() {
         super.viewDidLoad()

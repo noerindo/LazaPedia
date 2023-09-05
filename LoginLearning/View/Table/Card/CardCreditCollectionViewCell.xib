@@ -18,7 +18,7 @@
                 <rect key="frame" x="0.0" y="0.0" width="251" height="147"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
-                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Wbd-Kc-17b">
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Wbd-Kc-17b" customClass="CreditCardFormView" customModule="CreditCardForm">
                         <rect key="frame" x="0.0" y="0.0" width="251" height="147"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
@@ -26,10 +26,10 @@
             </view>
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
             <constraints>
-                <constraint firstAttribute="trailing" secondItem="Wbd-Kc-17b" secondAttribute="trailing" id="0lT-JE-k9f"/>
-                <constraint firstAttribute="bottom" secondItem="Wbd-Kc-17b" secondAttribute="bottom" id="KL1-za-bZY"/>
-                <constraint firstItem="Wbd-Kc-17b" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="gMU-r4-t5B"/>
-                <constraint firstItem="Wbd-Kc-17b" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="ybG-jP-h7S"/>
+                <constraint firstAttribute="trailing" secondItem="Wbd-Kc-17b" secondAttribute="trailing" id="0ms-g3-PWV"/>
+                <constraint firstAttribute="bottom" secondItem="Wbd-Kc-17b" secondAttribute="bottom" id="p8M-97-sQ3"/>
+                <constraint firstItem="Wbd-Kc-17b" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="sGZ-rw-GFS"/>
+                <constraint firstItem="Wbd-Kc-17b" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="xGq-Xu-D0k"/>
             </constraints>
             <size key="customSize" width="251" height="147"/>
             <connections>
@@ -44,4 +44,3 @@
         </systemColor>
     </resources>
 </document>
-
