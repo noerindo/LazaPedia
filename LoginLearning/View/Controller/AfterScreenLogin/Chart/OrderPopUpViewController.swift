@@ -16,7 +16,7 @@ class OrderPopUpViewController: UIViewController {
     
     let orderMV = OrderViewModel()
     let adressVM = AdressViewModel()
-    var isChoose: Bool = false
+    var idAdress: Int = 0
     var isChooseCard: Bool = false
     
     @IBOutlet weak var numberCardText: UILabel!
@@ -41,7 +41,7 @@ class OrderPopUpViewController: UIViewController {
                 self.setDataOrder(orderInfo: self.orderMV.resultOrderInfo!)
             }
         }
-        if isChoose != true {
+        if idAdress != 0 {
             adressVM.loadAdress { adress in
                 DispatchQueue.main.async { [self] in
                     let dataAdress = adressVM.resultAdress.data
@@ -52,8 +52,6 @@ class OrderPopUpViewController: UIViewController {
                 }
             }
         }
-        
-        
     }
     override func viewWillAppear(_ animated: Bool) {
         orderMV.loadProductChart { [self] in
@@ -61,7 +59,7 @@ class OrderPopUpViewController: UIViewController {
                 self.setDataOrder(orderInfo: self.orderMV.resultOrderInfo!)
             }
         }
-        if isChoose != true {
+        if idAdress != 0 {
             adressVM.loadAdress { adress in
                 DispatchQueue.main.async { [self] in
                     let dataAdress = adressVM.resultAdress.data
@@ -73,6 +71,14 @@ class OrderPopUpViewController: UIViewController {
             }
         }
     }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        if let destinationVC = self.presentingViewController as? OrderViewController {
+            destinationVC.idAdres = idAdress
+            }
+    }
+    
     func setDataOrder(orderInfo: OrderInfo) {
         self.totalView.text = "$\(orderInfo.total)".formatDecimal()
         self.shippingText.text = "$\(orderInfo.shipping_cost)".formatDecimal()
@@ -83,7 +89,6 @@ class OrderPopUpViewController: UIViewController {
         self.dismiss(animated: true)
         delegate?.moveAdress()
     }
-    
     
     @IBAction func paymentActionBtn(_ sender: UIButton) {
         self.dismiss(animated: true)

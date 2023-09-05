@@ -11,6 +11,7 @@ class OrderViewModel {
     
     var resultProductChart = [ProductChart]()
     var resultAllSize = [Size]()
+    var resultzproductOrder = [DataProduct]()
     var resultOrderInfo: OrderInfo?
     var productCharCount: Int {
         get {
@@ -40,9 +41,14 @@ class OrderViewModel {
     
     func  loadProductChart(completion: @escaping (() -> Void)) {
         getAllChart { result in
-            DispatchQueue.main.async {
-                self.resultProductChart = (result?.data.products.reversed())!
-                self.resultOrderInfo = result!.data.order_info
+            DispatchQueue.main.async { [weak self] in
+                self?.resultProductChart = (result?.data.products.reversed())!
+                self?.resultOrderInfo = result!.data.order_info
+                self?.resultzproductOrder.removeAll()
+                result?.data.products.forEach { productChart in
+                    let dataProduct = DataProduct(id: productChart.id, quantity: productChart.quantity)
+                    self?.resultzproductOrder.append(dataProduct)
+                }
             }
             completion()
         } onError: { erorr in
@@ -103,6 +109,45 @@ class OrderViewModel {
                 completion(result)
             } catch {
                 print("Gagal Add Chart")
+            }
+        }
+        task.resume()
+    }
+    
+
+    
+    func postChecOut(product: [DataProduct], address_id: Int, onError: @escaping (String) -> Void) {
+        
+        guard let url = URL(string: Endpoints.Gets.chekOut.url) else {return}
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        let accesToken = KeychainManager.shared.getTokenValid()
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.setValue("Bearer \(accesToken)", forHTTPHeaderField: "X-Auth-Token")
+        
+        do {
+            let checkoutBody = CheckoutBody(products: product, addressId: address_id, bank: "bni")
+            let encoder = JSONEncoder()
+            let json = try encoder.encode(checkoutBody)
+            request.httpBody = json
+        } catch {
+            print("Error checkOut riview data JSON")
+            return
+        }
+        
+        let task = URLSession.shared.dataTask(with: request) { data, response, error in
+
+            guard let httpRespon = response as? HTTPURLResponse else { return}
+            guard let data = data else { return }
+            print("iniiii cekout : \(httpRespon.statusCode)")
+
+            if httpRespon.statusCode != 201 {
+                guard let createFailed = try? JSONDecoder().decode(ResponFailed.self, from: data) else {
+                    onError("addRiview Failed")
+                    return
+                }
+                onError(createFailed.description)
+                return
             }
         }
         task.resume()

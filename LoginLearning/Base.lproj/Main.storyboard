@@ -1959,6 +1959,7 @@
                             </collectionView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Empthy Data" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zs9-Jn-YZl">
                                 <rect key="frame" x="0.0" y="179" width="393" height="639"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="31"/>
                                 <color key="textColor" name="AccentColor"/>
                                 <nil key="highlightedColor"/>
@@ -2136,6 +2137,7 @@
                             </collectionView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="249" text="Empthy Data" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oZn-63-yo2">
                                 <rect key="frame" x="0.0" y="183" width="393" height="586"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="22"/>
                                 <color key="textColor" systemColor="linkColor"/>
                                 <nil key="highlightedColor"/>
@@ -2207,7 +2209,7 @@
                             <stackView opaque="NO" contentMode="scaleToFill" spacing="150" translatesAutoresizingMaskIntoConstraints="NO" id="aXF-uV-Ubi">
                                 <rect key="frame" x="0.0" y="700.66666666666663" width="393" height="34.333333333333371"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Total $99" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ht1-aT-fNd">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Total $0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ht1-aT-fNd">
                                         <rect key="frame" x="0.0" y="0.0" width="150" height="34.333333333333336"/>
                                         <constraints>
                                             <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="150" id="1Dk-rS-GlV"/>
@@ -3125,10 +3127,11 @@
                                     <action selector="chooseCardBtn:" destination="v0i-mP-1LB" eventType="touchUpInside" id="dBx-3D-2ud"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Empty" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FB5-Pq-vvX">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Empty Data" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FB5-Pq-vvX">
                                 <rect key="frame" x="0.0" y="98" width="393" height="754"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="30"/>
+                                <color key="textColor" name="AccentColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="L1P-WO-ZfN">
@@ -3188,6 +3191,7 @@
                         <outlet property="cvvCardView" destination="lR8-hk-bQg" id="BGU-K1-iO0"/>
                         <outlet property="deletCard" destination="uw2-k8-N4J" id="vdI-fY-pM7"/>
                         <outlet property="editCrad" destination="dzk-oy-ctv" id="zyL-oD-asA"/>
+                        <outlet property="emptyLabel" destination="FB5-Pq-vvX" id="gjY-nk-n4T"/>
                         <outlet property="expCardView" destination="7d5-uJ-iO2" id="ZtE-r3-ZEQ"/>
                         <outlet property="nameCardView" destination="y1S-56-kZy" id="MPI-qk-77m"/>
                         <outlet property="numberCard" destination="ZuF-sT-0Jo" id="JSB-pQ-1Pv"/>
@@ -4089,9 +4093,6 @@
         </scene>
     </scenes>
     <designables>
-        <designable name="CXw-y5-nis">
-            <size key="intrinsicContentSize" width="259" height="44"/>
-        </designable>
         <designable name="bkC-2D-SY4">
             <size key="intrinsicContentSize" width="-1" height="30"/>
         </designable>

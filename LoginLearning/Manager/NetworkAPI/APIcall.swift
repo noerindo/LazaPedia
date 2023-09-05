@@ -39,6 +39,7 @@ enum Endpoints {
         case size
         case refreshToken
         case changePass
+        case chekOut
         
         public var url: String {
             switch self {
@@ -86,6 +87,8 @@ enum Endpoints {
                 return "\(API.baseUrl)auth/refresh"
             case .changePass:
                 return "\(API.baseUrl)user/change-password"
+            case .chekOut:
+                return "\(API.baseUrl)order/bank"
             }
         }
     }

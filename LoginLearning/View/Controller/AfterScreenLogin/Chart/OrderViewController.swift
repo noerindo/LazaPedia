@@ -7,9 +7,11 @@
 
 import UIKit
 
+
 class OrderViewController: UIViewController {
     
     let orderMV = OrderViewModel()
+    var idAdres: Int = 0
     lazy var bottomSheet = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "OrderPopUpViewController")
 
     @IBOutlet weak var totalPriceText: UILabel!
@@ -77,8 +79,14 @@ class OrderViewController: UIViewController {
     }
     
     @IBAction func CheckoutAction(_ sender: UIButton) {
-        let confirmVC = self.storyboard?.instantiateViewController(withIdentifier: "ConfirmViewController") as! ConfirmViewController
-        self.navigationController?.pushViewController(confirmVC, animated: true)
+        print("ini adress checkout \(idAdres)")
+        orderMV.postChecOut(product: orderMV.resultzproductOrder, address_id: idAdres, onError: { errorMessage in
+            print(errorMessage)
+        })
+        DispatchQueue.main.async {
+            let confirmVC = self.storyboard?.instantiateViewController(withIdentifier: "ConfirmViewController") as! ConfirmViewController
+            self.navigationController?.pushViewController(confirmVC, animated: true)
+        }
     }
     
     
@@ -124,6 +132,10 @@ extension OrderViewController:BtnMoveIntoDelegate {
 }
 
 extension OrderViewController: BtnBackDelegate {
+    func idAdress(id: Int) {
+        print("lalal")
+    }
+    
     func sendCard(numberCard: String, isChoose: Bool) {
         let tabVC = UINavigationController(rootViewController: bottomSheet)
         let vc = bottomSheet as? OrderPopUpViewController
@@ -135,9 +147,8 @@ extension OrderViewController: BtnBackDelegate {
             }
         self.present(tabVC, animated: true)
     }
-    
 
-    func sendAdressOrder(country: String, city: String, isChoose: Bool) {
+    func sendAdressOrder(country: String, city: String, idAdress: Int) {
         let tabVC = UINavigationController(rootViewController: bottomSheet)
         let vc = bottomSheet as? OrderPopUpViewController
         vc?.delegate = self
@@ -146,7 +157,7 @@ extension OrderViewController: BtnBackDelegate {
             }
         vc!.cityText.text = city
         vc!.countryText.text = country
-        vc!.isChoose = isChoose
+        vc!.idAdress = idAdres
         self.present(tabVC, animated: true)
     }
     
@@ -180,7 +191,6 @@ extension OrderViewController: OrderTableDelegate {
                 OrderViewController.notifyObserver()
                 DispatchQueue.main.async {
                     completion(dataCell.quantity)
-                    
                 }
             }
         }
@@ -193,7 +203,6 @@ extension OrderViewController: OrderTableDelegate {
             orderMV.putProductChart(idProduct: dataCell.id, idSize: idSize)
             OrderViewController.notifyObserver()
         }
-       
     }
     
     func deleteOrder(cell: OrderTableViewCell) {
