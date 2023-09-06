@@ -21,7 +21,7 @@ class OrderViewController: UIViewController {
         super.viewDidLoad()
         
         registerObserver()
-        
+//        weak var delegate: BtnBackDelegate?
         setupTabBarText()
         tableOrder.delegate = self
         tableOrder.dataSource = self
@@ -133,7 +133,7 @@ extension OrderViewController:BtnMoveIntoDelegate {
 
 extension OrderViewController: BtnBackDelegate {
     func idAdress(id: Int) {
-        print("lalal")
+        idAdres = id
     }
     
     func sendCard(numberCard: String, isChoose: Bool) {
@@ -148,7 +148,8 @@ extension OrderViewController: BtnBackDelegate {
         self.present(tabVC, animated: true)
     }
 
-    func sendAdressOrder(country: String, city: String, idAdress: Int) {
+    func sendAdressOrder(country: String, city: String, idAdress: Int,isChooseAdress: Bool) {
+        self.idAdres = idAdress
         let tabVC = UINavigationController(rootViewController: bottomSheet)
         let vc = bottomSheet as? OrderPopUpViewController
         vc?.delegate = self
@@ -157,7 +158,8 @@ extension OrderViewController: BtnBackDelegate {
             }
         vc!.cityText.text = city
         vc!.countryText.text = country
-        vc!.idAdress = idAdres
+        vc!.idAdress = idAdress
+        vc!.isChooseAdress = true
         self.present(tabVC, animated: true)
     }
     
@@ -178,7 +180,6 @@ extension OrderViewController: BtnBackDelegate {
     func backOrderUp() {
         orderPopactive()
     }
-    
 }
 
 extension OrderViewController: OrderTableDelegate {

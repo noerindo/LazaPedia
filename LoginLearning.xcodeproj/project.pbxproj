@@ -80,7 +80,6 @@
 		E07B9DCC2A8DDB83007CC799 /* WishlistViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E07B9DCB2A8DDB83007CC799 /* WishlistViewController.swift */; };
 		E07B9DD02A8DDC44007CC799 /* MyCardsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E07B9DCF2A8DDC44007CC799 /* MyCardsViewController.swift */; };
 		E07B9DDA2A8DDD76007CC799 /* CardCreditCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E07B9DD82A8DDD76007CC799 /* CardCreditCollectionViewCell.swift */; };
-		E07B9DDB2A8DDD76007CC799 /* CardCreditCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E07B9DD92A8DDD76007CC799 /* CardCreditCollectionViewCell.xib */; };
 		E07B9DDD2A8DDE59007CC799 /* PaymentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E07B9DDC2A8DDE59007CC799 /* PaymentViewController.swift */; };
 		E07B9DDF2A8DDE8D007CC799 /* GopayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E07B9DDE2A8DDE8D007CC799 /* GopayViewController.swift */; };
 		E07B9DE82A8DE5F0007CC799 /* AddPayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E07B9DE72A8DE5F0007CC799 /* AddPayViewController.swift */; };
@@ -192,7 +191,6 @@
 		E07B9DCB2A8DDB83007CC799 /* WishlistViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WishlistViewController.swift; sourceTree = "<group>"; };
 		E07B9DCF2A8DDC44007CC799 /* MyCardsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyCardsViewController.swift; sourceTree = "<group>"; };
 		E07B9DD82A8DDD76007CC799 /* CardCreditCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardCreditCollectionViewCell.swift; sourceTree = "<group>"; };
-		E07B9DD92A8DDD76007CC799 /* CardCreditCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CardCreditCollectionViewCell.xib; sourceTree = "<group>"; };
 		E07B9DDC2A8DDE59007CC799 /* PaymentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentViewController.swift; sourceTree = "<group>"; };
 		E07B9DDE2A8DDE8D007CC799 /* GopayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GopayViewController.swift; sourceTree = "<group>"; };
 		E07B9DE72A8DE5F0007CC799 /* AddPayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPayViewController.swift; sourceTree = "<group>"; };
@@ -656,7 +654,6 @@
 			isa = PBXGroup;
 			children = (
 				E07B9DD82A8DDD76007CC799 /* CardCreditCollectionViewCell.swift */,
-				E07B9DD92A8DDD76007CC799 /* CardCreditCollectionViewCell.xib */,
 			);
 			path = Card;
 			sourceTree = "<group>";
@@ -748,7 +745,6 @@
 				E09396692A705F6D003445B3 /* LaunchScreen.storyboard in Resources */,
 				E057A4582A70ACC300A8EC00 /* Inter-Light-BETA.ttf in Resources */,
 				E057A4562A70ACC300A8EC00 /* SIL Open Font License.txt in Resources */,
-				E07B9DDB2A8DDD76007CC799 /* CardCreditCollectionViewCell.xib in Resources */,
 				E057A4592A70ACC300A8EC00 /* Inter-SemiBold.ttf in Resources */,
 				E057A4502A70ACC300A8EC00 /* Inter-Italic.ttf in Resources */,
 				E057A4492A70ACC300A8EC00 /* Inter-MediumItalic.ttf in Resources */,

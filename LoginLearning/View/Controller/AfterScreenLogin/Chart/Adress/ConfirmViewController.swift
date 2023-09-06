@@ -15,14 +15,12 @@ class ConfirmViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
     
-
+    @IBAction func backActionBtn(_ sender: UIButton) {
+        self.navigationController?.popViewController(animated: true)
+    }
+    
     @IBAction func goToactionBtn(_ sender: UIButton) {
-//        let mainStoryboard = UIStoryboard(name: "Main", bundle: Bundle.main)
-//        let vc: UITabBarController = mainStoryboard.instantiateViewController(withIdentifier: "TabBarViewController") as! UITabBarController
-//        vc.selectedIndex = index
-//        _ = vc.selectedViewController
-//
-//self.navigationController?.view.window?.windowScene?.keyWindow?.rootViewController = vc
+
         let homeVC = self.storyboard?.instantiateViewController(withIdentifier: "TabBarViewController") as! TabBarViewController
         self.navigationController?.pushViewController(homeVC, animated: true)
     }

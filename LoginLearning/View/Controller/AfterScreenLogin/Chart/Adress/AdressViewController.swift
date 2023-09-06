@@ -10,7 +10,7 @@ import UIKit
 
 protocol BtnBackDelegate: AnyObject {
     func backOrderUp()
-    func sendAdressOrder(country: String, city: String, idAdress: Int)
+    func sendAdressOrder(country: String, city: String, idAdress: Int, isChooseAdress: Bool)
     func sendCard(numberCard: String, isChoose: Bool)
     func idAdress(id: Int)
 }
@@ -124,7 +124,10 @@ extension AdressViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let adress = adressVM.resultAdress.data[indexPath.item]
-        delegate?.sendAdressOrder(country: adress.country, city: adress.city, idAdress: adress.id)
+        delegate?.sendAdressOrder(country: adress.country, city: adress.city, idAdress: adress.id, isChooseAdress: true)
+//        if let destinationVC = self.presentingViewController as? OrderViewController {
+//            destinationVC.idAdres = adress.id
+//                  }
         self.navigationController?.popViewController(animated: true)
         
         

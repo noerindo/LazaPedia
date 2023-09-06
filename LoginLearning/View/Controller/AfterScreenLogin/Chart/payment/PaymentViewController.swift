@@ -61,15 +61,16 @@ class PaymentViewController: UIViewController {
         
         collectionCard.dataSource = self
         collectionCard.delegate = self
-        collectionCard.register(UINib(nibName: "CardCreditCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "CardCreditCollectionViewCell")
+        collectionCard.register(CardCreditCollectionViewCell.self, forCellWithReuseIdentifier: CardCreditCollectionViewCell.identifier)
         cardVM.loadCard {
-            DispatchQueue.main.async {
+            DispatchQueue.main.async { [self] in
                 self.collectionCard.reloadData()
+                if cardVM.cardList.count != 0 {
+                    let indexPath = IndexPath(item: 0, section: 0)
+                    self.configurePayment(indexPath: indexPath)
+                    emptyLabel.isHidden = false
+                }
             }
-        }
-        if cardVM.cardCount != 0 {
-            self.configurePayment(data: cardVM.cardList.first!)
-            emptyLabel.isHidden = false
         }
     }
     
@@ -87,17 +88,24 @@ class PaymentViewController: UIViewController {
     
     @objc private func reloadCard() {
         cardVM.loadCard {
-            DispatchQueue.main.async {
+            DispatchQueue.main.async { [self] in
                 self.collectionCard.reloadData()
+                if cardVM.cardList.count != 0 {
+                    let indexPath = IndexPath(item: 0, section: 0)
+                    self.configurePayment(indexPath: indexPath)
+                    emptyLabel.isHidden = false
+                }
             }
         }
     }
     
-    func configurePayment(data: Card) {
-        self.nameCardView.text = data.nameCard
-        self.numberCard.text = data.numberCard
-        self.expCardView.text = "\(data.expMonCard) / \(data.expYearCard)"
-        self.cvvCardView.text = "\(data.cvv)"
+    func configurePayment(indexPath: IndexPath) {
+        selectedIndexPath = indexPath
+        let card = cardVM.cardList[indexPath.item]
+        self.nameCardView.text = card.nameCard
+        self.numberCard.text = card.numberCard
+        self.expCardView.text = "\(card.expMonCard) / \(card.expYearCard)"
+        self.cvvCardView.text = "\(card.cvv)"
         self.collectionCard.reloadData()
     }
     
@@ -145,9 +153,12 @@ extension PaymentViewController: UICollectionViewDelegate, UICollectionViewDataS
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        if let cell = collectionCard.dequeueReusableCell(withReuseIdentifier: "CardCreditCollectionViewCell", for: indexPath) as? CardCreditCollectionViewCell {
+        if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CardCreditCollectionViewCell.identifier, for: indexPath) as? CardCreditCollectionViewCell {
             let cellList = cardVM.cardList[indexPath.item]
             cell.configureCard(data: cellList)
+//            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+//                cell.configureCard(data: cellList)
+//            }
             return cell
             
         }
@@ -155,21 +166,20 @@ extension PaymentViewController: UICollectionViewDelegate, UICollectionViewDataS
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        selectedIndexPath = indexPath
-        self.configurePayment(data: cardVM.cardList[indexPath.item])
+        self.configurePayment(indexPath: indexPath)
         
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: 290, height: 190)
+        let width = view.bounds.width
+        let heightToWidthRatio: Double = Double(200) / Double(300)
+        let height = width * heightToWidthRatio
+        return CGSize(width: CGFloat(width), height: CGFloat(height))
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return 50
-    }
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        return UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
-    }
+            return 0
+        }
      func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
          // Menggunakan if let untuk memeriksa apakah selectedCellIndex tidak nil
          guard let selectedIndexPath = selectedIndexPath else { return }
@@ -179,8 +189,7 @@ extension PaymentViewController: UICollectionViewDelegate, UICollectionViewDataS
          // Dapatkan bagian (section) dari selectedIndexPath
          let selectedSection = selectedIndexPath.section
          let newIndexPath = IndexPath(item: currentIndex, section: selectedSection)
-         let card = cardVM.cardList[newIndexPath.item]
-         self.configurePayment(data: card)
+         self.configurePayment(indexPath: newIndexPath)
          if currentIndex != selectedIndexPath.row {
 
          }

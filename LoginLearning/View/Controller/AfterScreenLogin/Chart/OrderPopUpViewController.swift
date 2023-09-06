@@ -17,6 +17,7 @@ class OrderPopUpViewController: UIViewController {
     let orderMV = OrderViewModel()
     let adressVM = AdressViewModel()
     var idAdress: Int = 0
+    var isChooseAdress: Bool = false
     var isChooseCard: Bool = false
     
     @IBOutlet weak var numberCardText: UILabel!
@@ -41,13 +42,14 @@ class OrderPopUpViewController: UIViewController {
                 self.setDataOrder(orderInfo: self.orderMV.resultOrderInfo!)
             }
         }
-        if idAdress != 0 {
+        if isChooseAdress != true {
             adressVM.loadAdress { adress in
                 DispatchQueue.main.async { [self] in
                     let dataAdress = adressVM.resultAdress.data
                     if !dataAdress.isEmpty {
                         cityText.text = "\(dataAdress.first!.city)"
                         countryText.text = "\(dataAdress.first!.country)"
+                        idAdress = dataAdress.first!.id
                     }
                 }
             }
@@ -59,25 +61,26 @@ class OrderPopUpViewController: UIViewController {
                 self.setDataOrder(orderInfo: self.orderMV.resultOrderInfo!)
             }
         }
-        if idAdress != 0 {
+        if isChooseAdress != true {
             adressVM.loadAdress { adress in
                 DispatchQueue.main.async { [self] in
                     let dataAdress = adressVM.resultAdress.data
                     if !dataAdress.isEmpty {
                         cityText.text = "\(dataAdress.first!.city)"
                         countryText.text = "\(dataAdress.first!.country)"
+                        idAdress = dataAdress.first!.id
                     }
                 }
             }
         }
     }
     
-    override func viewDidDisappear(_ animated: Bool) {
-        super.viewDidDisappear(animated)
-        if let destinationVC = self.presentingViewController as? OrderViewController {
-            destinationVC.idAdres = idAdress
-            }
-    }
+//    override func viewDidDisappear(_ animated: Bool) {
+//        super.viewDidDisappear(animated)
+//        if let destinationVC = self.presentingViewController as? OrderViewController {
+//            destinationVC.idAdres = idAdress
+//            }
+//    }
     
     func setDataOrder(orderInfo: OrderInfo) {
         self.totalView.text = "$\(orderInfo.total)".formatDecimal()
