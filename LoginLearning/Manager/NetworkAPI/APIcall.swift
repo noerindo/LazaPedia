@@ -13,7 +13,9 @@ struct API {
 
 protocol Endpoint {
     var url: String { get }
+    
 }
+
 
 enum Endpoints {
     enum Gets: Endpoint {
@@ -93,4 +95,11 @@ enum Endpoints {
         }
     }
 }
+
+//enum HttpMethod: String {
+//    case GET = "GET"
+//    case POST = "POST"
+//    case PUT = "PUT"
+//    case DELETE = "DELETE"
+//}
 

@@ -13,5 +13,6 @@ struct Card {
     var expMonCard: String = ""
     var cvv: String = ""
     var expYearCard : String = ""
+    var userId : Int32 = 0
 }
 

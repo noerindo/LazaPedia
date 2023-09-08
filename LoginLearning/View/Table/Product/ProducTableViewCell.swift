@@ -15,7 +15,7 @@ protocol ProductTableViewCellDelegate: AnyObject {
 
 class ProducTableViewCell: UITableViewCell {
     
-    let productMV = ProductViewModel()
+    let viewModel = ProducTableVM()
     var produkFilter: [ProducList] = []
     @IBOutlet weak var viewAllBtn: UIButton!
     @IBOutlet weak var collectionProduct: DynamicHeightCollectionView!
@@ -32,7 +32,7 @@ class ProducTableViewCell: UITableViewCell {
         
         let cellNib = UINib( nibName: "ProducCollectionViewCell", bundle:  nil)
         self.collectionProduct.register(cellNib, forCellWithReuseIdentifier: "ProducCollectionViewCell" )
-        productMV.loadProductAll {
+        viewModel.loadProductAll {
             DispatchQueue.main.async {
                 self.collectionProduct.reloadData()
                 self.delegate?.fetchApiDone()
@@ -43,7 +43,7 @@ class ProducTableViewCell: UITableViewCell {
     @IBAction func viewAllAction(_ sender: UIButton) {
         if let productAllVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ViewAllViewController") as? ViewAllViewController {
                    productAllVC.modalPresentationStyle = .fullScreen
-            productAllVC.kodeAll = "Product"
+            productAllVC.configure(kodeLabel: "Product")
                    if let navigationController = self.window?.rootViewController as? UINavigationController {
                        navigationController.pushViewController(productAllVC, animated: false)
                    }
@@ -61,7 +61,7 @@ extension ProducTableViewCell: UICollectionViewDelegate, UICollectionViewDataSou
         if isSearchBar == true {
             return produkFilter.count
         } else {
-            return min(6, productMV.productsCount)
+            return min(6, viewModel.productsCount)
         }
        
     }
@@ -72,7 +72,7 @@ extension ProducTableViewCell: UICollectionViewDelegate, UICollectionViewDataSou
                 let cellList = produkFilter[indexPath.item]
                 cell.configure(data: cellList)
             } else {
-                let cellList = productMV.resultProduct.data[indexPath.item]
+                let cellList = viewModel.resultProduct.data[indexPath.item]
                 cell.configure(data: cellList)
             }
 
@@ -97,7 +97,7 @@ extension ProducTableViewCell: UICollectionViewDelegate, UICollectionViewDataSou
         if isSearchBar == true {
             delegate?.scDetailProduct(product: produkFilter[indexPath.item])
         } else {
-            delegate?.scDetailProduct(product:productMV.resultProduct.data[indexPath.item])
+            delegate?.scDetailProduct(product:viewModel.resultProduct.data[indexPath.item])
         }
 
     }
@@ -107,7 +107,7 @@ extension ProducTableViewCell: HomeProductionDelegate {
     
     func fetchSearch(isActive: Bool, textString: String) {
         isSearchBar = isActive
-        produkFilter = productMV.resultProduct.data.filter{$0.name.lowercased().contains(textString.lowercased())}
+        produkFilter = viewModel.resultProduct.data.filter{$0.name.lowercased().contains(textString.lowercased())}
         self.collectionProduct.reloadData()
     }
 }

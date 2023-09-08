@@ -22,6 +22,7 @@ class CardDataManager{
         addCard.setValue(card.cvv, forKey: "cvvCard")
         addCard.setValue(card.expMonCard, forKey: "expMonCard")
         addCard.setValue(card.expYearCard, forKey: "expYearCard")
+        addCard.setValue(card.userId, forKey: "userId")
         
         do {
             try context.save()
@@ -35,7 +36,14 @@ class CardDataManager{
     //read
     func getCard(completion: @escaping (_ card: [Card]) -> Void) {
         guard let context = appDelegate?.persistentContainer.viewContext else { return }
+    
+        guard let data = UserDefaults.standard.object(forKey: "UserProfileDefault") as? Data,
+        let profile = try? JSONDecoder().decode(ProfileUser.self, from: data) else { return }
+        let userID = profile.data.id
         let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "CardData")
+        fetchRequest.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [
+            NSPredicate(format: "userId = %@", String(userID))
+        ])
         
         do {
             let results = try context.fetch(fetchRequest)
@@ -45,7 +53,8 @@ class CardDataManager{
                                 numberCard: result.value(forKey: "numberCard") as? String ?? "",
                                 expMonCard: result.value(forKey: "expMonCard") as? String ?? "",
                                 cvv: result.value(forKey: "cvvCard") as? String ?? "",
-                                expYearCard: result.value(forKey: "expYearCard") as? String ?? ""
+                                expYearCard: result.value(forKey: "expYearCard") as? String ?? "",
+                                userId: result.value(forKey: "userId") as! Int32
                                 )
                 cards.append(card)
             }
@@ -56,28 +65,49 @@ class CardDataManager{
     }
     
     // delete
-    func deleteCard(_ numberCard: String, completion: @escaping((String)) -> Void) {
+    func deleteCard(_ creditCard: Card, completion: @escaping((String)) -> Void) {
         guard let context = appDelegate?.persistentContainer.viewContext else { return }
+        
+        guard let data = UserDefaults.standard.object(forKey: "UserProfileDefault") as? Data,
+        let profile = try? JSONDecoder().decode(ProfileUser.self, from: data) else { return }
+        let userID = profile.data.id
+        
         context.perform {
             let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "CardData")
             fetchRequest.fetchLimit = 1
-            fetchRequest.predicate = NSPredicate(format: "numberCard = %@", numberCard)
+            
+            fetchRequest.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [
+                NSPredicate(format: "numberCard = %@", creditCard.numberCard),
+                NSPredicate(format: "userId = %@", String(userID))
+            ])
+            
+            
             let batchDeleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
             batchDeleteRequest.resultType = .resultTypeCount
             if let batchDeleteResult =
                 try? context.execute(batchDeleteRequest) as? NSBatchDeleteResult,
                 batchDeleteResult.result != nil {
-                completion("hapus berhasil: \(numberCard)")
-                print("hapus berhasil: \(numberCard)")
+                completion("success deleted card")
+               
             }
         }
     }
      //update
     func updateCard(_ card: Card, _ numberCard: String) {
         guard let context = appDelegate?.persistentContainer.viewContext else { return }
+        
+        guard let data = UserDefaults.standard.object(forKey: "UserProfileDefault") as? Data,
+        let profile = try? JSONDecoder().decode(ProfileUser.self, from: data) else { return }
+        let userID = profile.data.id
+        
         context.perform {
             let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "CardData")
-            fetchRequest.predicate = NSPredicate(format: "numberCard = %@", numberCard)
+            
+            fetchRequest.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [
+                NSPredicate(format: "numberCard = %@", numberCard),
+                NSPredicate(format: "userId = %@", String(userID))
+            ])
+            
             if let results = try? context.fetch(fetchRequest) {
                 do {
                     var _: NSManagedObject?

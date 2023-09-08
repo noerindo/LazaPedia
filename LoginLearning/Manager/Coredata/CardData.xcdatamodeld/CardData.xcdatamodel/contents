@@ -6,5 +6,6 @@
         <attribute name="expYearCard" optional="YES" attributeType="String"/>
         <attribute name="nameCard" optional="YES" attributeType="String"/>
         <attribute name="numberCard" optional="YES" attributeType="String"/>
+        <attribute name="userId" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
     </entity>
 </model>

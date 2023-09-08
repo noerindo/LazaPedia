@@ -13,7 +13,7 @@ protocol BrandTableViewCellDelegate: AnyObject {
 
 class TableViewCell: UITableViewCell {
     
-    let productMV = ProductViewModel()
+    let viewModel =  TableVM()
     weak var delegateMove: BrandTableViewCellDelegate?
     
     @IBOutlet weak var collectionViewBrand: UICollectionView!
@@ -27,7 +27,7 @@ class TableViewCell: UITableViewCell {
         let cellNib = UINib( nibName: "CollectionViewCell", bundle:  nil)
         self.collectionViewBrand.register(cellNib, forCellWithReuseIdentifier: "CollectionViewCell" )
         
-        productMV.loadBrand {
+        viewModel.loadBrand {
             DispatchQueue.main.async {
                 self.collectionViewBrand.reloadData()
             }
@@ -37,7 +37,7 @@ class TableViewCell: UITableViewCell {
     @IBAction func viewAllAction(_ sender: UIButton) {
         if let productAllVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ViewAllViewController") as? ViewAllViewController {
                    productAllVC.modalPresentationStyle = .fullScreen
-            productAllVC.kodeAll = "Brand"
+            productAllVC.configure(kodeLabel: "Brand")
                    if let navigationController = self.window?.rootViewController as? UINavigationController {
                        navigationController.pushViewController(productAllVC, animated: false)
                    }
@@ -52,7 +52,7 @@ class TableViewCell: UITableViewCell {
 extension TableViewCell:  UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return min(3,productMV.brandCount)
+        return min(3, viewModel.brandCount)
     }
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
@@ -61,7 +61,7 @@ extension TableViewCell:  UICollectionViewDelegate, UICollectionViewDataSource, 
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CollectionViewCell", for: indexPath) as? CollectionViewCell {
-            let resultCategori = productMV.resultBrand.description[indexPath.item]
+            let resultCategori = viewModel.resultBrand.description[indexPath.item]
             cell.configure(data: resultCategori)
             return cell
             
@@ -80,7 +80,7 @@ extension TableViewCell:  UICollectionViewDelegate, UICollectionViewDataSource, 
         return CGSize(width: 170, height: 100)
     }
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        delegateMove?.moveBrandProduct(brand: productMV.resultBrand.description[indexPath.item])
+        delegateMove?.moveBrandProduct(brand: viewModel.resultBrand.description[indexPath.item])
         
     }
    
