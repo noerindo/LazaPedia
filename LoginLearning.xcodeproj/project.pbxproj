@@ -92,12 +92,9 @@
 		E07B9DC92A8DDAED007CC799 /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E07B9DC72A8DDAED007CC799 /* TableViewCell.swift */; };
 		E07B9DCA2A8DDAED007CC799 /* TableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E07B9DC82A8DDAED007CC799 /* TableViewCell.xib */; };
 		E07B9DCC2A8DDB83007CC799 /* WishlistViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E07B9DCB2A8DDB83007CC799 /* WishlistViewController.swift */; };
-		E07B9DD02A8DDC44007CC799 /* MyCardsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E07B9DCF2A8DDC44007CC799 /* MyCardsViewController.swift */; };
 		E07B9DDA2A8DDD76007CC799 /* CardCreditCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E07B9DD82A8DDD76007CC799 /* CardCreditCollectionViewCell.swift */; };
 		E07B9DDD2A8DDE59007CC799 /* PaymentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E07B9DDC2A8DDE59007CC799 /* PaymentViewController.swift */; };
-		E07B9DDF2A8DDE8D007CC799 /* GopayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E07B9DDE2A8DDE8D007CC799 /* GopayViewController.swift */; };
 		E07B9DE82A8DE5F0007CC799 /* AddPayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E07B9DE72A8DE5F0007CC799 /* AddPayViewController.swift */; };
-		E07B9DEA2A8DE649007CC799 /* MethodPayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E07B9DE92A8DE649007CC799 /* MethodPayViewController.swift */; };
 		E07B9DEE2A8DE698007CC799 /* AdressTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E07B9DEC2A8DE698007CC799 /* AdressTableViewCell.swift */; };
 		E07B9DEF2A8DE698007CC799 /* AdressTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E07B9DED2A8DE698007CC799 /* AdressTableViewCell.xib */; };
 		E07B9DF12A8DE6D9007CC799 /* AdressViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E07B9DF02A8DE6D9007CC799 /* AdressViewController.swift */; };
@@ -116,7 +113,6 @@
 		E09396642A705F6B003445B3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E09396622A705F6B003445B3 /* Main.storyboard */; };
 		E09396662A705F6D003445B3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E09396652A705F6D003445B3 /* Assets.xcassets */; };
 		E09396692A705F6D003445B3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E09396672A705F6D003445B3 /* LaunchScreen.storyboard */; };
-		E09396732A706975003445B3 /* LoginSosmedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E09396722A706975003445B3 /* LoginSosmedViewController.swift */; };
 		E09396782A7071BF003445B3 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E09396772A7071BF003445B3 /* SignUpViewController.swift */; };
 		E093967C2A7079CD003445B3 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E093967B2A7079CD003445B3 /* LoginViewController.swift */; };
 		E093F0942AA49CD100C34F9F /* CardData.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E093F0922AA49CD100C34F9F /* CardData.xcdatamodeld */; };
@@ -215,12 +211,9 @@
 		E07B9DC72A8DDAED007CC799 /* TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
 		E07B9DC82A8DDAED007CC799 /* TableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TableViewCell.xib; sourceTree = "<group>"; };
 		E07B9DCB2A8DDB83007CC799 /* WishlistViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WishlistViewController.swift; sourceTree = "<group>"; };
-		E07B9DCF2A8DDC44007CC799 /* MyCardsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyCardsViewController.swift; sourceTree = "<group>"; };
 		E07B9DD82A8DDD76007CC799 /* CardCreditCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardCreditCollectionViewCell.swift; sourceTree = "<group>"; };
 		E07B9DDC2A8DDE59007CC799 /* PaymentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentViewController.swift; sourceTree = "<group>"; };
-		E07B9DDE2A8DDE8D007CC799 /* GopayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GopayViewController.swift; sourceTree = "<group>"; };
 		E07B9DE72A8DE5F0007CC799 /* AddPayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPayViewController.swift; sourceTree = "<group>"; };
-		E07B9DE92A8DE649007CC799 /* MethodPayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MethodPayViewController.swift; sourceTree = "<group>"; };
 		E07B9DEC2A8DE698007CC799 /* AdressTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdressTableViewCell.swift; sourceTree = "<group>"; };
 		E07B9DED2A8DE698007CC799 /* AdressTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AdressTableViewCell.xib; sourceTree = "<group>"; };
 		E07B9DF02A8DE6D9007CC799 /* AdressViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdressViewController.swift; sourceTree = "<group>"; };
@@ -241,7 +234,6 @@
 		E09396652A705F6D003445B3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E09396682A705F6D003445B3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E093966A2A705F6D003445B3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		E09396722A706975003445B3 /* LoginSosmedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginSosmedViewController.swift; sourceTree = "<group>"; };
 		E09396772A7071BF003445B3 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		E093967B2A7079CD003445B3 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		E093F0932AA49CD100C34F9F /* CardData.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CardData.xcdatamodel; sourceTree = "<group>"; };
@@ -284,14 +276,10 @@
 		E00F6BBC2AA391B200D10F21 /* Manager */ = {
 			isa = PBXGroup;
 			children = (
-				E093F0912AA49BFE00C34F9F /* Coredata */,
-				E07B9D952A8DCE02007CC799 /* DynamicHeightCollectionView.swift */,
 				E05C0FD02A7219A000962579 /* AccountRegis.swift */,
-				E07B9D932A8DCDE0007CC799 /* IntrinsicTableView.swift */,
+				E093F0912AA49BFE00C34F9F /* Coredata */,
 				E0C74FC12A8F01FD00DCCB32 /* KeychainManager.swift */,
 				E057A5EA2A711A7E00A8EC00 /* NetworkAPI */,
-				E03F9EEC2A9316F3009CED92 /* SliderRating.swift */,
-				E00F6BBD2AA3925C00D10F21 /* SnackBar.swift */,
 			);
 			path = Manager;
 			sourceTree = "<group>";
@@ -469,6 +457,10 @@
 			isa = PBXGroup;
 			children = (
 				E05C0FD22A724EFA00962579 /* Extension View.swift */,
+				E07B9D952A8DCE02007CC799 /* DynamicHeightCollectionView.swift */,
+				E07B9D932A8DCDE0007CC799 /* IntrinsicTableView.swift */,
+				E03F9EEC2A9316F3009CED92 /* SliderRating.swift */,
+				E00F6BBD2AA3925C00D10F21 /* SnackBar.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -492,8 +484,8 @@
 			isa = PBXGroup;
 			children = (
 				E057A5EB2A711AE400A8EC00 /* APIcall.swift */,
-				E034052D2A96051100504886 /* PutImageAPI.swift */,
 				E0A0D8302AAABFE700AAD671 /* NetworkAPI.swift */,
+				E034052D2A96051100504886 /* PutImageAPI.swift */,
 			);
 			path = NetworkAPI;
 			sourceTree = "<group>";
@@ -657,12 +649,9 @@
 		E07B9DE22A8DE53F007CC799 /* Payment */ = {
 			isa = PBXGroup;
 			children = (
-				E07B9DDC2A8DDE59007CC799 /* PaymentViewController.swift */,
-				E07B9DDE2A8DDE8D007CC799 /* GopayViewController.swift */,
-				E07B9DCF2A8DDC44007CC799 /* MyCardsViewController.swift */,
 				E07B9DE72A8DE5F0007CC799 /* AddPayViewController.swift */,
-				E07B9DE92A8DE649007CC799 /* MethodPayViewController.swift */,
 				E01F8FAA2AA834A10027E740 /* EditCardViewController.swift */,
+				E07B9DDC2A8DDE59007CC799 /* PaymentViewController.swift */,
 			);
 			path = Payment;
 			sourceTree = "<group>";
@@ -680,8 +669,8 @@
 		E07B9DFE2A8E06E6007CC799 /* Profile */ = {
 			isa = PBXGroup;
 			children = (
-				E07B9DFF2A8E06F7007CC799 /* ProfileViewController.swift */,
 				E034052B2A95C68A00504886 /* EditProfileViewController.swift */,
+				E07B9DFF2A8E06F7007CC799 /* ProfileViewController.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -717,6 +706,7 @@
 				E057A4332A70AC8000A8EC00 /* Font */,
 				E00F6BBC2AA391B200D10F21 /* Manager */,
 				E057A5E72A7116FC00A8EC00 /* Model */,
+				E09396702A70691D003445B3 /* Controller */,
 				E09396712A706930003445B3 /* View */,
 				E01885F42A74601000ED4B37 /* viewModel */,
 			);
@@ -735,7 +725,6 @@
 		E09396712A706930003445B3 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				E09396702A70691D003445B3 /* Controller */,
 				E00F6BBF2AA392D100D10F21 /* Table */,
 			);
 			path = View;
@@ -746,19 +735,10 @@
 			children = (
 				E093967A2A70721C003445B3 /* ForgotPassword */,
 				E09396792A70720C003445B3 /* Login */,
-				E09396752A707191003445B3 /* LoginSosmed */,
 				E09396762A7071A9003445B3 /* SignUp */,
 				E09396602A705F6B003445B3 /* ViewController.swift */,
 			);
 			path = BeforeLogin;
-			sourceTree = "<group>";
-		};
-		E09396752A707191003445B3 /* LoginSosmed */ = {
-			isa = PBXGroup;
-			children = (
-				E09396722A706975003445B3 /* LoginSosmedViewController.swift */,
-			);
-			path = LoginSosmed;
 			sourceTree = "<group>";
 		};
 		E09396762A7071A9003445B3 /* SignUp */ = {
@@ -1054,7 +1034,6 @@
 				E05C0FD32A724EFA00962579 /* Extension View.swift in Sources */,
 				E07B9DF12A8DE6D9007CC799 /* AdressViewController.swift in Sources */,
 				E03F9EF42A936597009CED92 /* DetailCategoryViewController.swift in Sources */,
-				E07B9DEA2A8DE649007CC799 /* MethodPayViewController.swift in Sources */,
 				E05B65F72AA96B3100A99E69 /* OrderPopUpVM.swift in Sources */,
 				E0747EF92A9849FC0076ADF4 /* SideMenuModel.swift in Sources */,
 				E07B9DE82A8DE5F0007CC799 /* AddPayViewController.swift in Sources */,
@@ -1067,17 +1046,14 @@
 				E09396612A705F6B003445B3 /* ViewController.swift in Sources */,
 				E07B9DC92A8DDAED007CC799 /* TableViewCell.swift in Sources */,
 				E07B9DAB2A8DD116007CC799 /* AddRiviewViewController.swift in Sources */,
-				E07B9DDF2A8DDE8D007CC799 /* GopayViewController.swift in Sources */,
 				E05B65F52AA962AE00A99E69 /* OrderViewVM.swift in Sources */,
 				E07B9DF92A8DE84D007CC799 /* OrderViewController.swift in Sources */,
 				E0C74FC22A8F01FD00DCCB32 /* KeychainManager.swift in Sources */,
-				E09396732A706975003445B3 /* LoginSosmedViewController.swift in Sources */,
 				E07B9DDA2A8DDD76007CC799 /* CardCreditCollectionViewCell.swift in Sources */,
 				E01F8FB82AA872D60027E740 /* ForgotEmailVM.swift in Sources */,
 				E07B9DB72A8DD919007CC799 /* ProducCollectionViewCell.swift in Sources */,
 				E0355C482AAA759F0040BB13 /* ProducTableVM.swift in Sources */,
 				E03EA8E42A97380E00E5E631 /* Adress.swift in Sources */,
-				E07B9DD02A8DDC44007CC799 /* MyCardsViewController.swift in Sources */,
 				E093F0BC2AA4B59D00C34F9F /* CardDataManager.swift in Sources */,
 				E0A0D8312AAABFE700AAD671 /* NetworkAPI.swift in Sources */,
 				E0DE4F0D2A8CB62E000C53FA /* KodePassViewController.swift in Sources */,

@@ -38,12 +38,14 @@ class OrderViewVM {
         return 0
     }
     
-    func loadAdress(completion: @escaping((GetAllAdres) -> Void)) {
+    func loadAdress() {
         getAdress { adress in
-            DispatchQueue.main.async {
-                self.resultAdress.data = adress.data.reversed()
+            DispatchQueue.main.async { [self] in
+                let Primary = adress.data.filter { $0.is_primary != nil}
+                let unPrimary = adress.data.filter { $0.is_primary == nil}
+                resultAdress.data = Primary + unPrimary
+                print("ini coun adress \(resultAdress.data.count)")
             }
-            completion(adress)
         }
     }
     
@@ -239,7 +241,7 @@ class OrderViewVM {
         }
 
     
-    func postChecOut(product: [DataProduct], address_id: Int, onError: @escaping (String) -> Void) {
+    func postChecOut(product: [DataProduct], address_id: Int, onError: @escaping (String) -> Void, completion: @escaping () -> Void) {
         
         guard let url = URL(string: Endpoints.Gets.chekOut.url) else {return}
         var request = URLRequest(url: url)
@@ -272,6 +274,7 @@ class OrderViewVM {
                 onError(createFailed.description)
                 return
             }
+            completion()
         }
         task.resume()
     }
