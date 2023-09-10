@@ -8,8 +8,7 @@
 import UIKit
 
 class AddAdressViewController: UIViewController {
-    var viewModel: AddAdressViewVM!
-    var isPrimaryAdress: Bool = false
+    var viewModel = AddAdressViewVM()
     var isUpdate: Bool = false
 
     @IBOutlet weak var titleVC: UILabel!
@@ -46,34 +45,20 @@ class AddAdressViewController: UIViewController {
     }
     
     func configureUpdate(data: DataAdress) {
-        viewModel = AddAdressViewVM(selectedData: data)
+        viewModel.selectedData = data
     }
     
     func configureViewUpdate() {
-        var dataUpdate = viewModel.selectedData
+        guard let dataUpdate = viewModel.selectedData else {return}
+        
         titleVC.text = "Update Address"
         nameText.text = "\(dataUpdate.receiver_name)"
         phoneText.text = "\(dataUpdate.phone_number)"
         countryText.text = "\(dataUpdate.country)"
         cityText.text = "\(dataUpdate.city)"
-        
-        if dataUpdate.is_primary == true {
-            switchPrimary.isOn = true
-        } else {
-            switchPrimary.isOn = false
-        }
-
+        switchPrimary.isOn = dataUpdate.is_primary ?? false
     }
     
-    
-    @IBAction func isPrimaryAction(_ sender: UISwitch) {
-        if switchPrimary.isOn {
-            isPrimaryAdress = false
-        } else {
-            isPrimaryAdress = true
-        }
-        
-    }
     @IBAction func backBtn(_ sender: UIButton) {
         self.navigationController?.popViewController(animated: true)
     }
@@ -100,10 +85,12 @@ class AddAdressViewController: UIViewController {
         guard let country = countryText.text else {return}
         guard let city = cityText.text else {return}
         guard let phone = phoneText.text else {return}
+        let isPrimary = switchPrimary.isOn
         
         if AcountRegis.invalidNoHp(noHp: phone) {
             if isUpdate == true {
-                viewModel.putAdress(id: self.viewModel.selectedData.id, country: country, city: city, receiver_name: name, phone_number: phone, is_primary: isPrimaryAdress) { result in
+                guard let idUpdate = viewModel.selectedData?.id else {return}
+                viewModel.putAdress(id: idUpdate, country: country, city: city, receiver_name: name, phone_number: phone, is_primary: isPrimary) { result in
                     DispatchQueue.main.async {
                         let alert = UIAlertController(title: "Success", message: "Add Adress Success", preferredStyle: .alert)
                         let okAction = UIAlertAction(title: "OK", style: .default) { [weak self] _ in
@@ -119,7 +106,7 @@ class AddAdressViewController: UIViewController {
                     SnackBarWarning.make(in: self.view, message:error, duration: .lengthShort).show()
                 }
             } else {
-                viewModel.postAdress(country: country, city: city, receiver_name: name, phone_number: phone, is_primary: isPrimaryAdress) { result in
+                viewModel.postAdress(country: country, city: city, receiver_name: name, phone_number: phone, is_primary: isPrimary) { result in
                     DispatchQueue.main.async {
                         let alert = UIAlertController(title: "Success", message: "Add Adress Success", preferredStyle: .alert)
                         let okAction = UIAlertAction(title: "OK", style: .default) { [weak self] _ in

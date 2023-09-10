@@ -42,24 +42,25 @@ extension String {
     func capitalizeFirstLetter() -> String {
         return self.prefix(1).uppercased() + self.lowercased().dropFirst()
     }
-    func formatDecimal() -> String {
-        var text = self
-        if self.hasSuffix(".0") {
-            let start = self.index(self.endIndex, offsetBy: -2)
-            let end = self.endIndex
-            text.removeSubrange(start..<end)
-        }
-        return text
-    }
     
     func dateReview(date: String) -> String {
         let formatter = DateFormatter()
-//        formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
+        formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
         if let formattedDate = formatter.date(from: date) {
             formatter.dateFormat = "d MMM, yyyy"
             return formatter.string(from: formattedDate)
         }
         return date
+    }
+}
+
+extension Int {
+    func formatPrice() -> String {
+        let price = NumberFormatter()
+        price.numberStyle = .decimal
+        price.groupingSeparator = "."
+        let formatPrice = price.string(from: NSNumber(value: self)) ?? ""
+        return "$" + formatPrice
     }
 }
 
@@ -75,6 +76,9 @@ extension Notification.Name {
     }
     static var UpdateCard: Notification.Name {
         return .init("CardUpdate")
+    }
+    static var UpdateRiview: Notification.Name {
+        return .init("RiviewUpdate")
     }
 }
 

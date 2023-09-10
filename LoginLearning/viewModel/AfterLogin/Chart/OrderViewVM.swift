@@ -15,6 +15,9 @@ class OrderViewVM {
     var resultAllSize = [Size]()
     var resultAdress = GetAllAdres(data: [DataAdress]())
     var cardList = [Card]()
+    var totalPrice: Int?
+    
+    var reloadCollectionView: (() -> Void)?
     
     private lazy var cardDataManager: CardDataManager = {
         return CardDataManager()
@@ -66,10 +69,23 @@ class OrderViewVM {
     func  loadProductChart(completion: @escaping (() -> Void)) {
         getAllChart { result in
             DispatchQueue.main.async { [weak self] in
-                self?.resultProductChart = (result?.data.products.reversed())!
-                self?.resultOrderInfo = result!.data.order_info
+                guard let result = result else { return }
+                guard let products = result.data.products else {
+                    self?.resultOrderInfo = result.data.order_info
+                    self?.resultProductChart.removeAll()
+                    self?.resultzproductOrder.removeAll()
+                    self?.reloadCollectionView?()
+                    completion()
+                    return
+                }
+                
+                self?.resultProductChart = products.reversed()
+                
+                self?.resultOrderInfo = result.data.order_info
+                
+//                self?.totalPrice = result.data.order_info.total
                 self?.resultzproductOrder.removeAll()
-                result?.data.products.forEach { productChart in
+                products.forEach { productChart in
                     let dataProduct = DataProduct(id: productChart.id, quantity: productChart.quantity)
                     self?.resultzproductOrder.append(dataProduct)
                 }
@@ -174,7 +190,7 @@ class OrderViewVM {
         task.resume()
     }
     
-    func putProductChart(idProduct: Int, idSize: Int) {
+    func putProductChart(idProduct: Int, idSize: Int, completion: @escaping(DataChart?) -> Void, onError: @escaping (String) -> Void)  {
         guard let url = URL(string: Endpoints.Gets.chart(idProduct: idProduct, idSize: idSize).url) else {return}
         var request = URLRequest(url: url)
         request.httpMethod = "PUT"
@@ -184,29 +200,43 @@ class OrderViewVM {
             
             guard let httpRespon = response as? HTTPURLResponse else { return}
             guard let data = data else {return}
-            print("kode put:  \(httpRespon.statusCode)")
-            
-        }
-        task.resume()
-    }
-    
-    func postChart(idProduct: Int, idSize: Int, completion: @escaping((ChartPost?) -> Void)) {
-        guard let url = URL(string: Endpoints.Gets.chart(idProduct: idProduct, idSize: idSize).url) else {return}
-        var request = URLRequest(url: url)
-        request.httpMethod = "POST"
-        let accesToken = KeychainManager.shared.getTokenValid()
-        request.setValue("Bearer \(accesToken)", forHTTPHeaderField: "X-Auth-Token")
-        let task = URLSession.shared.dataTask(with: request) { data, response, error in
-            guard let data = data else {return}
-            do {
-                let result = try JSONDecoder().decode(ChartPost.self, from: data)
-                completion(result)
-            } catch {
-                print("Gagal Add Chart")
+            print("Kode pur \(httpRespon.statusCode)")
+            if httpRespon.statusCode != 200 {
+                onError("\(error)")
+                return
+            }
+            if let result = try? JSONDecoder().decode(ChartUpdateCell.self, from: data) {
+                completion(result.data)
+            } else if let result = try? JSONDecoder().decode(ResponPut.self, from: data) {
+                onError(result.status)
             }
         }
         task.resume()
     }
+    
+    func postChart(idProduct: Int, idSize: Int, completion: @escaping((Int?) -> Void)) {
+            guard let url = URL(string: Endpoints.Gets.chart(idProduct: idProduct, idSize: idSize).url) else {return}
+            var request = URLRequest(url: url)
+            request.httpMethod = "POST"
+            let accesToken = KeychainManager.shared.getTokenValid()
+            request.setValue("Bearer \(accesToken)", forHTTPHeaderField: "X-Auth-Token")
+            let task = URLSession.shared.dataTask(with: request) { data, response, error in
+                guard let httpRespon = response as? HTTPURLResponse else { return}
+                guard let data = data else {return}
+                
+                if httpRespon.statusCode == 201 {
+                    do {
+                        let result = try JSONDecoder().decode(ChartUpdateCell.self, from: data)
+                        completion(result.data?.quantity)
+                    } catch {
+                        print("Gagal Add Chart")
+                    }
+                }
+                
+
+            }
+            task.resume()
+        }
 
     
     func postChecOut(product: [DataProduct], address_id: Int, onError: @escaping (String) -> Void) {

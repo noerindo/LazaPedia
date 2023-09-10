@@ -65,8 +65,7 @@
 		E05B660E2AA9C7D100A99E69 /* ChangePasswordVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = E05B660D2AA9C7D100A99E69 /* ChangePasswordVM.swift */; };
 		E05B66112AA9C90200A99E69 /* ViewAllVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = E05B66102AA9C90200A99E69 /* ViewAllVM.swift */; };
 		E05B66132AA9CC1F00A99E69 /* EditProfileVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = E05B66122AA9CC1F00A99E69 /* EditProfileVM.swift */; };
-		E05C0FCF2A72162200962579 /* TwitterConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = E05C0FCE2A72162200962579 /* TwitterConstants.swift */; };
-		E05C0FD12A7219A000962579 /* GetUserProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = E05C0FD02A7219A000962579 /* GetUserProfile.swift */; };
+		E05C0FD12A7219A000962579 /* AccountRegis.swift in Sources */ = {isa = PBXBuildFile; fileRef = E05C0FD02A7219A000962579 /* AccountRegis.swift */; };
 		E05C0FD32A724EFA00962579 /* Extension View.swift in Sources */ = {isa = PBXBuildFile; fileRef = E05C0FD22A724EFA00962579 /* Extension View.swift */; };
 		E05C0FD72A73B30500962579 /* HomeProducViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E05C0FD62A73B30500962579 /* HomeProducViewController.swift */; };
 		E0747EF92A9849FC0076ADF4 /* SideMenuModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0747EF82A9849FC0076ADF4 /* SideMenuModel.swift */; };
@@ -122,6 +121,7 @@
 		E093967C2A7079CD003445B3 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E093967B2A7079CD003445B3 /* LoginViewController.swift */; };
 		E093F0942AA49CD100C34F9F /* CardData.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E093F0922AA49CD100C34F9F /* CardData.xcdatamodeld */; };
 		E093F0BC2AA4B59D00C34F9F /* CardDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E093F0BB2AA4B59D00C34F9F /* CardDataManager.swift */; };
+		E0A0D8312AAABFE700AAD671 /* NetworkAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0A0D8302AAABFE700AAD671 /* NetworkAPI.swift */; };
 		E0C1DC892AA1E9A600B9EC4D /* ChangePasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0C1DC882AA1E9A600B9EC4D /* ChangePasswordViewController.swift */; };
 		E0C74FC22A8F01FD00DCCB32 /* KeychainManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0C74FC12A8F01FD00DCCB32 /* KeychainManager.swift */; };
 		E0DE4F0D2A8CB62E000C53FA /* KodePassViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0DE4F0C2A8CB62E000C53FA /* KodePassViewController.swift */; };
@@ -188,8 +188,7 @@
 		E05B660D2AA9C7D100A99E69 /* ChangePasswordVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePasswordVM.swift; sourceTree = "<group>"; };
 		E05B66102AA9C90200A99E69 /* ViewAllVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewAllVM.swift; sourceTree = "<group>"; };
 		E05B66122AA9CC1F00A99E69 /* EditProfileVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileVM.swift; sourceTree = "<group>"; };
-		E05C0FCE2A72162200962579 /* TwitterConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TwitterConstants.swift; sourceTree = "<group>"; };
-		E05C0FD02A7219A000962579 /* GetUserProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetUserProfile.swift; sourceTree = "<group>"; };
+		E05C0FD02A7219A000962579 /* AccountRegis.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountRegis.swift; sourceTree = "<group>"; };
 		E05C0FD22A724EFA00962579 /* Extension View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension View.swift"; sourceTree = "<group>"; };
 		E05C0FD62A73B30500962579 /* HomeProducViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeProducViewController.swift; sourceTree = "<group>"; };
 		E0747EF82A9849FC0076ADF4 /* SideMenuModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuModel.swift; sourceTree = "<group>"; };
@@ -247,6 +246,7 @@
 		E093967B2A7079CD003445B3 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		E093F0932AA49CD100C34F9F /* CardData.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CardData.xcdatamodel; sourceTree = "<group>"; };
 		E093F0BB2AA4B59D00C34F9F /* CardDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardDataManager.swift; sourceTree = "<group>"; };
+		E0A0D8302AAABFE700AAD671 /* NetworkAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkAPI.swift; sourceTree = "<group>"; };
 		E0C1DC882AA1E9A600B9EC4D /* ChangePasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePasswordViewController.swift; sourceTree = "<group>"; };
 		E0C74FC12A8F01FD00DCCB32 /* KeychainManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainManager.swift; sourceTree = "<group>"; };
 		E0DE4F0C2A8CB62E000C53FA /* KodePassViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KodePassViewController.swift; sourceTree = "<group>"; };
@@ -286,7 +286,7 @@
 			children = (
 				E093F0912AA49BFE00C34F9F /* Coredata */,
 				E07B9D952A8DCE02007CC799 /* DynamicHeightCollectionView.swift */,
-				E05C0FD02A7219A000962579 /* GetUserProfile.swift */,
+				E05C0FD02A7219A000962579 /* AccountRegis.swift */,
 				E07B9D932A8DCDE0007CC799 /* IntrinsicTableView.swift */,
 				E0C74FC12A8F01FD00DCCB32 /* KeychainManager.swift */,
 				E057A5EA2A711A7E00A8EC00 /* NetworkAPI */,
@@ -482,7 +482,6 @@
 				E07B9D8F2A8DCD77007CC799 /* ProducModel.swift */,
 				E03669872A90A67C00AA089E /* RiviewModel.swift */,
 				E0747EF82A9849FC0076ADF4 /* SideMenuModel.swift */,
-				E05C0FCE2A72162200962579 /* TwitterConstants.swift */,
 				E057A5E82A71173800A8EC00 /* UserModel.swift */,
 				E0858D832A949D2800FA313A /* Wishlists.swift */,
 			);
@@ -494,6 +493,7 @@
 			children = (
 				E057A5EB2A711AE400A8EC00 /* APIcall.swift */,
 				E034052D2A96051100504886 /* PutImageAPI.swift */,
+				E0A0D8302AAABFE700AAD671 /* NetworkAPI.swift */,
 			);
 			path = NetworkAPI;
 			sourceTree = "<group>";
@@ -1030,7 +1030,6 @@
 				E07B9E002A8E06F7007CC799 /* ProfileViewController.swift in Sources */,
 				E0858D822A9499F500FA313A /* WishlistVM.swift in Sources */,
 				E01F8FAB2AA834A10027E740 /* EditCardViewController.swift in Sources */,
-				E05C0FCF2A72162200962579 /* TwitterConstants.swift in Sources */,
 				E04017A92AA92504007075CD /* LoginVM.swift in Sources */,
 				E07B9DAE2A8DD188007CC799 /* SideMenuViewController.swift in Sources */,
 				E057A5EC2A711AE400A8EC00 /* APIcall.swift in Sources */,
@@ -1047,7 +1046,7 @@
 				E093967C2A7079CD003445B3 /* LoginViewController.swift in Sources */,
 				E07B9DBF2A8DD9EF007CC799 /* ProducTableViewCell.swift in Sources */,
 				E07B9DCC2A8DDB83007CC799 /* WishlistViewController.swift in Sources */,
-				E05C0FD12A7219A000962579 /* GetUserProfile.swift in Sources */,
+				E05C0FD12A7219A000962579 /* AccountRegis.swift in Sources */,
 				E07B9DC52A8DDA9D007CC799 /* CollectionViewCell.swift in Sources */,
 				E0355C4A2AAA77210040BB13 /* ProfileVM.swift in Sources */,
 				E05B660B2AA9C47600A99E69 /* ReviewVM.swift in Sources */,
@@ -1080,6 +1079,7 @@
 				E03EA8E42A97380E00E5E631 /* Adress.swift in Sources */,
 				E07B9DD02A8DDC44007CC799 /* MyCardsViewController.swift in Sources */,
 				E093F0BC2AA4B59D00C34F9F /* CardDataManager.swift in Sources */,
+				E0A0D8312AAABFE700AAD671 /* NetworkAPI.swift in Sources */,
 				E0DE4F0D2A8CB62E000C53FA /* KodePassViewController.swift in Sources */,
 				E057A45C2A70B23D00A8EC00 /* ResetPasswordViewController.swift in Sources */,
 				E093965D2A705F6B003445B3 /* AppDelegate.swift in Sources */,
@@ -1176,7 +1176,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -1230,7 +1230,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;

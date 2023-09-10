@@ -14,6 +14,8 @@ class PaymentVM {
         return CardDataManager()
     }()
     
+    var reloadCollectionView: (() -> Void)?
+    
     var cardCount: Int {
         get {
             return cardList.count
@@ -22,9 +24,10 @@ class PaymentVM {
     
     func loadCard(completion: @escaping (() -> Void)) {
         self.cardDataManager.getCard { card in
-            DispatchQueue.main.async {
-                self.cardList.removeAll()
-                self.cardList.append(contentsOf: card)
+            DispatchQueue.main.async { [self] in
+                cardList.removeAll()
+                cardList.append(contentsOf: card)
+                reloadCollectionView?()
             }
             completion()
         }

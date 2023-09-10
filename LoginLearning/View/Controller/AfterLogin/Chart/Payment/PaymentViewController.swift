@@ -61,6 +61,10 @@ class PaymentViewController: UIViewController {
         collectionCard.dataSource = self
         collectionCard.delegate = self
         collectionCard.register(CardCreditCollectionViewCell.self, forCellWithReuseIdentifier: CardCreditCollectionViewCell.identifier)
+        
+        cardVM.reloadCollectionView = { [weak self] in
+            self?.collectionCard.reloadData()
+        }
         cardVM.loadCard {
             DispatchQueue.main.async { [self] in
                 self.collectionCard.reloadData()
@@ -87,13 +91,33 @@ class PaymentViewController: UIViewController {
     
     @objc private func reloadCard() {
         cardVM.loadCard {
+            print("masuk reload card")
             DispatchQueue.main.async { [self] in
                 self.collectionCard.reloadData()
                 if cardVM.cardList.count != 0 {
-                    let indexPath = IndexPath(item: 0, section: 0)
-                    self.configurePayment(indexPath: indexPath)
+                    if let selectedIndexPath = selectedIndexPath {
+                        var previousIndexPath: IndexPath?
+                        let currentItem = selectedIndexPath.item
+                        if selectedIndexPath.item == 0 {
+                            let totalItemsInSection = cardVM.cardList.count
+                            previousIndexPath = IndexPath(item: currentItem, section: selectedIndexPath.section)
+                            
+                        } else if selectedIndexPath.item > 0 {
+                            let totalItemsInSection = cardVM.cardList.count
+                            previousIndexPath = IndexPath(item: totalItemsInSection - 1, section: selectedIndexPath.section)
+                        }
+                        if let previousIndexPath = previousIndexPath {
+                            self.configurePayment(indexPath: previousIndexPath)
+                        }
+                    }
                     emptyLabel.isHidden = false
+                } else {
+                    self.nameCardView.text = ""
+                    self.numberCard.text = ""
+                    self.expCardView.text = ""
+                    self.cvvCardView.text = ""
                 }
+                
             }
         }
     }
@@ -115,11 +139,6 @@ class PaymentViewController: UIViewController {
         guard let exp = expCardView.text else {return}
         guard let cvv = cvvCardView.text else {return}
         
-//        editAdressVC.nameCard.text = name
-//        editAdressVC.cvvCard.text = cvv
-//        editAdressVC.expCard.text = exp
-//        editAdressVC.numberCard.text = number
-        
         var expMont = ""
         var expYear = ""
         if let range = exp.firstIndex(of: "/") {
@@ -127,12 +146,15 @@ class PaymentViewController: UIViewController {
             expYear =  String(exp.suffix(from: range).dropFirst())
         }
         
+        guard let dataUser = KeychainManager.shared.getProfileFromKeychain() else {return}
+        
         let selectedCard = Card(
             nameCard: name,
             numberCard: number,
             expMonCard: expMont,
             cvv: cvv,
-            expYearCard: expYear
+            expYearCard: expYear,
+            userId: Int32(dataUser.id)
         )
         
         editAdressVC.configure(selectedCard: selectedCard)
@@ -213,6 +235,18 @@ extension PaymentViewController: UICollectionViewDelegate, UICollectionViewDataS
 
          }
      }
+}
+
+extension PaymentViewController: EditCardViewControllerDelegate {
+    func creditCardUpdated() {
+        reloadCard()
+        DispatchQueue.main.async { [weak self] in
+            guard let self = self else { return }
+            SnackBarSuccess.make(in: self.view, message: "Update success", duration: .lengthShort).show()
+        }
+    }
+    
+    
 }
 
 

@@ -26,6 +26,11 @@ struct ResponUpdate: Codable {
     let status: String
 }
 
+struct profileUpdateRespon: Codable {
+    let status: String
+    let data: DataProfileUser
+}
+
 struct LoginResponse: Codable {
     let status: String
     let data: LoginUser

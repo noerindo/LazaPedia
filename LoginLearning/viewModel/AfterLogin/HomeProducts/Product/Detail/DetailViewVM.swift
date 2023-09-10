@@ -42,8 +42,9 @@ class DetailViewVM {
     func loadWishList(completion: @escaping ((WishlistList) -> Void)) {
         getWishlist { result in
             DispatchQueue.main.async {
+                guard let data = result.data.products else {return}
                 self.listWishlist.removeAll()
-                self.listWishlist.append(contentsOf: result.data.products)
+                self.listWishlist.append(contentsOf: data)
             }
             completion(result)
         }
@@ -110,7 +111,7 @@ class DetailViewVM {
         task.resume()
     }
     
-    func postChart(idProduct: Int, idSize: Int, completion: @escaping((ChartPost?) -> Void)) {
+    func postChart(idProduct: Int, idSize: Int, completion: @escaping((ChartUpdateCell?) -> Void)) {
         guard let url = URL(string: Endpoints.Gets.chart(idProduct: idProduct, idSize: idSize).url) else {return}
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
@@ -119,7 +120,7 @@ class DetailViewVM {
         let task = URLSession.shared.dataTask(with: request) { data, response, error in
             guard let data = data else {return}
             do {
-                let result = try JSONDecoder().decode(ChartPost.self, from: data)
+                let result = try JSONDecoder().decode(ChartUpdateCell.self, from: data)
                 completion(result)
             } catch {
                 print("Gagal Add Chart")

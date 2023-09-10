@@ -27,11 +27,6 @@ class EditProfileViewController: UIViewController {
         }
     }
     
-    @IBOutlet weak var emailUser: UITextField! {
-    didSet {
-        emailUser.addShadow(color: .gray, width: 0.5, text: emailUser)
-       }
-   }
     @IBOutlet weak var fullName: UITextField! {
         didSet {
             fullName.addShadow(color: .gray, width: 0.5, text: fullName)
@@ -56,11 +51,16 @@ class EditProfileViewController: UIViewController {
     
     func setupEdit() {
         let data = viewModel.updateProfile
-        self.userName.text = data.username
-        self.emailUser.text = data.email
-        self.fullName.text = data.full_name
-        let imgURl = URL(string: "\(String(describing: data.image_url))" ?? "" )
+        userName.text = data.username
+        fullName.text = data.full_name
+        guard let imageString = data.image_url else {
+            photoProfile.image = UIImage(systemName: "person.circle.fill")
+            return
+        }
+        
+        let imgURl = URL(string: "\(imageString)")
         self.photoProfile.sd_setImage(with: imgURl)
+       
     }
 
     private func setupView() {
@@ -95,15 +95,10 @@ class EditProfileViewController: UIViewController {
             return
         }
         
-        if !emailUser.hasText {
-            loadingStop()
-            SnackBarWarning.make(in: self.view, message: "Email cannot be empty", duration: .lengthShort).show()
-            return
-        }
         
         guard let userName = userName.text else {return}
         guard let fullName = fullName.text else {return}
-        guard let email = emailUser.text else { return }
+        let email = viewModel.updateProfile.email
         if let image = photoProfile.image {
             media = Media(withImage: image, forKey: "image")
         }

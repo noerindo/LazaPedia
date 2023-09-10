@@ -72,7 +72,6 @@ class LoginVM {
                     print(serializedJson)
                     let result = try JSONDecoder().decode(ProfileUser.self, from: data)
                     completion(result.data)
-                    RememberUser().setCurrentProfile(profile: data)
                 } catch {
                     print(error)
                 }

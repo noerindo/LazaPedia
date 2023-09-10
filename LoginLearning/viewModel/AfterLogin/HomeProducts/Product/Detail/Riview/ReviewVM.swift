@@ -13,6 +13,8 @@ class ReviewVM{
     
     private(set) var idProduct: Int
     
+    var reloadTableView: (() -> Void)?
+    
     init(idProduct: Int) {
         self.idProduct = idProduct
     }
@@ -24,12 +26,15 @@ class ReviewVM{
     }
     
     func loadAllriviewl(completion: @escaping (() -> Void)) {
+        listRiview.removeAll()
         getAllRiview(id: idProduct) { result in
             DispatchQueue.main.async { [self] in
                 resultRiview = result.data
                 var sortedResult = result
                 sortedResult.data.reviews = result.data.reviews.sorted { $0.created_at > $1.created_at } // Sort by created at
                 listRiview.append(contentsOf: sortedResult.data.reviews)
+                reloadTableView?()
+                return
             }
             completion()
         }

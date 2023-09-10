@@ -19,7 +19,7 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Vgf-dj-hki">
-                        <rect key="frame" x="0.0" y="0.0" width="572" height="162"/>
+                        <rect key="frame" x="5" y="5" width="562" height="152"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="cK5-z7-sl2">
                                 <rect key="frame" x="10" y="10" width="100" height="100"/>
@@ -29,7 +29,7 @@
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oOf-rc-EbF">
-                                <rect key="frame" x="125" y="12" width="427" height="36"/>
+                                <rect key="frame" x="125" y="12" width="417" height="36"/>
                                 <string key="text">Men's Tie-Dye T-Shirt
 Nike Sportswear</string>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
@@ -37,13 +37,13 @@ Nike Sportswear</string>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="$45 (-$4.00 Tax)" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lBf-2u-m0p">
-                                <rect key="frame" x="125.00000000000001" y="58" width="130.33333333333337" height="34"/>
+                                <rect key="frame" x="125.00000000000001" y="58" width="130.33333333333337" height="24"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" systemColor="systemGray2Color"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="avU-Lt-GI9">
-                                <rect key="frame" x="125" y="107" width="45" height="45"/>
+                                <rect key="frame" x="125" y="97" width="45" height="45"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="45" id="jdt-sJ-SPp"/>
                                     <constraint firstAttribute="height" constant="45" id="p7t-rN-jVb"/>
@@ -59,7 +59,7 @@ Nike Sportswear</string>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gvv-Kf-Njz">
-                                <rect key="frame" x="211.66666666666666" y="107" width="44.999999999999972" height="45"/>
+                                <rect key="frame" x="246" y="97" width="45" height="45"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="45" id="oCL-al-rq6"/>
                                     <constraint firstAttribute="width" constant="45" id="zw0-Dw-FWN"/>
@@ -74,14 +74,17 @@ Nike Sportswear</string>
                                     <action selector="addOrder:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="kTE-hX-Eod"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zFC-7l-DZx">
-                                <rect key="frame" x="185" y="117" width="11.666666666666657" height="23"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zFC-7l-DZx">
+                                <rect key="frame" x="185" y="107" width="46" height="23"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="46" id="loj-3r-MeL"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="19"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1in-Au-vJl">
-                                <rect key="frame" x="509" y="117.66666666666667" width="48" height="34.333333333333329"/>
+                                <rect key="frame" x="499" y="107.66666666666667" width="48" height="34.333333333333329"/>
                                 <color key="tintColor" red="0.96090131999999995" green="0.96446949240000002" blue="0.98039430380000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" image="trash" catalog="system">
@@ -93,7 +96,7 @@ Nike Sportswear</string>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Size: M" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bSG-aY-nf2">
-                                <rect key="frame" x="501.66666666666669" y="58.000000000000007" width="55.333333333333314" height="20.333333333333336"/>
+                                <rect key="frame" x="491.66666666666669" y="58.000000000000007" width="55.333333333333314" height="20.333333333333336"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" systemColor="systemGray2Color"/>
                                 <nil key="highlightedColor"/>
@@ -125,13 +128,16 @@ Nike Sportswear</string>
                 </subviews>
                 <constraints>
                     <constraint firstItem="Vgf-dj-hki" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="6gc-Vp-RBL"/>
-                    <constraint firstItem="Vgf-dj-hki" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="cx1-AH-6v2"/>
+                    <constraint firstAttribute="bottom" secondItem="Vgf-dj-hki" secondAttribute="bottom" constant="5" id="OUd-nu-VRR"/>
+                    <constraint firstAttribute="trailing" secondItem="Vgf-dj-hki" secondAttribute="trailing" constant="5" id="ZbG-h7-gcp"/>
                     <constraint firstItem="Vgf-dj-hki" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="esO-Qv-vtJ"/>
-                    <constraint firstItem="Vgf-dj-hki" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="uag-XC-3an"/>
+                    <constraint firstItem="Vgf-dj-hki" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="5" id="hzZ-Gm-1wC"/>
+                    <constraint firstItem="Vgf-dj-hki" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="5" id="xJc-CH-BDB"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
+                <outlet property="bgView" destination="Vgf-dj-hki" id="ehm-dl-qAR"/>
                 <outlet property="countOrder" destination="zFC-7l-DZx" id="qNv-od-Chb"/>
                 <outlet property="nameOrder" destination="oOf-rc-EbF" id="dCe-zo-FJG"/>
                 <outlet property="photoOrder" destination="cK5-z7-sl2" id="e1f-mf-Seq"/>

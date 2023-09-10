@@ -11,12 +11,14 @@ import UIKit
 struct ProductAll: Codable {
     var data: [ProducList]
 }
+
 struct ProducList: Codable {
     let id: Int
     let name: String
     let price: Double
     let image_url: String
 }
+
 
 struct AllBrand: Codable {
     let description: [Brand]

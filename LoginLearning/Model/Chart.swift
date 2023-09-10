@@ -7,8 +7,8 @@
 
 import Foundation
 
-struct ChartPost: Codable {
-    let data: DataChart
+struct ChartUpdateCell: Codable {
+    let data: DataChart?
 }
 
 struct CheckoutBody: Codable {
@@ -40,7 +40,7 @@ struct AllChart: Codable {
 }
 
 struct DataAllChart: Codable {
-    let products: [ProductChart]
+    let products: [ProductChart]?
     let order_info: OrderInfo
 }
 
@@ -53,6 +53,7 @@ struct ProductChart: Codable {
     let quantity: Int
     let size: String
 }
+
 struct OrderInfo: Codable {
     let sub_total: Int
     let shipping_cost: Int

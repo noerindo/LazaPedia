@@ -10,7 +10,6 @@ import SnackBar_swift
 
 class LoginViewController: UIViewController {
     private let viewModel = LoginVM()
-    var isRemember: Bool = false
     
     @IBOutlet weak var loadingView: UIActivityIndicatorView! {
         didSet {
@@ -66,14 +65,12 @@ class LoginViewController: UIViewController {
     
     @IBAction func switchRemember(_ sender: UISwitch) {
         if switchRemember.isOn {
-            isRemember = false
-            self.userNameText.text = ""
-        } else {
-            isRemember = true
             self.userNameText.text = UserDefaults.standard.string(forKey: "UserName")
+        } else {
+            self.userNameText.text = ""
         }
-        
     }
+    
     @IBAction func checkFieldUserName(_ sender: UITextField) {
         guard let username = userNameText.text else { return }
         if AcountRegis.invalidUserNAme(userName: username) {
@@ -81,7 +78,6 @@ class LoginViewController: UIViewController {
         } else {
             checkUserName.isHidden = true
         }
-
     }
     
     @IBAction func fogitBtn(_ sender: UIButton) {
@@ -90,14 +86,12 @@ class LoginViewController: UIViewController {
         self.navigationController?.pushViewController(forgotVC , animated: true)
         }
         
-        @IBAction func backActionBtn(_ sender: UIButton) {
-            self.navigationController?.popViewController(animated: true)
-        }
         
     @IBAction func signUpBtn(_ sender: UIButton) {
         let signUpVC = self.storyboard?.instantiateViewController(withIdentifier: "SignUpViewController") as! SignUpViewController
         self.navigationController?.pushViewController(signUpVC, animated: true)
     }
+    
     @IBAction func loginActionBtn(_ sender: UIButton) {
         loadingView.isHidden = false
         loadingView.startAnimating()
@@ -115,13 +109,16 @@ class LoginViewController: UIViewController {
         }
         
         viewModel.postLogin(userName: userName, password: pass) { [self] response in
-                
+                print("Hallo")
                 viewModel.getProfile(token: response!.access_token) { result in
-                    self.loadingStop()
+                    guard let userProfile = result else { return }
                     KeychainManager.shared.saveRefreshToken(token: response!.refresh_token)
                     KeychainManager.shared.saveToken(token: response!.access_token)
-                    UserDefaults.standard.set(true, forKey: "isLogin")
+                    
+                    KeychainManager.shared.saveProfileToKeychain(profile: userProfile)
                     DispatchQueue.main.async {
+                        self.loadingStop()
+                        UserDefaults.standard.set(true, forKey: "isLogin")
                         let homeVC = self.storyboard?.instantiateViewController(withIdentifier: "TabBarViewController") as! TabBarViewController
                         self.navigationController?.pushViewController(homeVC, animated: true)
                     }

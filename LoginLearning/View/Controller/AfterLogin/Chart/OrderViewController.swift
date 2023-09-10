@@ -38,9 +38,17 @@ class OrderViewController: UIViewController {
                 DispatchQueue.main.async {
                     guard let self = self else { return }
                     self.tableOrder.reloadData()
-                    self.totalPriceText.text = "$\(String(describing: self.viewModel.resultOrderInfo!.total))".formatDecimal()
+                    guard let orderInfo = self.viewModel.resultOrderInfo else {
+                        self.totalPriceText.text = "Total $0"
+                        return
+                    }
+                    self.totalPriceText.text = orderInfo.total.formatPrice()
                 }
             }
+        }
+        
+        viewModel.reloadCollectionView = { [weak self] in
+            self?.tableOrder.reloadData()
         }
     
         viewModel.loadCard()
@@ -63,7 +71,23 @@ class OrderViewController: UIViewController {
         viewModel.loadProductChart {
             DispatchQueue.main.async { [self] in
                 tableOrder.reloadData()
-                totalPriceText.text = "$\(String(describing:viewModel.resultOrderInfo!.total))".formatDecimal()
+                guard let orderInfo = self.viewModel.resultOrderInfo else {
+                    self.totalPriceText.text = "Total $0"
+                    return
+                }
+                totalPriceText.text = orderInfo.total.formatPrice()
+            }
+        }
+    }
+    
+    func reloadTotalPrice() {
+        viewModel.loadProductChart {
+            DispatchQueue.main.async { [self] in
+                guard let orderInfo = self.viewModel.resultOrderInfo else {
+                    self.totalPriceText.text = "Total $0"
+                    return
+                }
+                totalPriceText.text = orderInfo.total.formatPrice()
             }
         }
     }
@@ -223,20 +247,32 @@ extension OrderViewController: OrderTableDelegate {
             let idSize = viewModel.GetIdSize(sizeString: dataCell.size)
             
             viewModel.postChart(idProduct: dataCell.id, idSize: idSize) { result in
-                OrderViewController.notifyObserver()
-                DispatchQueue.main.async {
-                    completion(dataCell.quantity)
+//                OrderViewController.notifyObserver()
+                DispatchQueue.main.async { [self] in
+                    guard let quantity = result else {return}
+                    completion(quantity)
+                    reloadTotalPrice()
                 }
             }
         }
     }
     
-    func minCountProduct(cell: OrderTableViewCell) {
+    func minCountProduct(cell: OrderTableViewCell, completion: @escaping (String) -> Void) {
         if let indexPath = tableOrder.indexPath(for: cell) {
             let dataCell = viewModel.resultProductChart[indexPath.item]
            let idSize = viewModel.GetIdSize(sizeString: dataCell.size)
-            viewModel.putProductChart(idProduct: dataCell.id, idSize: idSize)
-            OrderViewController.notifyObserver()
+            
+            viewModel.putProductChart(idProduct: dataCell.id, idSize: idSize) { result in
+                DispatchQueue.main.async { [self] in
+                    guard let quantity = result?.quantity else {
+                        OrderViewController.notifyObserver()
+                        return}
+                    completion("\(quantity)")
+                    reloadTotalPrice()
+                }
+            } onError: { error in
+                OrderViewController.notifyObserver()
+            }
         }
     }
     

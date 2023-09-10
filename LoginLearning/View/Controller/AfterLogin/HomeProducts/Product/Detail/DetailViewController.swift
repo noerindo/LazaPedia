@@ -76,7 +76,9 @@ class DetailViewController: UIViewController {
             print("Completion updateWishlistBtn")
             DispatchQueue.main.async { [weak self] in
                 guard let self = self else { return }
-                wishlistList.data.products.forEach { productList in
+                guard let data = wishlistList.data.products else {return}
+                
+                data.forEach { productList in
                     if productList.id == self.viewModel.idProduct {
                         self.favoriteBtn.setImage(UIImage(systemName: "suit.heart.fill")!.withTintColor(.red, renderingMode: .alwaysOriginal), for: .normal)
                         self.isInWishlist = true
@@ -89,7 +91,7 @@ class DetailViewController: UIViewController {
     
     func configureDetail(model: ProductDetail) {
         nameProduk.text = "\(model.data.name)"
-        priceText.text = "$ \(model.data.price)".formatDecimal()
+        priceProduk.text = model.data.price.formatPrice()
         descProduc.text = "\(model.data.description)"
         categoryView.text = "\(model.data.category.category)"
         photoProduc.sd_setImage(with: URL(string: "\(model.data.image_url)"))

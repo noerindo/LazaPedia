@@ -45,7 +45,7 @@ class ReviewTableViewCell: UITableViewCell {
         let imgURl = URL(string: "\(data.image_url)")
         self.photoRiview.sd_setImage(with: imgURl)
         nameRiview.text = data.full_name
-        timeRiview.text = data.created_at.dateReview(date: "\(data.created_at.dateReview)")
+        timeRiview.text = data.created_at.dateReview(date: "\(data.created_at)")
         ratingRiview.text = "\(data.rating)"
         descRiview.text = data.comment
         starRating.rating = data.rating

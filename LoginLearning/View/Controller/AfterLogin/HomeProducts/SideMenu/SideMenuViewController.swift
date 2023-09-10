@@ -47,7 +47,7 @@ class SideMenuViewController: UIViewController {
     }
     override func viewDidLoad() {
         super.viewDidLoad()
-        displayUserProfile()
+        getDataProfile()
         tableSide.dataSource = self
         tableSide.delegate = self
         tableSide.register(UINib(nibName: "SideTableViewCell", bundle: nil), forCellReuseIdentifier: "SideTableViewCell")
@@ -57,6 +57,11 @@ class SideMenuViewController: UIViewController {
         }
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        checkDarkMode()
+    }
+    
     @IBAction func logOutActionBtn(_ sender: UIButton) {
         let refreshAlert = UIAlertController(title: "Warning", message: "you will exit the application", preferredStyle: UIAlertController.Style.alert)
 
@@ -64,6 +69,8 @@ class SideMenuViewController: UIViewController {
             DispatchQueue.main.async {
                 KeychainManager.shared.deleteResfreshToken()
                 KeychainManager.shared.deleteToken()
+                KeychainManager.shared.deleteProfileFromKeychain()
+                
                 UserDefaults.standard.set(false, forKey: "isLogin")
                 UserDefaults.standard.removeObject(forKey: "UserProfileDefault")
             }
@@ -79,12 +86,18 @@ class SideMenuViewController: UIViewController {
     }
     
     @IBAction func switchMode(_ sender: UISwitch) {
-        let appDelegate = UIApplication.shared.windows.first
-        if controlMode.isOn == true {
-            appDelegate?.overrideUserInterfaceStyle = .dark
-        }
-        else {
-            appDelegate?.overrideUserInterfaceStyle = .light
+        if sender.isOn {
+            if let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene {
+                let appDelegate = windowScene.windows.first
+                appDelegate?.overrideUserInterfaceStyle = .dark
+            }
+            UserDefaults.standard.setValue(true, forKey: "darkmode")
+        } else {
+            if let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene {
+                let appDelegate = windowScene.windows.first
+                appDelegate?.overrideUserInterfaceStyle = .light
+            }
+            UserDefaults.standard.setValue(false, forKey: "darkmode")
         }
     }
     @IBAction func backBtn(_ sender: UIButton) {
@@ -93,31 +106,36 @@ class SideMenuViewController: UIViewController {
         self.navigationController?.pushViewController(homeVC, animated: true)
     }
     
-    func displayUserProfile() {
-        DispatchQueue.main.async {
-            if let data = UserDefaults.standard.object(forKey: "UserProfileDefault") as? Data,
-               let profile = try? JSONDecoder().decode(ProfileUser.self, from: data) {
-                   self.modelProfile = profile.data
-                   
-               }
+    
+    func getDataProfile() {
+        DispatchQueue.main.async { [self] in
+            guard let dataUser = KeychainManager.shared.getProfileFromKeychain() else {return}
+            guard let imageString = dataUser.image_url else {
+                self.photoAcount.image = UIImage(systemName: "person.circle.fill")
+                return
+            }
             
-            self.nameAcount.text = self.modelProfile?.full_name
-            let imgURl = URL(string: "\(self.modelProfile?.image_url ?? "")")
-            self.photoAcount.sd_setImage(with: imgURl)
+            nameAcount.text = dataUser.full_name
+            let imgURL = URL(string: "\(imageString)")
+            photoAcount.sd_setImage(with: imgURL)
         }
     }
     
-    func getDataProfile() {
-        viewModel.getProfile {data in
-            DispatchQueue.main.async { [self] in
-                nameAcount.text = data!.full_name
-                let imgURl = URL(string: "\(data!.image_url ?? "")")
-                self.photoAcount.sd_setImage(with: imgURl)
+    func checkDarkMode() {
+        let isDarkMode = UserDefaults.standard.bool(forKey: "darkmode")
+        if isDarkMode {
+            if let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene {
+                let appDelegate = windowScene.windows.first
+                appDelegate?.overrideUserInterfaceStyle = .dark
             }
-        } onError: { error in
-            print(error)
+            controlMode.isOn = true
+        } else {
+            if let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene {
+                let appDelegate = windowScene.windows.first
+                appDelegate?.overrideUserInterfaceStyle = .light
+            }
+            controlMode.isOn = false
         }
-
     }
 }
 

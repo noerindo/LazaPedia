@@ -26,7 +26,7 @@ class ProducCollectionViewCell: UICollectionViewCell {
     
     func configure(data: ProducList) {
         descProduc.text  = data.name
-        priceProduc.text = String("$ \(data.price)")
+        priceProduc.text = Int(data.price).formatPrice()
         let imgURl = URL(string: "\(data.image_url)")
         self.photoProduc.sd_setImage(with: imgURl)
        

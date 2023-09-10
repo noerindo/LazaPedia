@@ -40,11 +40,5 @@ class RememberUser {
         UserDefaults.standard.set(userName, forKey: "UserName")
         UserDefaults.standard.set(isLogin, forKey: "isLogin")
     }
-    
-    func setCurrentProfile(profile: Data) {
-//        userProfile = profile
-        UserDefaults.standard.set(profile, forKey: "UserProfileDefault")
-    }
-
 
 }

@@ -59,7 +59,6 @@ class AddPayViewController: UIViewController,  STPPaymentCardTextFieldDelegate {
         self.navigationController?.popViewController(animated: true)
     }
     
-    
     @IBAction func addCardAction(_ sender: UIButton) {
         guard let nameCard = nameOwner.text else {return}
         guard let cardNumber = inputCardText.cardNumber else {return}
@@ -78,9 +77,8 @@ class AddPayViewController: UIViewController,  STPPaymentCardTextFieldDelegate {
         
         creditCardView.paymentCardTextFieldDidChange(cardNumber: cardParams.number, expirationYear: cardParams!.expYear as? UInt, expirationMonth: cardParams!.expMonth as? UInt, cvc: cardParams.cvc)
         
-        guard let data = UserDefaults.standard.object(forKey: "UserProfileDefault") as? Data,
-           let profile = try? JSONDecoder().decode(ProfileUser.self, from: data) else { return }
-        let userID = profile.data.id
+        guard let dataUser = KeychainManager.shared.getProfileFromKeychain() else {return}
+        
         
         let addCard = Card(
             nameCard: nameCard,
@@ -88,9 +86,12 @@ class AddPayViewController: UIViewController,  STPPaymentCardTextFieldDelegate {
             expMonCard: expMonth,
             cvv: cardCvv,
             expYearCard: expYear,
-            userId: Int32(userID))
+            userId: Int32(dataUser.id))
+        DispatchQueue.main.async {
             CardDataManager().createCard(addCard)
             PaymentViewController.notifyObserver()
+        }
+        print("masuk")
             self.navigationController?.popViewController(animated: true)
         
         

@@ -9,6 +9,10 @@ import UIKit
 import CreditCardForm
 import StripePaymentsUI
 
+protocol EditCardViewControllerDelegate: AnyObject {
+    func creditCardUpdated()
+}
+
 class EditCardViewController: UIViewController, STPPaymentCardTextFieldDelegate {
 
     @IBOutlet weak var cvvCard: UITextField!
@@ -30,6 +34,7 @@ class EditCardViewController: UIViewController, STPPaymentCardTextFieldDelegate 
     @IBOutlet weak var backBtn: UIButton!
     
     private var viewModel: EditCardVM!
+    weak var delegate: EditCardViewControllerDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -49,6 +54,7 @@ class EditCardViewController: UIViewController, STPPaymentCardTextFieldDelegate 
         creditCardView.paymentCardTextFieldDidChange(cardNumber: viewModel.selectedCard.numberCard, expirationYear: UInt(viewModel.selectedCard.expYearCard), expirationMonth: UInt(viewModel.selectedCard.expMonCard), cvc: viewModel.selectedCard.cvv)
         
         creditCardView.cardHolderString = viewModel.selectedCard.nameCard
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -106,27 +112,12 @@ class EditCardViewController: UIViewController, STPPaymentCardTextFieldDelegate 
         cvv: cvv, expYearCard: expYear)
         
         CardDataManager().updateCard(updateCard, number)
+        self.delegate?.creditCardUpdated()
+        
         self.navigationController?.popViewController(animated: true)
         
-                
     }
 
-    // MARK: - Navigation
-    func paymentCardTextFieldDidChange(_ textField: STPPaymentCardTextField) {
-        creditCardView.paymentCardTextFieldDidChange(cardNumber: textField.cardNumber, expirationYear: UInt(textField.expirationYear), expirationMonth: UInt(textField.expirationMonth), cvc: textField.cvc)
-    }
-    
-    func paymentCardTextFieldDidEndEditingExpiration(_ textField: STPPaymentCardTextField) {
-        creditCardView.paymentCardTextFieldDidEndEditingExpiration(expirationYear: UInt(textField.expirationYear))
-    }
-    
-    func paymentCardTextFieldDidBeginEditingCVC(_ textField: STPPaymentCardTextField) {
-        creditCardView.paymentCardTextFieldDidBeginEditingCVC()
-    }
-    
-    func paymentCardTextFieldDidEndEditingCVC(_ textField: STPPaymentCardTextField) {
-        creditCardView.paymentCardTextFieldDidEndEditingCVC()
-    }
 }
 
 extension EditCardViewController: UITextFieldDelegate {

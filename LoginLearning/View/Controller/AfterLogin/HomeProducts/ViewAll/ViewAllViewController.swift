@@ -59,7 +59,7 @@ extension ViewAllViewController: UICollectionViewDelegate, UICollectionViewDataS
         if viewModel.kodeLabel == "Brand" {
             return viewModel.brandCount
         } else {
-            return viewModel.productsCount
+            return viewModel.resultProduct.data.count
         }
     }
     

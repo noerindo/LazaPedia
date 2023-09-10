@@ -42,18 +42,54 @@ class ReviewViewController: UIViewController {
     }
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        registerObserver()
+        
         tableRiview.dataSource = self
         tableRiview.delegate = self
         tableRiview.register(UINib(nibName: "ReviewTableViewCell", bundle: nil), forCellReuseIdentifier: "ReviewTableViewCell")
-        viewModel.loadAllriviewl {
-            DispatchQueue.main.async { [self] in
-                tableRiview.reloadData()
-                configureRiview(model: viewModel.resultRiview!)
-            }
-        }
         
+                viewModel.loadAllriviewl {
+                    DispatchQueue.main.async { [self] in
+                        tableRiview.reloadData()
+                        configureRiview(model: viewModel.resultRiview!)
+                    }
+                }
 
     }
+    
+//    override func viewWillAppear(_ animated: Bool) {
+//        super.viewWillAppear(animated)
+//        viewModel.loadAllriviewl {
+//            DispatchQueue.main.async { [self] in
+//                tableRiview.reloadData()
+//                configureRiview(model: viewModel.resultRiview!)
+//            }
+//        }
+//    }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self, name:Notification.Name.UpdateRiview, object: nil)
+    }
+    
+    private func registerObserver() {
+        NotificationCenter.default.addObserver(self, selector: #selector(reloadRiview), name: Notification.Name.UpdateRiview, object: nil)
+    }
+    
+    static func notifyObserver() {
+        NotificationCenter.default.post(name: Notification.Name.UpdateRiview, object: nil)
+    }
+    
+    @objc private func reloadRiview() {
+        viewModel.loadAllriviewl {
+            DispatchQueue.main.async { [self] in
+                configureRiview(model: viewModel.resultRiview!)
+                tableRiview.reloadData()
+            }
+        }
+
+    }
+    
     
     func configureRiview(model: DataIdRiview) {
         textRating.text = "\(model.rating_avrg)"
@@ -65,16 +101,17 @@ class ReviewViewController: UIViewController {
         viewModel = ReviewVM(idProduct: idProduct)
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        viewModel.loadAllriviewl {
-            DispatchQueue.main.async { [self] in
-                tableRiview.reloadData()
-                configureRiview(model: viewModel.resultRiview!)
-            }
-        }
-        
-    }
+//    override func viewWillAppear(_ animated: Bool) {
+//        super.viewWillAppear(animated)
+//        viewModel.loadAllriviewl {
+//            DispatchQueue.main.async { [self] in
+//                tableRiview.reloadData()
+//                configureRiview(model: viewModel.resultRiview!)
+//            }
+//        }
+//
+//    }
+    
     @objc func moveAdd() {
         let addRiviewVC = self.storyboard?.instantiateViewController(withIdentifier: "AddRiviewViewController") as! AddRiviewViewController
         addRiviewVC.configure(idProduct: viewModel.idProduct)
@@ -100,7 +137,7 @@ extension ReviewViewController:UITableViewDelegate, UITableViewDataSource {
         return UITableViewCell()
   }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 200
+        return 100
     }
     
     

@@ -38,14 +38,34 @@ class WishlistViewController: UIViewController {
         collectionWishlist.dataSource = self
         collectionWishlist.delegate = self
         collectionWishlist.register(UINib(nibName: "ProducCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "ProducCollectionViewCell")
+        
+        wishlistMC.reloadCollectionView = { [weak self] in
+            self?.collectionWishlist.reloadData()
+        }
+
+        
         wishlistMC.loadWishList { result in
             DispatchQueue.main.async {
                 self.collectionWishlist.reloadData()
-                self.textCountWishlist.text = "\(result.data.total)"
+                guard let countWishlist = result?.data.total else {return}
+                self.textCountWishlist.text = "\(countWishlist)"
             }
         }
-        self.collectionWishlist.reloadData()
+        
     }
+    
+    
+//    override func viewWillAppear(_ animated: Bool) {
+//        super.viewWillAppear(animated)
+//        wishlistMC.loadWishList { result in
+//            DispatchQueue.main.async {
+//                self.collectionWishlist.reloadData()
+//                guard let countWishlist = result?.data.total else {return}
+//                self.textCountWishlist.text = "\(countWishlist)"
+//            }
+//        }
+//        self.collectionWishlist.reloadData()
+//    }
     
     deinit {
         NotificationCenter.default.removeObserver(self, name:Notification.Name.UpdateWishlist, object: nil)
@@ -63,7 +83,8 @@ class WishlistViewController: UIViewController {
         wishlistMC.loadWishList { result in
             DispatchQueue.main.async {
                 self.collectionWishlist.reloadData()
-                self.textCountWishlist.text = "\(result.data.total)"
+                guard let countWishlist = result?.data.total else {return}
+                self.textCountWishlist.text = "\(countWishlist)"
             }
         }
     }

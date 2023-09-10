@@ -8,7 +8,7 @@
 import CoreData
 import UIKit
 
-class CardDataManager{
+class CardDataManager {
     let appDelegate = UIApplication.shared.delegate as? AppDelegate
     
     // create card
@@ -26,7 +26,6 @@ class CardDataManager{
         
         do {
             try context.save()
-            print("save")
         } catch {
             print("eror create card \(error)")
         }
@@ -36,13 +35,11 @@ class CardDataManager{
     //read
     func getCard(completion: @escaping (_ card: [Card]) -> Void) {
         guard let context = appDelegate?.persistentContainer.viewContext else { return }
-    
-        guard let data = UserDefaults.standard.object(forKey: "UserProfileDefault") as? Data,
-        let profile = try? JSONDecoder().decode(ProfileUser.self, from: data) else { return }
-        let userID = profile.data.id
+        guard let dataUser = KeychainManager.shared.getProfileFromKeychain() else {return}
+        
         let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "CardData")
         fetchRequest.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [
-            NSPredicate(format: "userId = %@", String(userID))
+            NSPredicate(format: "userId = %@", String(dataUser.id))
         ])
         
         do {
@@ -67,10 +64,7 @@ class CardDataManager{
     // delete
     func deleteCard(_ creditCard: Card, completion: @escaping((String)) -> Void) {
         guard let context = appDelegate?.persistentContainer.viewContext else { return }
-        
-        guard let data = UserDefaults.standard.object(forKey: "UserProfileDefault") as? Data,
-        let profile = try? JSONDecoder().decode(ProfileUser.self, from: data) else { return }
-        let userID = profile.data.id
+        guard let dataUser = KeychainManager.shared.getProfileFromKeychain() else {return}
         
         context.perform {
             let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "CardData")
@@ -78,7 +72,7 @@ class CardDataManager{
             
             fetchRequest.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [
                 NSPredicate(format: "numberCard = %@", creditCard.numberCard),
-                NSPredicate(format: "userId = %@", String(userID))
+                NSPredicate(format: "userId = %@", String(dataUser.id))
             ])
             
             
@@ -95,35 +89,29 @@ class CardDataManager{
      //update
     func updateCard(_ card: Card, _ numberCard: String) {
         guard let context = appDelegate?.persistentContainer.viewContext else { return }
-        
-        guard let data = UserDefaults.standard.object(forKey: "UserProfileDefault") as? Data,
-        let profile = try? JSONDecoder().decode(ProfileUser.self, from: data) else { return }
-        let userID = profile.data.id
-        
+        guard let dataUser = KeychainManager.shared.getProfileFromKeychain() else { return }
+
         context.perform {
             let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "CardData")
             
             fetchRequest.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [
                 NSPredicate(format: "numberCard = %@", numberCard),
-                NSPredicate(format: "userId = %@", String(userID))
+                NSPredicate(format: "userId = %@", String(dataUser.id))
             ])
             
-            if let results = try? context.fetch(fetchRequest) {
-                do {
-                    var _: NSManagedObject?
-                    for index in 0..<results.count {
-                        let dataToUpdate = results[index]
-                        dataToUpdate.setValue(card.nameCard, forKeyPath: "nameCard")
-                        dataToUpdate.setValue(card.numberCard, forKeyPath: "numberCard")
-                        dataToUpdate.setValue(card.cvv, forKey: "cvvCard")
-                        dataToUpdate.setValue(card.expMonCard, forKey: "expMonCard")
-                        dataToUpdate.setValue(card.expYearCard, forKey: "expYearCard")
-                    }
-                    try context.save()
-                } catch {
-                    print("error update card")
+            do {
+                let results = try context.fetch(fetchRequest)
+                for dataToUpdate in results {
+                    dataToUpdate.setValue(card.nameCard, forKeyPath: "nameCard")
+                    dataToUpdate.setValue(card.numberCard, forKeyPath: "numberCard")
+                    dataToUpdate.setValue(card.cvv, forKey: "cvvCard")
+                    dataToUpdate.setValue(card.expMonCard, forKey: "expMonCard")
+                    dataToUpdate.setValue(card.expYearCard, forKey: "expYearCard")
                 }
+                try context.save()
+            } catch let error {
+                print("Error updating card: \(error.localizedDescription)")
             }
-        } 
+        }
     }
 }

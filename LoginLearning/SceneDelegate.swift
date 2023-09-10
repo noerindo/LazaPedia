@@ -14,9 +14,19 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
-        // Use this method to optionally configure and attach the UIWindow `window` to the provided UIWindowScene `scene`.
-        // If using a storyboard, the `window` property will automatically be initialized and attached to the scene.
-        // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
+        let isDarkMode = UserDefaults.standard.bool(forKey: "darkmode")
+        if isDarkMode {
+          if let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene {
+            let appDelegate = windowScene.windows.first
+            appDelegate?.overrideUserInterfaceStyle = .dark
+          }
+        } else {
+          if let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene {
+            let appDelegate = windowScene.windows.first
+            appDelegate?.overrideUserInterfaceStyle = .light
+          }
+        }
+
         guard let _ = (scene as? UIWindowScene) else { return }
         
     }
@@ -24,8 +34,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     //twiter
     func scene(_ scene: UIScene, openURLContexts URLContexts: Set<UIOpenURLContext>) {
            guard let context = URLContexts.first else { return }
-           let callbackUrl = URL(string: TwitterConstants.CALLBACK_URL)!
-           Swifter.handleOpenURL(context.url, callbackURL: callbackUrl)
+//           let callbackUrl = URL(string: TwitterConstants.CALLBACK_URL)!
+//           Swifter.handleOpenURL(context.url, callbackURL: callbackUrl)
        }
 
     func sceneDidDisconnect(_ scene: UIScene) {

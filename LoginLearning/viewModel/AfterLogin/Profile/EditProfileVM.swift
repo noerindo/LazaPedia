@@ -43,14 +43,14 @@ class EditProfileVM{
                     //untuk liat bentuk JSON
 //                    let serializedJson = try JSONSerialization.jsonObject(with: data, options: .fragmentsAllowed)
 //                    print(serializedJson)
-                    let result = try JSONDecoder().decode(ResponUpdate.self, from: data)
+                    let result = try JSONDecoder().decode(profileUpdateRespon.self, from: data)
                     completion(result.status)
-                    print("Berhasil update profile")
+                    KeychainManager.shared.deleteProfileFromKeychain()
+                    KeychainManager.shared.saveProfileToKeychain(profile: result.data)
                 } catch {
                     print(error)
                 }
             }  else {
-                print("Error: \(httpRespon.statusCode)")
                 guard let getFailed = try? JSONDecoder().decode(ResponFailed.self, from: data) else { return }
                 onError(getFailed.description)
             }

@@ -12,7 +12,7 @@ struct WishlistList: Codable {
 
 struct DataWishlist: Codable {
     let total: Int
-    let products: [ProducList]
+    let products: [ProducList]?
 }
 
 struct WishlistRespon: Codable {

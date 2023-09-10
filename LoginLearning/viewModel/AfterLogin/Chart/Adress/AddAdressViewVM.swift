@@ -9,11 +9,8 @@ import Foundation
 
 class AddAdressViewVM {
     
-   private(set) var selectedData: DataAdress
+    var selectedData: DataAdress?
     
-    init(selectedData: DataAdress) {
-        self.selectedData = selectedData
-    }
     
     func putAdress(id: Int,country: String, city: String, receiver_name: String, phone_number: String, is_primary: Bool,completion: @escaping (String) -> Void,  onError: @escaping((String) -> Void)) {
         let param = [

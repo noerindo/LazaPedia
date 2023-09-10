@@ -17,7 +17,7 @@ class AdressTableViewCell: UITableViewCell {
     @IBOutlet weak var bgView: UIView! {
         didSet {
             bgView.layer.cornerRadius = 5
-            bgView.layer.shadowColor = UIColor.black.cgColor
+            bgView.layer.shadowColor = UIColor(named: "black")?.cgColor
             bgView.layer.shadowOpacity = 0.5
             bgView.layer.shadowOffset = .zero
             bgView.layer.shadowRadius = 5

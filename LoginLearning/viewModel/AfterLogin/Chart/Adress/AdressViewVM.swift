@@ -21,9 +21,11 @@ class AdressViewVM {
     func loadAdress(completion: @escaping((GetAllAdres) -> Void)) {
         getAdress { adress in
             DispatchQueue.main.async {
-                self.resultAdress.data = adress.data.reversed()
+                let Primary = adress.data.filter { $0.is_primary != nil}
+                let unPrimary = adress.data.filter { $0.is_primary == nil}
+                self.resultAdress.data = Primary + unPrimary
+                completion(adress)
             }
-            completion(adress)
         }
     }
     

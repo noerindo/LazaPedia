@@ -62,6 +62,7 @@ class OrderPopUpViewController: UIViewController {
             }
         }
     }
+    
     override func viewWillAppear(_ animated: Bool) {
         viewModel.getAllChart { _ in
             DispatchQueue.main.async {
@@ -75,6 +76,22 @@ class OrderPopUpViewController: UIViewController {
                     if !dataAdress.isEmpty {
                         cityText.text = "\(dataAdress.first!.city)"
                         countryText.text = "\(dataAdress.first!.country)"
+                    } else {
+                        cityText.text = "None"
+                        countryText.text = "None"
+                    }
+                    
+                }
+            }
+        }
+        
+        if isChooseCard != true {
+            viewModel.loadCard {
+                DispatchQueue.main.async { [self] in
+                    if viewModel.cardList.count > 0 {
+                        numberCardText.text = viewModel.cardList.first!.numberCard
+                    } else {
+                        numberCardText.text = "None"
                     }
                 }
             }
@@ -82,9 +99,9 @@ class OrderPopUpViewController: UIViewController {
     }
     
     func setDataOrder(orderInfo: OrderInfo) {
-        self.totalView.text = "$\(orderInfo.total)".formatDecimal()
-        self.shippingText.text = "$\(orderInfo.shipping_cost)".formatDecimal()
-        self.subTotalText.text = "$\(orderInfo.sub_total)".formatDecimal()
+        self.totalView.text = orderInfo.total.formatPrice()
+        self.shippingText.text = orderInfo.shipping_cost.formatPrice()
+        self.subTotalText.text = orderInfo.sub_total.formatPrice()
     }
     
     @IBAction func deliveryAdressACtion(_ sender: UIButton) {

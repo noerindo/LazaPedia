@@ -42,6 +42,7 @@ class AddRiviewViewController: UIViewController {
                     let alert = UIAlertController(title: "Success", message: "Add Riview Success", preferredStyle: .alert)
                     let okAction = UIAlertAction(title: "OK", style: .default) { [weak self] _ in
                         DispatchQueue.main.async {
+                            ReviewViewController.notifyObserver()
                             self?.navigationController?.popViewController(animated: true)
                         }
                     }

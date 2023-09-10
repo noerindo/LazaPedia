@@ -23,12 +23,6 @@ class ViewAllVM {
         }
     }
     
-    var productsCount: Int {
-        get {
-            return resultProduct.data.count
-        }
-    }
-    
     func loadBrand(completion: @escaping (() -> Void)) {
         getBrand { result in
             DispatchQueue.main.async {

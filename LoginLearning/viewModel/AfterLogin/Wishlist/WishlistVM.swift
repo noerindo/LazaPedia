@@ -10,17 +10,26 @@ import Foundation
 class WishlistVM {
     var listWishlist = [ProducList]()
     
-    func loadWishList(completion: @escaping ((WishlistList) -> Void)) {
+    var reloadCollectionView: (() -> Void)?
+    
+    func loadWishList(completion: @escaping ((WishlistList?) -> Void)) {
         getWishlist { result in
             DispatchQueue.main.async {
+                guard let data = result?.data.products else {
+                    self.listWishlist.removeAll()
+                    self.reloadCollectionView?()
+                    return
+                }
                 self.listWishlist.removeAll()
-                self.listWishlist.append(contentsOf: result.data.products)
+                self.listWishlist.append(contentsOf: data)
+                self.reloadCollectionView?()
+                return
             }
             completion(result)
         }
     }
         
-    func getWishlist(completion: @escaping((WishlistList) -> Void)) {
+    func getWishlist(completion: @escaping((WishlistList?) -> Void)) {
         guard let url = URL(string: Endpoints.Gets.wishlistAll.url) else {return}
         var request = URLRequest(url: url)
         let accesToken = KeychainManager.shared.getTokenValid()
