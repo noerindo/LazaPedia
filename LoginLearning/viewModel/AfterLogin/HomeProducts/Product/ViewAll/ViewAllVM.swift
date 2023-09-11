@@ -17,6 +17,7 @@ class ViewAllVM {
     init(kodeLabel: String) {
         self.kodeLabel = kodeLabel
     }
+    
     var brandCount: Int {
         get {
             return resultBrand.description.count

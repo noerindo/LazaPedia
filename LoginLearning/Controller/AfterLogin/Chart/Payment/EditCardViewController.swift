@@ -9,9 +9,6 @@ import UIKit
 import CreditCardForm
 import StripePaymentsUI
 
-protocol EditCardViewControllerDelegate: AnyObject {
-    func creditCardUpdated()
-}
 
 class EditCardViewController: UIViewController, STPPaymentCardTextFieldDelegate {
 
@@ -34,7 +31,6 @@ class EditCardViewController: UIViewController, STPPaymentCardTextFieldDelegate 
     @IBOutlet weak var backBtn: UIButton!
     
     private var viewModel: EditCardVM!
-    weak var delegate: EditCardViewControllerDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -96,7 +92,6 @@ class EditCardViewController: UIViewController, STPPaymentCardTextFieldDelegate 
             SnackBarWarning.make(in: self.view, message:"CVC card is Empty", duration: .lengthShort).show()
             return
         }
-            
         
         var expMont = ""
         var expYear = ""
@@ -112,8 +107,6 @@ class EditCardViewController: UIViewController, STPPaymentCardTextFieldDelegate 
         cvv: cvv, expYearCard: expYear)
         
         CardDataManager().updateCard(updateCard, number)
-        self.delegate?.creditCardUpdated()
-        
         self.navigationController?.popViewController(animated: true)
         
     }

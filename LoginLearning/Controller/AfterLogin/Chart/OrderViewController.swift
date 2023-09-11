@@ -122,7 +122,6 @@ class OrderViewController: UIViewController {
             self.present(tabVC, animated: true)
     }
     
-
     @IBAction func CheckoutAction(_ sender: UIButton) {
         if viewModel.cardList.isEmpty {
             let alert = UIAlertController(title: "Warning", message: "card is Empty. Add Card?", preferredStyle: .alert)
@@ -149,14 +148,9 @@ class OrderViewController: UIViewController {
             return
         }
         if idAdres == 0 {
-            DispatchQueue.main.async {
-                self.idAdres = self.viewModel.resultAdress.data.first!.id
-            }
-            return
-
+            self.idAdres = self.viewModel.resultAdress.data.first!.id
         }
         
-        print("ini adrees : \(idAdres)")
         loadingView.isHidden = false
         loadingView.startAnimating()
         viewModel.postChecOut(product: viewModel.resultzproductOrder, address_id: idAdres ) { error in

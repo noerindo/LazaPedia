@@ -109,6 +109,7 @@ class CardDataManager {
                     dataToUpdate.setValue(card.expYearCard, forKey: "expYearCard")
                 }
                 try context.save()
+                PaymentViewController.notifyObserver()
             } catch let error {
                 print("Error updating card: \(error.localizedDescription)")
             }

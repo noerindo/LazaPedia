@@ -122,6 +122,8 @@ class PaymentViewController: UIViewController {
         }
     }
     
+    
+    
     func configurePayment(indexPath: IndexPath) {
         selectedIndexPath = indexPath
         let card = cardVM.cardList[indexPath.item]
@@ -235,18 +237,6 @@ extension PaymentViewController: UICollectionViewDelegate, UICollectionViewDataS
 
          }
      }
-}
-
-extension PaymentViewController: EditCardViewControllerDelegate {
-    func creditCardUpdated() {
-        reloadCard()
-        DispatchQueue.main.async { [weak self] in
-            guard let self = self else { return }
-            SnackBarSuccess.make(in: self.view, message: "Update success", duration: .lengthShort).show()
-        }
-    }
-    
-    
 }
 
 
