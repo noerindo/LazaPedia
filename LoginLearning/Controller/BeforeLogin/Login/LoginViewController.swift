@@ -9,7 +9,7 @@ import UIKit
 import SnackBar_swift
 
 class LoginViewController: UIViewController {
-    private let viewModel = LoginVM()
+    private let networkAPI = NetworkAPI()
     
     @IBOutlet weak var loadingView: UIActivityIndicatorView! {
         didSet {
@@ -108,9 +108,9 @@ class LoginViewController: UIViewController {
             return
         }
         
-        viewModel.postLogin(userName: userName, password: pass) { [self] response in
+        networkAPI.postLogin(userName: userName, password: pass) { [self] response in
                 print("Hallo")
-                viewModel.getProfile(token: response!.access_token) { result in
+                networkAPI.getProfile(token: response!.access_token) { result in
                     guard let userProfile = result else { return }
                     KeychainManager.shared.saveRefreshToken(token: response!.refresh_token)
                     KeychainManager.shared.saveToken(token: response!.access_token)
@@ -151,3 +151,5 @@ class LoginViewController: UIViewController {
     }
     
 }
+
+//SnapKit

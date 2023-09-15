@@ -95,7 +95,6 @@ class EditProfileViewController: UIViewController {
             return
         }
         
-        
         guard let userName = userName.text else {return}
         guard let fullName = fullName.text else {return}
         let email = viewModel.updateProfile.email
@@ -103,8 +102,7 @@ class EditProfileViewController: UIViewController {
             media = Media(withImage: image, forKey: "image")
         }
         
-        
-        viewModel.putProfile(fullName: fullName, username: userName, email: email, media: media) { result in
+        viewModel.networkAPI.putProfile(fullName: fullName, username: userName, email: email, media: media) { result in
             DispatchQueue.main.async { [self] in
                 loadingStop()
                 let alert = UIAlertController(title: "Sukses", message: "Data sudah diUpadet", preferredStyle: .alert)

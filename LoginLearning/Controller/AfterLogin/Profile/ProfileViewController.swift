@@ -8,7 +8,6 @@
 import UIKit
 
 class ProfileViewController: UIViewController {
-    let viewModel = ProfileVM()
     var modelProfile : DataProfileUser?
     @IBOutlet weak var photoUser: UIImageView! {
         didSet {

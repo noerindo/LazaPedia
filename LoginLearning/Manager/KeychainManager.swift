@@ -129,7 +129,7 @@ class KeychainManager {
             if !jwt.expired {
                 tokenActiv = accesToken
             } else {
-                LoginVM().getRefreshToken(refreshToken: refreshToken)
+                NetworkAPI().getRefreshToken(refreshToken: refreshToken)
                 tokenActiv = accesToken
             }
         } catch {

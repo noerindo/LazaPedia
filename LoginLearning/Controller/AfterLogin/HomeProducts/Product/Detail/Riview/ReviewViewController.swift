@@ -55,18 +55,7 @@ class ReviewViewController: UIViewController {
                         configureRiview(model: viewModel.resultRiview!)
                     }
                 }
-
     }
-    
-//    override func viewWillAppear(_ animated: Bool) {
-//        super.viewWillAppear(animated)
-//        viewModel.loadAllriviewl {
-//            DispatchQueue.main.async { [self] in
-//                tableRiview.reloadData()
-//                configureRiview(model: viewModel.resultRiview!)
-//            }
-//        }
-//    }
     
     deinit {
         NotificationCenter.default.removeObserver(self, name:Notification.Name.UpdateRiview, object: nil)
@@ -90,7 +79,6 @@ class ReviewViewController: UIViewController {
 
     }
     
-    
     func configureRiview(model: DataIdRiview) {
         textRating.text = "\(model.rating_avrg)"
         starRating.rating = model.rating_avrg
@@ -101,16 +89,6 @@ class ReviewViewController: UIViewController {
         viewModel = ReviewVM(idProduct: idProduct)
     }
     
-//    override func viewWillAppear(_ animated: Bool) {
-//        super.viewWillAppear(animated)
-//        viewModel.loadAllriviewl {
-//            DispatchQueue.main.async { [self] in
-//                tableRiview.reloadData()
-//                configureRiview(model: viewModel.resultRiview!)
-//            }
-//        }
-//
-//    }
     
     @objc func moveAdd() {
         let addRiviewVC = self.storyboard?.instantiateViewController(withIdentifier: "AddRiviewViewController") as! AddRiviewViewController

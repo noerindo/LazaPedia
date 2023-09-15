@@ -35,9 +35,8 @@ class AddRiviewViewController: UIViewController {
             return
         }
         guard let rating = Double(viewTextSlider.text!) else {return }
-        
-        print(rating)
-            viewModel.postRiview(comment: comment, rating: rating) { respon in
+    
+        viewModel.addRiview(comment: comment, rating: rating) { respon in
                 DispatchQueue.main.async {
                     let alert = UIAlertController(title: "Success", message: "Add Riview Success", preferredStyle: .alert)
                     let okAction = UIAlertAction(title: "OK", style: .default) { [weak self] _ in

@@ -109,7 +109,7 @@ class ResetPasswordViewController: UIViewController {
             return
         }
         
-        viewModel.postNewPassword(newPass: pass) { result in
+        viewModel.resetPass(newPass: pass) { result in
             DispatchQueue.main.async {
                 self.loadingStop()
                 let alert = UIAlertController(title: "Success", message: result, preferredStyle: .alert)

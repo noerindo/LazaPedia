@@ -38,7 +38,7 @@ class OrderPopUpViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        viewModel.getAllChart { _ in
+        viewModel.loadAdress { _ in
             DispatchQueue.main.async {
                 self.setDataOrder(orderInfo: self.viewModel.resultOrderInfo!)
             }
@@ -52,7 +52,7 @@ class OrderPopUpViewController: UIViewController {
         }
         
         if isChooseAdress != true {
-            viewModel.getAdress { adress in
+            viewModel.loadAdress { adress in
                 DispatchQueue.main.async { [self] in
                     let dataAdress = viewModel.resultAdress.data
                     if !dataAdress.isEmpty {
@@ -66,13 +66,13 @@ class OrderPopUpViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        viewModel.getAllChart { _ in
+        viewModel.networkAPI.getAllChart { _ in
             DispatchQueue.main.async {
                 self.setDataOrder(orderInfo: self.viewModel.resultOrderInfo!)
             }
         }
         if isChooseAdress != true {
-            viewModel.getAdress { adress in
+            viewModel.loadAdress  { adress in
                 DispatchQueue.main.async { [self] in
                     let dataAdress = viewModel.resultAdress.data
                     if !dataAdress.isEmpty {

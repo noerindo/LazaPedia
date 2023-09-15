@@ -7,7 +7,6 @@
 
 import UIKit
 
-
 protocol BtnBackDelegate: AnyObject {
     func backOrderUp()
     func sendAdressOrder(country: String, city: String, idAdress: Int, isChooseAdress: Bool)
@@ -97,7 +96,7 @@ extension AdressViewController: UITableViewDelegate, UITableViewDataSource {
         let data = viewModel.resultAdress.data[indexPath.item]
         let deleteData = UIContextualAction(style: .destructive, title: "Delete") { [weak self] (action, view, completionHandler) in
               DispatchQueue.main.async {
-                  self?.viewModel.deleteAdress(id: data.id, completion: { respon in
+                  self?.viewModel.networkAPI.deleteAdress(id: data.id, completion: { respon in
                       DispatchQueue.main.async {
                           self?.viewModel.resultAdress.data.removeAll {$0.id == data.id}
                           self?.tableAdress.deleteRows(at: [indexPath], with: .left)

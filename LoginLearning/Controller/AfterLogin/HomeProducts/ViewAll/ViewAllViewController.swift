@@ -120,8 +120,4 @@ extension ViewAllViewController: UICollectionViewDelegate, UICollectionViewDataS
         }
 
     }
-    
-    
-    
-    
 }

@@ -117,7 +117,7 @@ class DetailViewController: UIViewController {
         }
     }
     private func actionWishlist(_ sender: UIButton) {
-        viewModel.putWishlist(id: viewModel.idProduct) { wishlist in
+        viewModel.networkAPI.putWishlist(id: viewModel.idProduct) { wishlist in
             DispatchQueue.main.async {
                 if wishlist == "successfully added wishlist" {
                     self.isInWishlist?.toggle()
@@ -160,14 +160,13 @@ class DetailViewController: UIViewController {
     
     
     @IBAction func backAction(_ sender: UIButton) {
-//        self.dismiss(animated: true)
         self.navigationController?.popViewController(animated: true)
     }
      
     
     @IBAction func addChart(_ sender: UIButton) {
         if viewModel.idSize != 0 {
-            viewModel.postChart(idProduct: viewModel.idProduct, idSize: viewModel.idSize) { result in
+            viewModel.networkAPI.postChart(idProduct: viewModel.idProduct, idSize: viewModel.idSize) { result in
                 OrderViewController.notifyObserver()
                 DispatchQueue.main.async {
                     SnackBarSuccess.make(in: self.view, message: "Succes Add to Order", duration: .lengthShort).show()

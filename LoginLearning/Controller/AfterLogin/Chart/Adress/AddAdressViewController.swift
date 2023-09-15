@@ -90,7 +90,7 @@ class AddAdressViewController: UIViewController {
         if AcountRegis.invalidNoHp(noHp: phone) {
             if isUpdate == true {
                 guard let idUpdate = viewModel.selectedData?.id else {return}
-                viewModel.putAdress(id: idUpdate, country: country, city: city, receiver_name: name, phone_number: phone, is_primary: isPrimary) { result in
+                viewModel.networkAPI.putAdress(id: idUpdate, country: country, city: city, receiver_name: name, phone_number: phone, is_primary: isPrimary) { result in
                     DispatchQueue.main.async {
                         let alert = UIAlertController(title: "Success", message: "Add Adress Success", preferredStyle: .alert)
                         let okAction = UIAlertAction(title: "OK", style: .default) { [weak self] _ in
@@ -106,7 +106,7 @@ class AddAdressViewController: UIViewController {
                     SnackBarWarning.make(in: self.view, message:error, duration: .lengthShort).show()
                 }
             } else {
-                viewModel.postAdress(country: country, city: city, receiver_name: name, phone_number: phone, is_primary: isPrimary) { result in
+                viewModel.networkAPI.postAdress(country: country, city: city, receiver_name: name, phone_number: phone, is_primary: isPrimary) { result in
                     DispatchQueue.main.async {
                         let alert = UIAlertController(title: "Success", message: "Add Adress Success", preferredStyle: .alert)
                         let okAction = UIAlertAction(title: "OK", style: .default) { [weak self] _ in

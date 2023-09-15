@@ -10,7 +10,7 @@ import SnackBar_swift
 
 class SignUpViewController: UIViewController {
     var isCheck: Bool = false
-    private let viewModel = SignUpVM()
+    private let networkAPI = NetworkAPI()
     
     @IBOutlet weak var checkUserName: UIImageView!
     
@@ -142,7 +142,7 @@ class SignUpViewController: UIViewController {
             return
         }
         
-        viewModel.postRegister(email: email, userName: userName, password: pass) { response in
+        networkAPI.postRegister(email: email, userName: userName, password: pass) { response in
             DispatchQueue.main.async {
                 self.loadingStop()
                 RememberUser().loginDefault(isLogin: false, userName: userName)

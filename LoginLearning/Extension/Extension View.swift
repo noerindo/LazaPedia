@@ -64,6 +64,7 @@ extension Int {
     }
 }
 
+
 extension Notification.Name {
     static var UpdateChart: Notification.Name {
         return .init("CartUpdated")

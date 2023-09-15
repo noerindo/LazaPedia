@@ -9,7 +9,7 @@ import UIKit
 
 class ChangePasswordViewController: UIViewController {
     
-    let viewModel = ChangePasswordVM()
+    let networkAPI = NetworkAPI()
 
     @IBOutlet weak var loadingView: UIActivityIndicatorView! {
         didSet {
@@ -76,7 +76,7 @@ class ChangePasswordViewController: UIViewController {
         loadingView.isHidden = false
         loadingView.startAnimating()
         
-        viewModel.postChangePass(oldPass: oldPass, newPass: newPass) { result in
+        networkAPI.postChangePass(oldPass: oldPass, newPass: newPass) { result in
             DispatchQueue.main.async {
                 self.loadingStop()
                 let alert = UIAlertController(title: "Success", message: result, preferredStyle: .alert)

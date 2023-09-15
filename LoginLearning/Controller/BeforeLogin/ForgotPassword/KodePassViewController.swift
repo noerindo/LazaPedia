@@ -57,13 +57,16 @@ class KodePassViewController: UIViewController {
         viewModel = KodePassViewVM(emailForgot: email)
     }
 
+    @IBAction func backAction(_ sender: UIButton) {
+        self.navigationController?.popViewController(animated: true)
+    }
     @IBAction func confirmCode(_ sender: UIButton) {
         loadingView.isHidden = false
         loadingView.startAnimating()
         guard let codeInput = inputCode.text else { return }
         
         if codeInput != "" {
-            viewModel.postCodeForgot(code: codeInput) { result in
+            viewModel.kodeForgot(code: codeInput) { result in
                 DispatchQueue.main.async { [self] in
                     self.loadingStop()
                     if result == "code is valid" {
@@ -88,7 +91,6 @@ class KodePassViewController: UIViewController {
         }
     }
     
-
 }
 
 extension KodePassViewController : DPOTPViewDelegate {

@@ -55,18 +55,6 @@ class WishlistViewController: UIViewController {
     }
     
     
-//    override func viewWillAppear(_ animated: Bool) {
-//        super.viewWillAppear(animated)
-//        wishlistMC.loadWishList { result in
-//            DispatchQueue.main.async {
-//                self.collectionWishlist.reloadData()
-//                guard let countWishlist = result?.data.total else {return}
-//                self.textCountWishlist.text = "\(countWishlist)"
-//            }
-//        }
-//        self.collectionWishlist.reloadData()
-//    }
-    
     deinit {
         NotificationCenter.default.removeObserver(self, name:Notification.Name.UpdateWishlist, object: nil)
     }

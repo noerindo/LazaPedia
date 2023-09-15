@@ -31,7 +31,6 @@ class OrderViewController: UIViewController {
         super.viewDidLoad()
         
         registerObserver()
-//        weak var delegate: BtnBackDelegate?
         setupTabBarText()
         tableOrder.delegate = self
         tableOrder.dataSource = self
@@ -123,17 +122,17 @@ class OrderViewController: UIViewController {
     }
     
     @IBAction func CheckoutAction(_ sender: UIButton) {
-        if viewModel.cardList.isEmpty {
-            let alert = UIAlertController(title: "Warning", message: "card is Empty. Add Card?", preferredStyle: .alert)
-            let okAction = UIAlertAction(title: "OK", style: .default) { [weak self] _ in
-                DispatchQueue.main.async {
-                    let loginVC = self?.storyboard?.instantiateViewController(withIdentifier: "AddPayViewController") as! AddPayViewController
-                    self?.navigationController?.pushViewController(loginVC, animated: true)
-                }
-            }
-            alert.addAction(okAction)
-            self.present(alert, animated: true, completion: nil)
-        }
+//        if viewModel.cardList.isEmpty {
+//            let alert = UIAlertController(title: "Warning", message: "card is Empty. Add Card?", preferredStyle: .alert)
+//            let okAction = UIAlertAction(title: "OK", style: .default) { [weak self] _ in
+//                DispatchQueue.main.async {
+//                    let loginVC = self?.storyboard?.instantiateViewController(withIdentifier: "AddPayViewController") as! AddPayViewController
+//                    self?.navigationController?.pushViewController(loginVC, animated: true)
+//                }
+//            }
+//            alert.addAction(okAction)
+//            self.present(alert, animated: true, completion: nil)
+//        }
         
         if viewModel.resultAdress.data.count == 0 {
             let alert = UIAlertController(title: "Warning", message: "Adress is Empty. Add data Adress?", preferredStyle: .alert)
@@ -153,7 +152,7 @@ class OrderViewController: UIViewController {
         
         loadingView.isHidden = false
         loadingView.startAnimating()
-        viewModel.postChecOut(product: viewModel.resultzproductOrder, address_id: idAdres ) { error in
+        viewModel.networkAPI.postChecOut(product: viewModel.resultzproductOrder, address_id: idAdres ) { error in
             DispatchQueue.main.async {
                 self.loadingStop()
                 SnackBarWarning.make(in: self.view, message: error, duration: .lengthShort).show()
@@ -260,9 +259,9 @@ extension OrderViewController: OrderTableDelegate {
             let dataCell = viewModel.resultProductChart[indexPath.item]
             let idSize = viewModel.GetIdSize(sizeString: dataCell.size)
             
-            viewModel.postChart(idProduct: dataCell.id, idSize: idSize) { result in
+            viewModel.networkAPI.postChart(idProduct: dataCell.id, idSize: idSize) { result in
                 DispatchQueue.main.async { [self] in
-                    guard let quantity = result else {return}
+                    guard let quantity = result?.data?.quantity else {return}
                     completion(quantity)
                     reloadTotalPrice()
                 }
@@ -275,7 +274,7 @@ extension OrderViewController: OrderTableDelegate {
             let dataCell = viewModel.resultProductChart[indexPath.item]
            let idSize = viewModel.GetIdSize(sizeString: dataCell.size)
             
-            viewModel.putProductChart(idProduct: dataCell.id, idSize: idSize) { result in
+            viewModel.networkAPI.putProductChart(idProduct: dataCell.id, idSize: idSize) { result in
                 DispatchQueue.main.async { [self] in
                     guard let quantity = result?.quantity else {
                         OrderViewController.notifyObserver()
@@ -293,7 +292,7 @@ extension OrderViewController: OrderTableDelegate {
         if let indexPath = tableOrder.indexPath(for: cell) {
             let dataCell = viewModel.resultProductChart[indexPath.item]
            let idSize = viewModel.GetIdSize(sizeString: dataCell.size)
-            viewModel.deletProductChart(idProduct: dataCell.id, idSize: idSize) { result in
+            viewModel.networkAPI.deletProductChart(idProduct: dataCell.id, idSize: idSize) { result in
                 OrderViewController.notifyObserver()
                 DispatchQueue.main.async {
                     SnackBarSuccess.make(in: self.view, message: result, duration: .lengthShort).show()

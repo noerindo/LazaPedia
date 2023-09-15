@@ -8,6 +8,7 @@
 import Foundation
 
 class ReviewVM{
+    let networkAPI = NetworkAPI()
     var listRiview = [ReviewProduct]()
     var resultRiview: DataIdRiview?
     
@@ -27,7 +28,7 @@ class ReviewVM{
     
     func loadAllriviewl(completion: @escaping (() -> Void)) {
         listRiview.removeAll()
-        getAllRiview(id: idProduct) { result in
+        networkAPI.getAllRiview(id: idProduct) { result in
             DispatchQueue.main.async { [self] in
                 resultRiview = result.data
                 var sortedResult = result
@@ -39,20 +40,4 @@ class ReviewVM{
             completion()
         }
     }
-    
-    func getAllRiview(id: Int, completion: @escaping((ResponRiview) -> Void)) {
-        guard let url = URL(string: Endpoints.Gets.riview(id: idProduct).url) else { return }
-        let request = URLRequest(url: url)
-        let task = URLSession.shared.dataTask(with: request) { data, response, error in
-            guard let data = data else { return }
-            do {
-                let result = try JSONDecoder().decode(ResponRiview.self, from: data)
-                completion(result)
-            } catch {
-                print("riview Gagal: \(error)")
-            }
-        }
-        task.resume()
-    }
-    
 }

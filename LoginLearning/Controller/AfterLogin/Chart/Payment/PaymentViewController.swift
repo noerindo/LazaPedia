@@ -123,7 +123,6 @@ class PaymentViewController: UIViewController {
     }
     
     
-    
     func configurePayment(indexPath: IndexPath) {
         selectedIndexPath = indexPath
         let card = cardVM.cardList[indexPath.item]

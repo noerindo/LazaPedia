@@ -8,7 +8,7 @@
 import UIKit
 
 class SendEmailViewController: UIViewController {
-    private let viewModel = SendEmailVM()
+    private let networkAPI = NetworkAPI()
     @IBOutlet weak var loadingView: UIActivityIndicatorView! {
         didSet {
             loadingView.isHidden = true
@@ -40,7 +40,7 @@ class SendEmailViewController: UIViewController {
         guard let email = emailTextInput.text else {return}
         
         if AcountRegis.invalidEmail(email: email) {
-            viewModel.postVerifikasiAccount(email: email) { result in
+            networkAPI.postVerifikasiAccount(email: email) { result in
                 DispatchQueue.main.async {
                     self.loadingStop()
                     let refreshAlert = UIAlertController(title: "Succes", message: result, preferredStyle: UIAlertController.Style.alert)

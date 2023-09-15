@@ -11,7 +11,6 @@
 		E00F6BBE2AA3925C00D10F21 /* SnackBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = E00F6BBD2AA3925C00D10F21 /* SnackBar.swift */; };
 		E01F8FAB2AA834A10027E740 /* EditCardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E01F8FAA2AA834A10027E740 /* EditCardViewController.swift */; };
 		E01F8FAD2AA85DC40027E740 /* EditCardVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = E01F8FAC2AA85DC40027E740 /* EditCardVM.swift */; };
-		E01F8FB82AA872D60027E740 /* ForgotEmailVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = E01F8FB72AA872D60027E740 /* ForgotEmailVM.swift */; };
 		E01F8FBA2AA873E50027E740 /* ResetPasswordVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = E01F8FB92AA873E50027E740 /* ResetPasswordVM.swift */; };
 		E01F8FBC2AA87D800027E740 /* KodePassViewVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = E01F8FBB2AA87D800027E740 /* KodePassViewVM.swift */; };
 		E02DC1822A75896800CA0192 /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E02DC1812A75896800CA0192 /* TabBarViewController.swift */; };
@@ -19,7 +18,6 @@
 		E034052E2A96051100504886 /* PutImageAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = E034052D2A96051100504886 /* PutImageAPI.swift */; };
 		E0355C452AAA749B0040BB13 /* TableVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0355C442AAA749B0040BB13 /* TableVM.swift */; };
 		E0355C482AAA759F0040BB13 /* ProducTableVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0355C472AAA759F0040BB13 /* ProducTableVM.swift */; };
-		E0355C4A2AAA77210040BB13 /* ProfileVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0355C492AAA77210040BB13 /* ProfileVM.swift */; };
 		E03669882A90A67C00AA089E /* RiviewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E03669872A90A67C00AA089E /* RiviewModel.swift */; };
 		E03EA8E02A97077C00E5E631 /* Chart.swift in Sources */ = {isa = PBXBuildFile; fileRef = E03EA8DF2A97077C00E5E631 /* Chart.swift */; };
 		E03EA8E42A97380E00E5E631 /* Adress.swift in Sources */ = {isa = PBXBuildFile; fileRef = E03EA8E32A97380E00E5E631 /* Adress.swift */; };
@@ -27,9 +25,6 @@
 		E03F9EED2A9316F3009CED92 /* SliderRating.swift in Sources */ = {isa = PBXBuildFile; fileRef = E03F9EEC2A9316F3009CED92 /* SliderRating.swift */; };
 		E03F9EF22A936084009CED92 /* ViewAllViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E03F9EF12A936084009CED92 /* ViewAllViewController.swift */; };
 		E03F9EF42A936597009CED92 /* DetailCategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E03F9EF32A936597009CED92 /* DetailCategoryViewController.swift */; };
-		E04017A92AA92504007075CD /* LoginVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = E04017A82AA92504007075CD /* LoginVM.swift */; };
-		E04017AB2AA9261D007075CD /* SendEmailVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = E04017AA2AA9261D007075CD /* SendEmailVM.swift */; };
-		E04017AD2AA9274E007075CD /* SignUpVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = E04017AC2AA9274E007075CD /* SignUpVM.swift */; };
 		E057A4322A70A80B00A8EC00 /* ForgotEmailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E057A4312A70A80B00A8EC00 /* ForgotEmailViewController.swift */; };
 		E057A4482A70ACC300A8EC00 /* Inter-ExtraBoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E057A4352A70ACC200A8EC00 /* Inter-ExtraBoldItalic.ttf */; };
 		E057A4492A70ACC300A8EC00 /* Inter-MediumItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E057A4362A70ACC200A8EC00 /* Inter-MediumItalic.ttf */; };
@@ -62,7 +57,6 @@
 		E05B66072AA9B60B00A99E69 /* DetailViewVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = E05B66062AA9B60B00A99E69 /* DetailViewVM.swift */; };
 		E05B66092AA9BD8200A99E69 /* AddRiviewVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = E05B66082AA9BD8200A99E69 /* AddRiviewVM.swift */; };
 		E05B660B2AA9C47600A99E69 /* ReviewVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = E05B660A2AA9C47600A99E69 /* ReviewVM.swift */; };
-		E05B660E2AA9C7D100A99E69 /* ChangePasswordVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = E05B660D2AA9C7D100A99E69 /* ChangePasswordVM.swift */; };
 		E05B66112AA9C90200A99E69 /* ViewAllVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = E05B66102AA9C90200A99E69 /* ViewAllVM.swift */; };
 		E05B66132AA9CC1F00A99E69 /* EditProfileVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = E05B66122AA9CC1F00A99E69 /* EditProfileVM.swift */; };
 		E05C0FD12A7219A000962579 /* AccountRegis.swift in Sources */ = {isa = PBXBuildFile; fileRef = E05C0FD02A7219A000962579 /* AccountRegis.swift */; };
@@ -130,7 +124,6 @@
 		E00F6BBD2AA3925C00D10F21 /* SnackBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnackBar.swift; sourceTree = "<group>"; };
 		E01F8FAA2AA834A10027E740 /* EditCardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditCardViewController.swift; sourceTree = "<group>"; };
 		E01F8FAC2AA85DC40027E740 /* EditCardVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditCardVM.swift; sourceTree = "<group>"; };
-		E01F8FB72AA872D60027E740 /* ForgotEmailVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotEmailVM.swift; sourceTree = "<group>"; };
 		E01F8FB92AA873E50027E740 /* ResetPasswordVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetPasswordVM.swift; sourceTree = "<group>"; };
 		E01F8FBB2AA87D800027E740 /* KodePassViewVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KodePassViewVM.swift; sourceTree = "<group>"; };
 		E02DC1812A75896800CA0192 /* TabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
@@ -138,7 +131,6 @@
 		E034052D2A96051100504886 /* PutImageAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PutImageAPI.swift; sourceTree = "<group>"; };
 		E0355C442AAA749B0040BB13 /* TableVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableVM.swift; sourceTree = "<group>"; };
 		E0355C472AAA759F0040BB13 /* ProducTableVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProducTableVM.swift; sourceTree = "<group>"; };
-		E0355C492AAA77210040BB13 /* ProfileVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileVM.swift; sourceTree = "<group>"; };
 		E03669872A90A67C00AA089E /* RiviewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RiviewModel.swift; sourceTree = "<group>"; };
 		E03EA8DF2A97077C00E5E631 /* Chart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Chart.swift; sourceTree = "<group>"; };
 		E03EA8E32A97380E00E5E631 /* Adress.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Adress.swift; sourceTree = "<group>"; };
@@ -146,9 +138,6 @@
 		E03F9EEC2A9316F3009CED92 /* SliderRating.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SliderRating.swift; sourceTree = "<group>"; };
 		E03F9EF12A936084009CED92 /* ViewAllViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewAllViewController.swift; sourceTree = "<group>"; };
 		E03F9EF32A936597009CED92 /* DetailCategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailCategoryViewController.swift; sourceTree = "<group>"; };
-		E04017A82AA92504007075CD /* LoginVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginVM.swift; sourceTree = "<group>"; };
-		E04017AA2AA9261D007075CD /* SendEmailVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendEmailVM.swift; sourceTree = "<group>"; };
-		E04017AC2AA9274E007075CD /* SignUpVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpVM.swift; sourceTree = "<group>"; };
 		E057A4312A70A80B00A8EC00 /* ForgotEmailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotEmailViewController.swift; sourceTree = "<group>"; };
 		E057A4352A70ACC200A8EC00 /* Inter-ExtraBoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Inter-ExtraBoldItalic.ttf"; sourceTree = "<group>"; };
 		E057A4362A70ACC200A8EC00 /* Inter-MediumItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Inter-MediumItalic.ttf"; sourceTree = "<group>"; };
@@ -181,7 +170,6 @@
 		E05B66062AA9B60B00A99E69 /* DetailViewVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewVM.swift; sourceTree = "<group>"; };
 		E05B66082AA9BD8200A99E69 /* AddRiviewVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddRiviewVM.swift; sourceTree = "<group>"; };
 		E05B660A2AA9C47600A99E69 /* ReviewVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewVM.swift; sourceTree = "<group>"; };
-		E05B660D2AA9C7D100A99E69 /* ChangePasswordVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePasswordVM.swift; sourceTree = "<group>"; };
 		E05B66102AA9C90200A99E69 /* ViewAllVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewAllVM.swift; sourceTree = "<group>"; };
 		E05B66122AA9CC1F00A99E69 /* EditProfileVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileVM.swift; sourceTree = "<group>"; };
 		E05C0FD02A7219A000962579 /* AccountRegis.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountRegis.swift; sourceTree = "<group>"; };
@@ -299,129 +287,28 @@
 			path = Table;
 			sourceTree = "<group>";
 		};
-		E01885F42A74601000ED4B37 /* viewModel */ = {
+		E01F8FB02AA871B00027E740 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
-				E0355C422AAA74640040BB13 /* Tabel */,
-				E01F8FAF2AA871530027E740 /* AfterLogin */,
-				E01F8FAE2AA871290027E740 /* BeforeLogin */,
-			);
-			path = viewModel;
-			sourceTree = "<group>";
-		};
-		E01F8FAE2AA871290027E740 /* BeforeLogin */ = {
-			isa = PBXGroup;
-			children = (
-				E01F8FB62AA872810027E740 /* SignUp */,
-				E01F8FB52AA872680027E740 /* Login */,
-				E01F8FB42AA872590027E740 /* ForgotPassword */,
-			);
-			path = BeforeLogin;
-			sourceTree = "<group>";
-		};
-		E01F8FAF2AA871530027E740 /* AfterLogin */ = {
-			isa = PBXGroup;
-			children = (
-				E01F8FB02AA871B00027E740 /* Chart */,
-				E01F8FB12AA871BD0027E740 /* HomeProducts */,
-				E01F8FB22AA871E50027E740 /* Profile */,
-				E01F8FB32AA871F10027E740 /* Wishlist */,
-			);
-			path = AfterLogin;
-			sourceTree = "<group>";
-		};
-		E01F8FB02AA871B00027E740 /* Chart */ = {
-			isa = PBXGroup;
-			children = (
-				E05B65F82AA981D700A99E69 /* Adress */,
 				E05B65F62AA96B3100A99E69 /* OrderPopUpVM.swift */,
 				E05B65F42AA962AE00A99E69 /* OrderViewVM.swift */,
-				E05B65FD2AA9A82100A99E69 /* Payment */,
 			);
-			path = Chart;
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
-		E01F8FB12AA871BD0027E740 /* HomeProducts */ = {
+		E01F8FB42AA872590027E740 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
-				E05B66032AA9B57E00A99E69 /* Product */,
-				E05B66002AA9AA7700A99E69 /* Category */,
-			);
-			path = HomeProducts;
-			sourceTree = "<group>";
-		};
-		E01F8FB22AA871E50027E740 /* Profile */ = {
-			isa = PBXGroup;
-			children = (
-				E05B66122AA9CC1F00A99E69 /* EditProfileVM.swift */,
-				E0355C492AAA77210040BB13 /* ProfileVM.swift */,
-			);
-			path = Profile;
-			sourceTree = "<group>";
-		};
-		E01F8FB32AA871F10027E740 /* Wishlist */ = {
-			isa = PBXGroup;
-			children = (
-				E0858D812A9499F500FA313A /* WishlistVM.swift */,
-			);
-			path = Wishlist;
-			sourceTree = "<group>";
-		};
-		E01F8FB42AA872590027E740 /* ForgotPassword */ = {
-			isa = PBXGroup;
-			children = (
-				E01F8FB72AA872D60027E740 /* ForgotEmailVM.swift */,
 				E01F8FB92AA873E50027E740 /* ResetPasswordVM.swift */,
 				E01F8FBB2AA87D800027E740 /* KodePassViewVM.swift */,
 			);
-			path = ForgotPassword;
-			sourceTree = "<group>";
-		};
-		E01F8FB52AA872680027E740 /* Login */ = {
-			isa = PBXGroup;
-			children = (
-				E04017A82AA92504007075CD /* LoginVM.swift */,
-				E04017AA2AA9261D007075CD /* SendEmailVM.swift */,
-			);
-			path = Login;
-			sourceTree = "<group>";
-		};
-		E01F8FB62AA872810027E740 /* SignUp */ = {
-			isa = PBXGroup;
-			children = (
-				E04017AC2AA9274E007075CD /* SignUpVM.swift */,
-			);
-			path = SignUp;
-			sourceTree = "<group>";
-		};
-		E0355C422AAA74640040BB13 /* Tabel */ = {
-			isa = PBXGroup;
-			children = (
-				E0355C462AAA75830040BB13 /* Product */,
-				E0355C432AAA747D0040BB13 /* Brand */,
-			);
-			path = Tabel;
-			sourceTree = "<group>";
-		};
-		E0355C432AAA747D0040BB13 /* Brand */ = {
-			isa = PBXGroup;
-			children = (
-				E0355C442AAA749B0040BB13 /* TableVM.swift */,
-			);
-			path = Brand;
-			sourceTree = "<group>";
-		};
-		E0355C462AAA75830040BB13 /* Product */ = {
-			isa = PBXGroup;
-			children = (
-				E0355C472AAA759F0040BB13 /* ProducTableVM.swift */,
-			);
-			path = Product;
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 		E03F9EF02A936069009CED92 /* ViewAll */ = {
 			isa = PBXGroup;
 			children = (
+				E05B66102AA9C90200A99E69 /* ViewAllVM.swift */,
 				E03F9EF12A936084009CED92 /* ViewAllViewController.swift */,
 			);
 			path = ViewAll;
@@ -490,74 +377,31 @@
 			path = NetworkAPI;
 			sourceTree = "<group>";
 		};
-		E05B65F82AA981D700A99E69 /* Adress */ = {
+		E05B65F82AA981D700A99E69 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
 				E05B65F92AA981EB00A99E69 /* AdressViewVM.swift */,
 				E05B65FB2AA984D400A99E69 /* AddAdressViewVM.swift */,
 			);
-			path = Adress;
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
-		E05B65FD2AA9A82100A99E69 /* Payment */ = {
+		E05B65FD2AA9A82100A99E69 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
 				E01F8FAC2AA85DC40027E740 /* EditCardVM.swift */,
 				E05B65FE2AA9A87500A99E69 /* PaymentVM.swift */,
 			);
-			path = Payment;
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
-		E05B66002AA9AA7700A99E69 /* Category */ = {
-			isa = PBXGroup;
-			children = (
-				E05B66012AA9AA9A00A99E69 /* DetailCategoryVM.swift */,
-			);
-			path = Category;
-			sourceTree = "<group>";
-		};
-		E05B66032AA9B57E00A99E69 /* Product */ = {
-			isa = PBXGroup;
-			children = (
-				E05B660F2AA9C8CC00A99E69 /* ViewAll */,
-				E05B660C2AA9C7A300A99E69 /* SideMenu */,
-				E05B66042AA9B5A700A99E69 /* Detail */,
-			);
-			path = Product;
-			sourceTree = "<group>";
-		};
-		E05B66042AA9B5A700A99E69 /* Detail */ = {
-			isa = PBXGroup;
-			children = (
-				E05B66062AA9B60B00A99E69 /* DetailViewVM.swift */,
-				E05B66052AA9B5C500A99E69 /* Riview */,
-			);
-			path = Detail;
-			sourceTree = "<group>";
-		};
-		E05B66052AA9B5C500A99E69 /* Riview */ = {
+		E05B66052AA9B5C500A99E69 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
 				E05B66082AA9BD8200A99E69 /* AddRiviewVM.swift */,
 				E05B660A2AA9C47600A99E69 /* ReviewVM.swift */,
 			);
-			path = Riview;
-			sourceTree = "<group>";
-		};
-		E05B660C2AA9C7A300A99E69 /* SideMenu */ = {
-			isa = PBXGroup;
-			children = (
-				E05B660D2AA9C7D100A99E69 /* ChangePasswordVM.swift */,
-			);
-			path = SideMenu;
-			sourceTree = "<group>";
-		};
-		E05B660F2AA9C8CC00A99E69 /* ViewAll */ = {
-			isa = PBXGroup;
-			children = (
-				E05B66102AA9C90200A99E69 /* ViewAllVM.swift */,
-			);
-			path = ViewAll;
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 		E05C0FD42A73B29200962579 /* AfterLogin */ = {
@@ -587,6 +431,7 @@
 		E07B9D8C2A8DB348007CC799 /* Wishlist */ = {
 			isa = PBXGroup;
 			children = (
+				E0858D812A9499F500FA313A /* WishlistVM.swift */,
 				E07B9DCB2A8DDB83007CC799 /* WishlistViewController.swift */,
 			);
 			path = Wishlist;
@@ -595,6 +440,7 @@
 		E07B9D8E2A8DB3CE007CC799 /* Chart */ = {
 			isa = PBXGroup;
 			children = (
+				E01F8FB02AA871B00027E740 /* ViewModel */,
 				E07B9DF82A8DE84D007CC799 /* OrderViewController.swift */,
 				E07B9DFA2A8DE871007CC799 /* OrderPopUpViewController.swift */,
 				E07B9DE32A8DE54C007CC799 /* Adress */,
@@ -607,6 +453,8 @@
 			isa = PBXGroup;
 			children = (
 				E07B9DA82A8DD0E1007CC799 /* DetailViewController.swift */,
+				E05B66062AA9B60B00A99E69 /* DetailViewVM.swift */,
+				E05B66012AA9AA9A00A99E69 /* DetailCategoryVM.swift */,
 				E07B9D9C2A8DCF15007CC799 /* Riview */,
 			);
 			path = Detail;
@@ -640,6 +488,7 @@
 		E07B9D9C2A8DCF15007CC799 /* Riview */ = {
 			isa = PBXGroup;
 			children = (
+				E05B66052AA9B5C500A99E69 /* ViewModel */,
 				E07B9DAA2A8DD116007CC799 /* AddRiviewViewController.swift */,
 				E07B9DA12A8DCFD7007CC799 /* ReviewViewController.swift */,
 			);
@@ -649,6 +498,7 @@
 		E07B9DE22A8DE53F007CC799 /* Payment */ = {
 			isa = PBXGroup;
 			children = (
+				E05B65FD2AA9A82100A99E69 /* ViewModel */,
 				E07B9DE72A8DE5F0007CC799 /* AddPayViewController.swift */,
 				E01F8FAA2AA834A10027E740 /* EditCardViewController.swift */,
 				E07B9DDC2A8DDE59007CC799 /* PaymentViewController.swift */,
@@ -659,6 +509,7 @@
 		E07B9DE32A8DE54C007CC799 /* Adress */ = {
 			isa = PBXGroup;
 			children = (
+				E05B65F82AA981D700A99E69 /* ViewModel */,
 				E07B9DF02A8DE6D9007CC799 /* AdressViewController.swift */,
 				E07B9DF22A8DE6FA007CC799 /* AddAdressViewController.swift */,
 				E07B9DFC2A8DE8A2007CC799 /* ConfirmViewController.swift */,
@@ -670,6 +521,7 @@
 			isa = PBXGroup;
 			children = (
 				E034052B2A95C68A00504886 /* EditProfileViewController.swift */,
+				E05B66122AA9CC1F00A99E69 /* EditProfileVM.swift */,
 				E07B9DFF2A8E06F7007CC799 /* ProfileViewController.swift */,
 			);
 			path = Profile;
@@ -708,7 +560,6 @@
 				E057A5E72A7116FC00A8EC00 /* Model */,
 				E09396702A70691D003445B3 /* Controller */,
 				E09396712A706930003445B3 /* View */,
-				E01885F42A74601000ED4B37 /* viewModel */,
 			);
 			path = LoginLearning;
 			sourceTree = "<group>";
@@ -761,6 +612,7 @@
 		E093967A2A70721C003445B3 /* ForgotPassword */ = {
 			isa = PBXGroup;
 			children = (
+				E01F8FB42AA872590027E740 /* ViewModel */,
 				E057A4312A70A80B00A8EC00 /* ForgotEmailViewController.swift */,
 				E057A45B2A70B23D00A8EC00 /* ResetPasswordViewController.swift */,
 				E0DE4F0C2A8CB62E000C53FA /* KodePassViewController.swift */,
@@ -771,6 +623,7 @@
 		E093F0892AA4883F00C34F9F /* Brand */ = {
 			isa = PBXGroup;
 			children = (
+				E0355C442AAA749B0040BB13 /* TableVM.swift */,
 				E07B9DC72A8DDAED007CC799 /* TableViewCell.swift */,
 				E07B9DC82A8DDAED007CC799 /* TableViewCell.xib */,
 				E07B9DC32A8DDA9D007CC799 /* CollectionViewCell.swift */,
@@ -800,6 +653,7 @@
 		E093F08C2AA4891400C34F9F /* Product */ = {
 			isa = PBXGroup;
 			children = (
+				E0355C472AAA759F0040BB13 /* ProducTableVM.swift */,
 				E07B9DBD2A8DD9EF007CC799 /* ProducTableViewCell.swift */,
 				E07B9DBE2A8DD9EF007CC799 /* ProducTableViewCell.xib */,
 				E07B9DB52A8DD919007CC799 /* ProducCollectionViewCell.swift */,
@@ -1010,12 +864,10 @@
 				E07B9E002A8E06F7007CC799 /* ProfileViewController.swift in Sources */,
 				E0858D822A9499F500FA313A /* WishlistVM.swift in Sources */,
 				E01F8FAB2AA834A10027E740 /* EditCardViewController.swift in Sources */,
-				E04017A92AA92504007075CD /* LoginVM.swift in Sources */,
 				E07B9DAE2A8DD188007CC799 /* SideMenuViewController.swift in Sources */,
 				E057A5EC2A711AE400A8EC00 /* APIcall.swift in Sources */,
 				E05B65FA2AA981EB00A99E69 /* AdressViewVM.swift in Sources */,
 				E01F8FBA2AA873E50027E740 /* ResetPasswordVM.swift in Sources */,
-				E04017AD2AA9274E007075CD /* SignUpVM.swift in Sources */,
 				E07B9DDD2A8DDE59007CC799 /* PaymentViewController.swift in Sources */,
 				E05B65FC2AA984D400A99E69 /* AddAdressViewVM.swift in Sources */,
 				E07B9D942A8DCDE0007CC799 /* IntrinsicTableView.swift in Sources */,
@@ -1028,7 +880,6 @@
 				E07B9DCC2A8DDB83007CC799 /* WishlistViewController.swift in Sources */,
 				E05C0FD12A7219A000962579 /* AccountRegis.swift in Sources */,
 				E07B9DC52A8DDA9D007CC799 /* CollectionViewCell.swift in Sources */,
-				E0355C4A2AAA77210040BB13 /* ProfileVM.swift in Sources */,
 				E05B660B2AA9C47600A99E69 /* ReviewVM.swift in Sources */,
 				E07B9DF62A8DE7DC007CC799 /* OrderTableViewCell.swift in Sources */,
 				E05C0FD32A724EFA00962579 /* Extension View.swift in Sources */,
@@ -1037,7 +888,6 @@
 				E05B65F72AA96B3100A99E69 /* OrderPopUpVM.swift in Sources */,
 				E0747EF92A9849FC0076ADF4 /* SideMenuModel.swift in Sources */,
 				E07B9DE82A8DE5F0007CC799 /* AddPayViewController.swift in Sources */,
-				E04017AB2AA9261D007075CD /* SendEmailVM.swift in Sources */,
 				E05B66072AA9B60B00A99E69 /* DetailViewVM.swift in Sources */,
 				E01F8FAD2AA85DC40027E740 /* EditCardVM.swift in Sources */,
 				E07B9DFD2A8DE8A2007CC799 /* ConfirmViewController.swift in Sources */,
@@ -1050,7 +900,6 @@
 				E07B9DF92A8DE84D007CC799 /* OrderViewController.swift in Sources */,
 				E0C74FC22A8F01FD00DCCB32 /* KeychainManager.swift in Sources */,
 				E07B9DDA2A8DDD76007CC799 /* CardCreditCollectionViewCell.swift in Sources */,
-				E01F8FB82AA872D60027E740 /* ForgotEmailVM.swift in Sources */,
 				E07B9DB72A8DD919007CC799 /* ProducCollectionViewCell.swift in Sources */,
 				E0355C482AAA759F0040BB13 /* ProducTableVM.swift in Sources */,
 				E03EA8E42A97380E00E5E631 /* Adress.swift in Sources */,
@@ -1075,7 +924,6 @@
 				E093F0942AA49CD100C34F9F /* CardData.xcdatamodeld in Sources */,
 				E07B9DEE2A8DE698007CC799 /* AdressTableViewCell.swift in Sources */,
 				E05B66092AA9BD8200A99E69 /* AddRiviewVM.swift in Sources */,
-				E05B660E2AA9C7D100A99E69 /* ChangePasswordVM.swift in Sources */,
 				E034052C2A95C68A00504886 /* EditProfileViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

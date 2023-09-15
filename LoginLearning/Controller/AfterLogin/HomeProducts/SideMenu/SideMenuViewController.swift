@@ -14,7 +14,6 @@ protocol SideMenuViewControllerDelegate {
 }
 
 class SideMenuViewController: UIViewController {
-    let viewModel =  ProfileVM()
     
     var defaultHighlightedCell: Int = 0
     var delegate: SideMenuViewControllerDelegate?

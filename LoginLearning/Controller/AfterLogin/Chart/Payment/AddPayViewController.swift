@@ -34,21 +34,15 @@ class AddPayViewController: UIViewController,  STPPaymentCardTextFieldDelegate {
         }
     }
   
-    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         cardParams = STPPaymentMethodCardParams()
         cardParams.number = inputCardText.cardNumber
         inputCardText.postalCodeEntryEnabled = false
-        
-
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         creditCardView.paymentCardTextFieldDidChange(cardNumber: cardParams.number, expirationYear: cardParams.expYear as? UInt, expirationMonth: cardParams.expMonth as? UInt)
-       
-       
     }
     
     @objc func cardNameTextChanged(_ textField: UITextField) {
@@ -93,13 +87,10 @@ class AddPayViewController: UIViewController,  STPPaymentCardTextFieldDelegate {
         }
         print("masuk")
             self.navigationController?.popViewController(animated: true)
-        
-        
     }
     // MARK: - Navigation
     func paymentCardTextFieldDidChange(_ textField: STPPaymentCardTextField) {
         creditCardView.paymentCardTextFieldDidChange(cardNumber: textField.cardNumber, expirationYear: UInt(textField.expirationYear), expirationMonth: UInt(textField.expirationMonth), cvc: textField.cvc)
-//        creditCardView.cardHolderString = name
         
     }
     
@@ -122,12 +113,6 @@ extension AddPayViewController: UITextFieldDelegate {
     }
 
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-//        if textField == nameCardText {
-//            textField.resignFirstResponder()
-//            inputCardText.becomeFirstResponder()
-//        } else if textField == inputCardText {
-//            textField.resignFirstResponder()
-//        }
         return true
     }
 }
